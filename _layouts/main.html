@@ -32,6 +32,9 @@ layout: default
         {% if site.social-email %}
           <li class="email"><a href="mailto:{{site.social-email}}"><i class="fa fa-envelope-o"></i></a></li>
         {% endif %}
+		{% if site.cv %}
+			<li class="id-badge"><a href="{{site.baseurl}}/assets/{{site.cv}}" target="_blank"><i class="fa fa-id-badge"></i></a></li>
+		{% endif %}
       </ul>
     </section> <!-- End Section Contact -->
     <div class="copyright">

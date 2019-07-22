@@ -751,7 +751,8 @@ table tfoot td {
   margin: auto; }
 
 .post, .article-page {
-  background-color: #fff; }
+  background-color: #fff;
+  border-radius: 10px; }
 
 ::-moz-selection {
   background: rgba(38, 57, 89, 0.8);
@@ -972,9 +973,7 @@ a.newer-posts:hover {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding-bottom: 30px;
-  margin: 30px 0;
-  border-bottom: 1px solid #a0a0a0; }
+  margin-top: 30px; }
   .page-footer .page-share {
     margin-bottom: 10px;
     text-align: left; }
@@ -1002,6 +1001,18 @@ a.newer-posts:hover {
     border: 1px solid #263959; }
     .page-footer .page-tag a:hover {
       text-decoration: underline; }
+
+.embed-container {
+  margin: auto;
+  display: block;
+  text-align: center; }
+  .embed-container blockquote {
+    border-left: 0; }
+    .embed-container blockquote p {
+      margin-top: 0; }
+
+.footnotes li p {
+  margin: 0; }
 
 /* - - - - - - - - - - Tag Styles - - - - - - - - - - */
 .blog-tags {
