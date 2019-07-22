@@ -54,7 +54,7 @@
       border-radius: 100%;
       margin-bottom: 10px;
     }
-}
+  }
 
   .content-box {
     padding: 20px 10px;
@@ -64,10 +64,15 @@
     align-items: stretch;
   }
 
-.contact-title, .copyright {
-  display: none;
-}
+  .contact-title, .copyright {
+    display: none;
+  }
 
+  .embed-container{
+    iframe{
+	  width: 100%;
+	}
+  }
 }
 
 /* Extra Small Devices, Phones */
@@ -94,5 +99,10 @@
         }
       }
     }
+  }
+  .embed-container{
+    iframe{
+	  width: 100%;
+	}
   }
 }
