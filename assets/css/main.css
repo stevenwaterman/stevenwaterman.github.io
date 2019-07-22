@@ -781,7 +781,7 @@ table tfoot td {
   background-color: #ffffff; }
 
 .about {
-  margin: 0 0 40px;
+  margin: 0;
   text-align: center; }
   .about .cover-author-image {
     width: 150px;
@@ -801,25 +801,14 @@ table tfoot td {
     font-family: 'PT Serif', serif;
     margin: 0 0 10px;
     position: relative;
-    padding-bottom: 15px;
     font-size: 24px;
     letter-spacing: 0.015em;
     color: #333030;
     font-weight: 600; }
-    .about .author-name::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: 0;
-      display: block;
-      width: 7px;
-      height: 7px;
-      border-radius: 100%;
-      background-color: #515151; }
   .about p {
     font-size: 16px;
-    margin: 0 0 10px; }
+    margin: 20px 0 20px;
+    text-align: justify; }
 
 .content-box {
   padding: 20px;

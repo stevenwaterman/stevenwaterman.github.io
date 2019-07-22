@@ -8,7 +8,7 @@ url: "http://www.stevenwaterman.uk" # the base hostname & protocol for your site
 # Author Settings
 author: Steven Waterman # add your name
 author-img: steven-waterman.jpg # add your photo
-about-author: I am a software developer, focusing on back-end development and data engineering. I'm working on a game called sharpshot, and a lot of what I talk about will be updates on the game's progress. # add description
+about-author: Recent CS grad, developer with focus on back end and data.<br><br>Working on SharpShot, a zach-like puzzle game, and much of my writing will be dev logs. <br><br>Prepare for random digressions along with a strange mix of hacky solutions and perfectionism. # add description
 #social-twitter: # add your Twitter handle
 #social-facebook: # add your Facebook handle
 social-github: motherlymuppet # add your Github handle
@@ -23,6 +23,7 @@ social-email: website@stevenwaterman.uk # add your Email address
 
 # Build Settings
 markdown: kramdown
+# remote_theme: flexible-jekyll
 plugins:
   - jekyll-sitemap
   - jekyll-paginate
