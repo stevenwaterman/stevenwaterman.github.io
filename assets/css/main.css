@@ -1014,6 +1014,10 @@ a.newer-posts:hover {
 .footnotes li p {
   margin: 0; }
 
+p img {
+  display: block;
+  margin: 0 auto; }
+
 /* - - - - - - - - - - Tag Styles - - - - - - - - - - */
 .blog-tags {
   width: 100%;
