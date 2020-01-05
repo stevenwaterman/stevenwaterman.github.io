@@ -944,6 +944,10 @@ a.newer-posts:hover {
     font-weight: 300;
     font-size: 12px;
     text-transform: uppercase; }
+  .header-page .page-original {
+    color: #a0a0a0;
+    font-weight: 400;
+    font-size: 14px; }
 
 .page-cover-image {
   position: relative;

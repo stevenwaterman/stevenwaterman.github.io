@@ -5,10 +5,8 @@ date: 2020-01-03 11:00:00 +0000
 description: "DTOs help translate data between server and client. By going back to first principles, how can we utilise static type-checking and integration with modern IDEs to write a better DTO?"
 tags: ["java", "dto", "single-method-interface", "software-engineering"]
 img: posts/20200103/documentation.png
+original: "https://blog.scottlogic.com/2020/01/03/rethinking-the-java-dto.html"
 ---
-
-*This post was originally posted on the [Scott Logic blog](https://blog.scottlogic.com/2020/01/03/rethinking-the-java-dto.html).*
-
 As part of Scott Logic's graduate training program, I spent 12 weeks working with the other grads on an internal 
 project.
 One aspect stuck with me more than the rest - the style and structure of our DTOs.
