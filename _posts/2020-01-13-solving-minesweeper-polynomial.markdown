@@ -2,7 +2,7 @@
 layout: post
 title: Talk: Solving Minesweeper in Polynomial Time
 date: 2020-01-13 09:00:00 +0100
-description: 
+description: "I gave a talk on solving minesweeper at NE:Tech. Things got weird!" 
 img: posts/20200113/minesweeper.png
 tags: [Talks, Minesweeper]
 youtubeId: 2ibiA5TEsxw
