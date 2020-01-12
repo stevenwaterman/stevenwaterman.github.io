@@ -1,12 +1,12 @@
 ---
 layout: post
-title: Talk: Solving Minesweeper in Polynomial Time
+title: "Talk: Solving Minesweeper in Polynomial Time"
 date: 2020-01-13 09:00:00 +0100
 description: "I gave a talk on solving minesweeper at NE:Tech. Things got weird!" 
-img: posts/20200113/minesweeper.png
+img: "posts/20200113/minesweeper.png"
 tags: [Talks, Minesweeper]
 youtubeId: 2ibiA5TEsxw
-youtubeDesc: The full talk, including slides, is available on youtube.
+youtubeDesc: "Things got weird"
 ---
 
 I was recently invited to NE:Tech to give a 15-minute talk on solving minesweeper.
@@ -21,4 +21,5 @@ The full talk is available via youtube:
 The website used during the talk is [available online](minesweeper.stevenwaterman.uk) and is [open-source on GitHub](https://github.com/stevenwaterman/Minesweeper-Constrained)
 
 I'd love for you to get in touch with any questions or comments!
+
 ---
