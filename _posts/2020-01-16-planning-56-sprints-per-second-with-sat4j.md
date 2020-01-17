@@ -1,6 +1,7 @@
 ---
 author: swaterman
 layout: post
+date: 2020-01-16 12:00:00 +0100
 title: "Planning 56 sprints per second with SAT4J"
 description: "SAT solvers are surprisingly fast and probably under-used. Could one help us improve sprint planning meetings? Maybe, but first you'll have to change the way you think about user stories."
 tags:
@@ -132,7 +133,7 @@ After extracting any tech tasks, and asking the PO to estimate the value of each
 
 When graphing the dependencies, you can see that the situation is much simpler:
 
-![The graph is much neater and has no circular dependencies]({{/assets/img/posts/20200116/stories-clean.png "We can remove the circular dependencies by adding more tasks")
+![The graph is much neater and has no circular dependencies](/assets/img/posts/20200116/stories-clean.png "We can remove the circular dependencies by adding more tasks")
 
 ## Updating the solver
 
