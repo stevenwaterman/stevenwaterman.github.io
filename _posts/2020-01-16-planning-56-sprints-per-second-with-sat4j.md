@@ -7,7 +7,7 @@ tags:
   - java
   - SAT-solvers
   - scrum
-image: posts/20200116/stories-messy.png
+img: "posts/20200116/stories-messy.png"
 original: "https://blog.scottlogic.com/2020/01/16/planning-56-sprints-per-second-with-sat4j.html"
 ---
 
