@@ -133,7 +133,7 @@ After extracting any tech tasks, and asking the PO to estimate the value of each
 
 When graphing the dependencies, you can see that the situation is much simpler:
 
-![The graph is much neater and has no circular dependencies]({{/assets/img/posts/20200116/stories-clean.png "We can remove the circular dependencies by adding more tasks")
+![The graph is much neater and has no circular dependencies](/assets/img/posts/20200116/stories-clean.png "We can remove the circular dependencies by adding more tasks")
 
 ## Updating the solver
 
