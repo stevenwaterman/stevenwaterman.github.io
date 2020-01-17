@@ -1,6 +1,7 @@
 ---
 author: swaterman
 layout: post
+date: 2020-01-16 12:00:00 +0100
 title: "Planning 56 sprints per second with SAT4J"
 description: "SAT solvers are surprisingly fast and probably under-used. Could one help us improve sprint planning meetings? Maybe, but first you'll have to change the way you think about user stories."
 tags:
