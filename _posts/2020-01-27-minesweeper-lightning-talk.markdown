@@ -16,7 +16,7 @@ If you have seen my [second talk on minesweeper](http://www.stevenwaterman.uk/20
 
 The full talk is available via youtube:
 
-{% include ytLarge.html id=page.youtubeId desc=page.youtubeDesc %}
+{% include ytSmall.html id=page.youtubeId desc=page.youtubeDesc %}
 
 [The slides are also available in PDF form](http://www.stevenwaterman.uk/assets/slides/how-to-solve-minesweeper-in-3-mins.pdf)
 

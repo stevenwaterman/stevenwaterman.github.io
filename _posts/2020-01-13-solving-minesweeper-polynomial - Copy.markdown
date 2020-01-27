@@ -16,7 +16,7 @@ Keep an eye out!
 
 The full talk is available via youtube:
 
-{% include ytLarge.html id=page.youtubeId desc=page.youtubeDesc %}
+{% include ytSmall.html id=page.youtubeId desc=page.youtubeDesc %}
 
 The website used during the talk is [available online](http://minesweeper.stevenwaterman.uk) and is [open-source on GitHub](https://github.com/stevenwaterman/Minesweeper-Constrained)
 
