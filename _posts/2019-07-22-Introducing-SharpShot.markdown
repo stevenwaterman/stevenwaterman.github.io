@@ -20,9 +20,9 @@ The remaining 17 hours contained more playing with the program than developing i
 It is incredibly addictive - when taking the Github screenshot I accidentally spent 5 hours playing around with it instead.
 SharpShot won the "Github prize for best developer tool", and placed second overall in the hackathon.
 
-[^1]:Which is still available for [download via github](https://github.com/motherlymuppet/SharpShot/releases/tag/0.1)
+[^1]:Which is still available for [download via github](https://github.com/stevenwaterman/SharpShot/releases/tag/0.1)
 
-[^2]: I know this thanks to a commit optimistically titled [Hackathon done!](https://github.com/motherlymuppet/SharpShot/commit/158d76c4ee01c7ccc2c50a855bb216d669a1361e) at 4:45pm
+[^2]: I know this thanks to a commit optimistically titled [Hackathon done!](https://github.com/stevenwaterman/SharpShot/commit/158d76c4ee01c7ccc2c50a855bb216d669a1361e) at 4:45pm
 
 # What is Sharpshot?
 
