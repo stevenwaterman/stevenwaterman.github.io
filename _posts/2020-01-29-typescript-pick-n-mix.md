@@ -8,7 +8,7 @@ tags:
   - typescript
   - SOLID
   - interface-segregation
-img: "posts/20200129/flow.png"
+img: "posts/20200129/pick.png"
 original: "https://blog.scottlogic.com/2020/01/29/typescript-pick-n-mix.html"
 ---
 
@@ -296,7 +296,7 @@ type ThingWithAge = {
 }
 ~~~
 
-![This diagram doesn't really add anything to be honest, I just needed a picture for the article header](assets/img/20200129/pick.png "Pick extracts some properties from a type")
+![This diagram doesn't really add anything to be honest, I just needed a picture for the article header](assets/img/posts/20200129/pick.png "Pick extracts some properties from a type")
 
 The strings are concerning, but it's completely type-safe.
 The compiler won't let you use `Pick<Person, "nonExistentField">`, as `nonExistentField` is not a property on `Person`.
@@ -350,7 +350,7 @@ Again, this solves our problem by allowing `contains` and not `replaceElement`.
 We also don't need to write or modify any interfaces, allowing bad codebases to be refactored on a per-function basis.
 Even better, our documentation works out of the box - it is automatically exposed by `Pick`.
 
-![The documentation automatically propagates from StringList to Pick](assets/20200129/docs.png "It's like magic")
+![The documentation automatically propagates from StringList to Pick](assets/img/posts/20200129/docs.png "It's like magic")
 
 You may indexOf it strange that in `replaceElement` we used the type `Pick<StringList, "indexOf" | "add" | "remove">`.
 Since `StringList` only has those 3 methods, it's equivalent to just using `StringList` as the type for `list`.
