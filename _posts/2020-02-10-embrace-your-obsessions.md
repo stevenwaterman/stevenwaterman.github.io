@@ -29,7 +29,7 @@ Two months on, I can think of at least six side projects that are the direct res
 We were on our honeymoon at the time, travelling around Europe by train.
 That meant a lot of downtime, and I just happened to have a laptop with IntelliJ.
 
-![I am on a train playing a card game](assets/img/posts/20200210/starrealms.jpg "Can recommend both Star Realms & cheap 1st class upgrades")
+![I am on a train playing a card game](/assets/img/posts/20200210/starrealms.jpg "Can recommend both Star Realms & cheap 1st class upgrades")
 
 *(I did other things too, promise)*
 
@@ -127,7 +127,7 @@ It means you can focus on the *how*.
 You know *what* you're building, *what* the requirements are, and *what* is transferrable.
 You can focus on *how* the latest project is different, and *how* you're going to leverage those differences.
 
-![A visual representation of how each task feeds into each other. The same information is in the bullet points following the diagram](assets/img/posts/20200210/web.png "*Everything's Connected*")
+![A visual representation of how each task feeds into each other. The same information is in the bullet points following the diagram](/assets/img/posts/20200210/web.png "*Everything's Connected*")
 
 I worked out my solving algorithm in November, and everything since has just built on that.
 
