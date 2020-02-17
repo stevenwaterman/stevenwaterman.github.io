@@ -112,8 +112,8 @@ Looking back on my NE:Tech talk, I was embarrassed at how inefficient Minesweepe
 I knew I could do better if I tried to write an optimised version, so I started looking into [svelte](https://svelte.dev/).
 I was led down a rabbit-hole of svelte optimisation, exploring the intricacies of the HTML rendering pipeline.
 
-This is a whole story in itself, and one I want to write about in more detail.
-It's still a work in progress, so keep an eye out for my next blog post on Monday 17th Feb!
+This is a whole story in itself, and one I wanted to write about in more detail.
+You can read all about it in [my next blog post](http://www.stevenwaterman.uk/2020/02/17/minesweeper-optimisation.html).
 
 # Obsessions are good
 
