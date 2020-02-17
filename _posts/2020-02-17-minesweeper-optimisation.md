@@ -59,7 +59,7 @@ The app's slowness can be attributed to the JavaScript, represented in yellow an
 Specifically, most of the time was spent running the `update` function, which is part of Svelte's global state management.
 If we want to improve the speed of the app, we need to look there.
 
-![The entire screen is taken up with javascript running, and a single frame is output at the very end](assets/img/posts/20200217/devtools-1.png "So speedy")
+![The entire screen is taken up with javascript running, and a single frame is output at the very end](/assets/img/posts/20200217/devtools-1.png "So speedy")
 
 ### Snapshots:
 
@@ -99,7 +99,7 @@ The diagram below shows a rough outline of how I handled global state.
 * Subscriptions to stores are shown as arrows.
 * The direction of the arrows show the direction of data flow
 
-![Originally, there was one central store from which each cell's individual store was derived](assets/img/posts/20200217/original.png "Each cell's store was derived from the central store")
+![Originally, there was one central store from which each cell's individual store was derived](/assets/img/posts/20200217/original.png "Each cell's store was derived from the central store")
 
 This pattern made it simple to update the global state.
 There was one large store which acted as the source of truth.
@@ -129,7 +129,7 @@ I call this pattern *Deriving Top-Down*.
 The inverse of this is *Deriving Bottom-Up*, where we derive a large store from multiple small stores each containing more specific information.
 If you're confused about the 'Bottom-Up' name, consider a pyramid of stores:
 
-![There are many small stores at the bottom of the pyramid, forming the wide base. As you move up the pyramid, there are fewer, larger stores. The arrows all move from the bottom to the top](assets/img/posts/20200217/pyramid.png "It's not a very creative name")
+![There are many small stores at the bottom of the pyramid, forming the wide base. As you move up the pyramid, there are fewer, larger stores. The arrows all move from the bottom to the top](/assets/img/posts/20200217/pyramid.png "It's not a very creative name")
 
 When the arrows are pointing from the bottom to the top, we are deriving the large stores from the small ones.
 Since the arrows are pointing from the bottom upwards, we are deriving bottom-up.
@@ -156,7 +156,7 @@ In my app, I had to create functions to abstract away from the individual stores
 Changing the structure of the global state to derive bottom-up instead of top-down produced a **1126%** speedup, meaning the app now runs at 23.3fps.
 In developer tools, we can see that the JavaScript runs much faster, meaning the limiting factor is now the time to compute the HTML layout:
 
-![The Javascript is a small portion of the total time taken](assets/img/posts/20200217/devtools-2.png "Much better!")
+![The Javascript is a small portion of the total time taken](/assets/img/posts/20200217/devtools-2.png "Much better!")
 
 In this image, it looks like the layout is suddenly much slower than before.
 However, nothing has changed, we are just more zoomed in since the app is running at a much higher framerate.
@@ -191,7 +191,7 @@ Preventing the layout step resulted in a respectable 57% speedup, allowing the a
 In developer tools, the once-painful layout step is nowhere to be seen.
 The new priority is the paint step, shown as the really long green bar below:
 
-![The javascript and css run very fast, with the paint step taking the longest](assets/img/posts/20200217/devtools-3.png "It's like an episode of Bob Ross over here")
+![The javascript and css run very fast, with the paint step taking the longest](/assets/img/posts/20200217/devtools-3.png "It's like an episode of Bob Ross over here")
 
 ### Snapshots
 
@@ -216,7 +216,7 @@ For each cell, we need to paint:
 That's 30,000 paint commands, and it gets slow.
 We can see them using Chrome's [advanced paint instrumentation](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/reference#paint-profiler):
 
-![The paint profiler shows many steps, repeating the same 3 for each cell](assets/img/posts/20200217/paint.jpg "It took minutes for the paint profiler to load...")
+![The paint profiler shows many steps, repeating the same 3 for each cell](/assets/img/posts/20200217/paint.jpg "It took minutes for the paint profiler to load...")
 
 Immediately, I see that we could remove the borders.
 That would reduce the number of paint steps for each cell from 3 to 2.
@@ -230,7 +230,7 @@ By simply removing the borders, we see a 37% improvement to 50.1fps.
 The developer tools look remarkably similar to last time.
 Despite reducing the number of paint steps, that stage of the rendering pipeline is still the slowest.
 
-![It looks basically the same, but faster](assets/img/posts/20200217/devtools-4.png "I demand 60 fps!")
+![It looks basically the same, but faster](/assets/img/posts/20200217/devtools-4.png "I demand 60 fps!")
 
 ### Snapshots
 
@@ -264,7 +264,7 @@ Adding too many layers can cause slowness during compositing, so we can't go too
 I found that the sweet spot was around 100 layers, each containing 100 cells.
 Each of these layers was 1% the original size and therefore roughly 100x as fast to paint.
 
-![The board is split into 100 squares, each 10x10 cells. They are slightly overlapping in this view](assets/img/posts/20200217/layers.jpg "It would be hard to play Minesweeper like this")
+![The board is split into 100 squares, each 10x10 cells. They are slightly overlapping in this view](/assets/img/posts/20200217/layers.jpg "It would be hard to play Minesweeper like this")
 
 Layers can be any rectangular shape, and the goal is the minimise how often a change affects multiple layers.
 In our case, since cells affect each other in all directions, I chose square layers.
@@ -281,7 +281,7 @@ This was a bit hacky, but disabled some browser optimisation, forcing it to resp
 Finally, we hit our goal of running the app at 60fps!
 In developer tools, we can see that the paint step has been split into multiple shorter paint steps, each handling one layer:
 
-![Painting still takes a long time, but it's split into multiple smaller jobs](assets/img/posts/20200217/devtools-5.png "Silky smooth 60 fps, finally")
+![Painting still takes a long time, but it's split into multiple smaller jobs](/assets/img/posts/20200217/devtools-5.png "Silky smooth 60 fps, finally")
 
 All was well in the world - until I tried it in Firefox...
 
@@ -328,7 +328,7 @@ We know this is safe to do because the cells are opaque and never move or overla
 Using Canvas, we now hit 60fps in both Chrome *and* Firefox.
 In developer tools, we can see that the paint step has now been offloaded to the GPU, and there's no layout or layer composition steps.
 
-![All of the painting has been offloaded to the GPU](assets/img/posts/20200217/devtools-6.png "Make that GPU work work work work work work!")
+![All of the painting has been offloaded to the GPU](/assets/img/posts/20200217/devtools-6.png "Make that GPU work work work work work work!")
 
 Currently, we still have the Cell components, but their job is just to paint on the canvas.
 We *could* improve performance by just having one controller that handles rendering.
