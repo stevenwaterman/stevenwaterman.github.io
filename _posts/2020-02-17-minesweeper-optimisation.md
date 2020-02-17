@@ -8,7 +8,7 @@ tags:
   - svelte
   - html
   - javascript
-img: "posts/20200217/minesweeper-optimisation/layers.jpg"
+img: "posts/20200217/layers.jpg"
 original: "https://blog.scottlogic.com/2020/02/10/minesweeper-optimisation.html"
 ---
 
