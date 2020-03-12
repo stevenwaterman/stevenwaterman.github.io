@@ -6,7 +6,7 @@ description: "Ray tracing is the process of simulating light rays to render a 3D
 tags:
   - "3D Rendering"
   - "ray tracing"
-image: posts/20200310/14.jpg
+img: posts/20200310/14.jpg
 ---
 
 <script type="text/javascript" async
