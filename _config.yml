@@ -8,7 +8,7 @@ url: "http://www.stevenwaterman.uk" # the base hostname & protocol for your site
 # Author Settings
 author: Steven Waterman # add your name
 author-img: steven-waterman.jpg # add your photo
-about-author: Founder of https://Lexoral.com<br><br>Watch me violently oscillate between hacky bodges and the pursuit of perfectionism. # add description
+about-author: Founder of <a href="https://lexoral.com">Lexoral</a><br><br>Watch me violently oscillate between hacky bodges and the pursuit of perfectionism. # add description
 social-twitter: SteWaterman
 #social-facebook: # add your Facebook handle
 social-github: stevenwaterman # add your Github handle
