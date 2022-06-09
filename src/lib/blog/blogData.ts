@@ -36,7 +36,7 @@ export const authors = assertAuthors({
 export type Author = keyof typeof authors;
 
 export type BlogPost = {
-	type: "coaching" | "technical" | "projects";
+	type: "coaching" | "technical" | "projects" | "media";
 	author: keyof typeof authors;
 	title: string;
   stylisedTitle?: string;
@@ -76,10 +76,23 @@ export const blogPosts = assertBlogPosts({
     date: new Date("2020-01-03T11:00:00Z"),
     featured: true,
     published: true,
+    header: {
+      fit: "contain"
+    },
     original: {
       text: "the Scott Logic blog",
       link: "https://blog.scottlogic.com/2020/01/03/rethinking-the-java-dto.html"
     }
+  },
+  "minesweeper-netech-talk": {
+    type: "media",
+    author: "SteWaterman",
+    title: "Solving Minesweeper in Polynomial Time",
+    shortDescription: "I gave a talk on solving minesweeper at NE:Tech. Things got weird!",
+    longDescription: "I gave a talk on solving minesweeper at NE:Tech. Things got weird!",
+    date: new Date("2020-01-13T09:00:00Z"),
+    featured: false,
+    published: true
   },
 	"open-source-punish": {
 		type: "projects",

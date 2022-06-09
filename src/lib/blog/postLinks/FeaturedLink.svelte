@@ -107,6 +107,10 @@
     --type-color: var(--green-3);
   }
 
+  .media {
+    --type-color: var(--red-4);
+  }
+
   @media (max-width: 1199px) {
     .container {
       grid-template-columns: 20em 1fr;
@@ -127,6 +131,7 @@
   class:coaching={post.type === "coaching"}
   class:technical={post.type === "technical"}
   class:projects={post.type === "projects"}
+  class:media={post.type === "media"}
 >
   <div class="type">
     {post.type}
