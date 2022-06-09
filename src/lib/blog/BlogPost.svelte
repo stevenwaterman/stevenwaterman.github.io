@@ -2,7 +2,6 @@
   import Template from "$lib/template/Template.svelte";
   import TextContainer from "$lib/template/TextContainer.svelte";
   import { toDateString } from "$lib/utils/date";
-  import Advert from "./Advert.svelte";
   import AuthorColumn from "./AuthorColumn.svelte";
   import type { AuthorDetails, BlogId, BlogPost } from "./blogData";
   import { authors, blogPosts } from "./blogData";
@@ -73,6 +72,10 @@
     margin-bottom: 2em;
   }
 
+  .padded > :global(figure img) {
+    margin: auto;
+  }
+
   .metadata {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -111,6 +114,10 @@
   h1 {
     padding-left: 0;
     padding-right: 0;
+  }
+
+  .original {
+    padding-top: 1em;
   }
 
   article :global(p code) {
@@ -156,17 +163,17 @@
 
 <svelte:head>
 	<meta name="description" content={post.longDescription}>
-  <link rel="alternate" type="application/rss+xml" href="https://lexoral.com/rss.xml" title="Lexoral Blog">
-  <link rel="canonical" href={`https://lexoral.com/blog/${id}`}>
+  <link rel="alternate" type="application/rss+xml" href="https://stevenwaterman.uk/rss.xml" title="Steven Waterman's Blog">
+  <link rel="canonical" href={`https://stevenwaterman.uk/${id}`}>
 	<meta property="og:title" content={post.title}>
 	<meta property="og:description" content={post.longDescription}>
-	<meta property="og:image" content={`https://lexoral.com/assets/blog/${id}/header.png`}>
+	<meta property="og:image" content={`https://stevenwaterman.uk/assets/blog/${id}/header.png`}>
 	<meta property="og:type" content="article">
 	<meta property="og:site_name" content="Lexoral">
-	<meta property="og:url" content={`https://lexoral.com/blog/${id}`}>
+	<meta property="og:url" content={`https://stevenwaterman.uk/${id}`}>
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:site" content="@Lexoral">
-	<meta name="twitter:image" content={`https://lexoral.com/assets/blog/${id}/header.png`}>
+	<meta name="twitter:site" content="@SteWaterman">
+	<meta name="twitter:image" content={`https://stevenwaterman.uk/assets/blog/${id}/header.png`}>
 </svelte:head>
 
 <Template title={post.title}>
@@ -192,6 +199,10 @@
           </h1>
           <summary>{post.longDescription}</summary>
 
+          {#if post.original !== undefined}
+            <p class="original">Originally posted on <a href={post.original.link}>{post.original.text}</a></p>
+          {/if}
+
           <slot name="updates"></slot>
           <hr/>
 
@@ -202,8 +213,4 @@
 
     <AuthorColumn author={post.author}/>
   </div>
-  
-  <!-- //HACK This div bodges the footer to be blue instead of white -->
-  <div/> 
-  <Advert/>
 </Template>

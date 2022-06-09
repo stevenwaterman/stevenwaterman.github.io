@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Change, diffLines } from "diff";
+  import { type Change, diffLines } from "diff";
   import type { LineChange } from "./change";
   import HighlightSection from "./HighlightSection.svelte";
 

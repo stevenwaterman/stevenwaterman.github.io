@@ -113,7 +113,7 @@
 </style>
 
 <svelte:head>
-	<meta name="twitter:creator" content={`@${authorDetails.links.twitter ?? "Lexoral"}`}>
+	<meta name="twitter:creator" content={`@${authorDetails.links.twitter ?? "SteWaterman"}`}>
 </svelte:head>
 
 <TextContainer style="position: sticky; top: 1em;">

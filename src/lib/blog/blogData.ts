@@ -19,8 +19,8 @@ export const authors = assertAuthors({
 	SteWaterman: {
 		shortName: "Steven",
 		longName: "Steven Waterman",
-		job: "Lexoral Founder",
-		bio: "I've spent my career building software to make people's lives easier, including Lexoral. It's my full-time job, and I'm always happy to chat with you - feel free to get in touch!",
+		job: "Technical Coach",
+		bio: "I've spent my career making development simple. I'm always happy to chat with you - feel free to get in touch!",
 		links: {
 			email: "steven@lexoral.com",
       calendly: "lexoral/office-hours",
@@ -49,10 +49,38 @@ export type BlogPost = {
     position?: "bottom" | "center" | "top" | "left" | "right";
     fit?: "contain" | "cover" | "fill";
   };
+  original?: {
+    text: "the Lexoral blog" | "the Scott Logic blog";
+    link: string;
+  }
 };
 
 const assertBlogPosts = <T extends Record<string, BlogPost>>(posts: T) => posts;
 export const blogPosts = assertBlogPosts({
+  "introducing-sharpshot": {
+    type: "projects",
+    author: "SteWaterman",
+    title: "Introducing SharpShot",
+    shortDescription: "SharpShot is an esoteric visual programming language, made for Durhack 2018",
+    longDescription: "In October 2018, I participated in Durhack, a hackathon run by the university's computing society. The idea was simple: An esoteric 2-dimensional visual programming language, where data flies around the screen in real-time.",
+    date: new Date("2019-07-22T18:00:00Z"),
+    featured: false,
+    published: true
+  },
+  "rethinking-dto": {
+    type: "technical",
+    author: "SteWaterman",
+    title: "Rethinking the Java DTO",
+    shortDescription: "Can we utilise static type-checking and integration with modern IDEs to write a better DTO?",
+    longDescription: "DTOs help translate data between server and client. By going back to first principles, how can we utilise static type-checking and integration with modern IDEs to write a better DTO?",
+    date: new Date("2020-01-03T11:00:00Z"),
+    featured: true,
+    published: true,
+    original: {
+      text: "the Scott Logic blog",
+      link: "https://blog.scottlogic.com/2020/01/03/rethinking-the-java-dto.html"
+    }
+  },
 	"open-source-punish": {
 		type: "projects",
 		author: "SteWaterman",
@@ -66,6 +94,10 @@ export const blogPosts = assertBlogPosts({
 		published: true,
 		header: {
       fit: "contain"
+    },
+    original: {
+      text: "the Lexoral blog",
+      link: "https://lexoral.com/blog/open-source-punish/"
     }
 	},
 	"svelte-firestore-binding": {
@@ -81,6 +113,10 @@ export const blogPosts = assertBlogPosts({
 		published: true,
     header: {
       position: "bottom"
+    },
+    original: {
+      text: "the Lexoral blog",
+      link: "https://lexoral.com/blog/svelte-firestore-binding/"
     }
 	},
   "you-dont-need-js": {
@@ -96,6 +132,10 @@ export const blogPosts = assertBlogPosts({
 		published: true,
     header: {
       position: "center"
+    },
+    original: {
+      text: "the Lexoral blog",
+      link: "https://lexoral.com/blog/you-dont-need-js/"
     }
 	},
   "speaking-with-confidence": {
@@ -110,6 +150,10 @@ export const blogPosts = assertBlogPosts({
     header: {
       position: "top",
       fit: "cover"
+    },
+    original: {
+      text: "the Lexoral blog",
+      link: "https://lexoral.com/blog/speaking-with-confidence/"
     }
   },
   "office-hours": {
@@ -125,6 +169,10 @@ export const blogPosts = assertBlogPosts({
     header: {
       position: "top",
       fit: "cover"
+    },
+    original: {
+      text: "the Lexoral blog",
+      link: "https://lexoral.com/blog/office-hours/"
     }
   }
 } as const);
@@ -133,6 +181,6 @@ export type BlogId = keyof typeof blogPosts;
 
 export type SnippetConfig = {
 	name: string;
-	language: "svelte" | "ts";
+	language: "svelte" | "ts" | "java";
 	snippet: string;
 };

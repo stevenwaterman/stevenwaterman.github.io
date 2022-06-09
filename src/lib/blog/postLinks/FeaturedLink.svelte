@@ -123,7 +123,7 @@
 </style>
 
 <a
-  href={`/blog/${id}`}
+  href={`/${id}`}
   class:coaching={post.type === "coaching"}
   class:technical={post.type === "technical"}
   class:projects={post.type === "projects"}

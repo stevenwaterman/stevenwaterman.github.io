@@ -53,7 +53,7 @@
   <!-- Calendly link widget begin -->
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
   <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-  <button onclick={handler}>Book a Slot&nbsp;<span class="arrow">&gt;</span></button>
+  <button onclick={handler}>Let's&nbsp;Chat<span class="arrow">&gt;</span></button>
   <!-- Calendly link widget end -->
 </div>
 

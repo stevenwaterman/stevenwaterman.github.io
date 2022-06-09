@@ -21,10 +21,10 @@ function render(posts: Array<[BlogId, BlogPost]>) {
   return `<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-<title>Lexoral Blog</title>
-<description>Our blog discusses the things we get up to when building Lexoral</description>
-<link>https://lexoral.com/blog</link>
-<atom:link href="https://lexoral.com/rss.xml" rel="self" type="application/rss+xml"/>
+<title>Steven Waterman's Blog</title>
+<description>Assorted thoughts on agility, tech, and existing in this world</description>
+<link>https://stevenwaterman.uk</link>
+<atom:link href="https://stevenwaterman.uk/rss.xml" rel="self" type="application/rss+xml"/>
 ${postsXml.join("")}
 </channel>
 </rss>
@@ -33,9 +33,9 @@ ${postsXml.join("")}
 
 function renderPost(id: BlogId, post: BlogPost): string {
   return `<item>
-<guid isPermaLink="true">https://lexoral.com/blog/${id}</guid>
+<guid isPermaLink="true">https://stevenwaterman.uk/${id}</guid>
 <title>${post.title}</title>
-<link>https://lexoral.com/blog/${id}</link>
+<link>https://stevenwaterman.uk/${id}</link>
 <description>${post.longDescription}</description>
 <pubDate>${new Date(post.date).toUTCString()}</pubDate>
 </item>`

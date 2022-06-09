@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let topEntry: {label: string; link: string; external?: true};
+  export let topEntry: {label: string; link?: string; external?: true};
   export let menuEntries: Array<{label: string; link: string; external?: true}> = []
 
   let showMenu: boolean;

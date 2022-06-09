@@ -178,8 +178,8 @@
             { label: "Twitter", link: "https://twitter.com/SteWaterman/" },
             { label: "GitHub", link: "https://github.com/StevenWaterman/", },
             { label: "LinkedIn", link: "https://www.linkedin.com/in/steven-waterman/" },
-            { label: "Twitch", link: "https://twitch.tv/Lexoral/" },
-            { label: "Email", link: "mailto:steven@lexoral.com" },
+            { label: "Twitch", link: "https://twitch.tv/SteWaterman/" },
+            { label: "Email", link: "mailto:website@stevenwaterman.uk" },
             { label: "Calendly", link: "https://calendly.com/lexoral/office-hours" },
           ]}
         />
@@ -189,6 +189,7 @@
         <DropdownLabel
           topEntry={{label: "Projects", link: "/#community"}}
           menuEntries={[
+            {label: "Lexoral", link: "https://lexoral.com"},
             {label: "MuseTree", link: "https://stevenwaterman.uk/musetree/"},
             {label: "No Time to Stalk", link: "https://stevenwaterman.uk/NoTimeToStalk"},
             {label: "Narration.Studio", link: "https://github.com/stevenwaterman/sharpshot"},

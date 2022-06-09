@@ -3,6 +3,7 @@
   import typescript from "highlight.js/lib/languages/typescript";
   import xml from "highlight.js/lib/languages/xml";
   import javascript from "highlight.js/lib/languages/javascript";
+  import java from "highlight.js/lib/languages/java";
   import css from "highlight.js/lib/languages/css";
   import prettier from "prettier";
   import type { SnippetConfig } from "../blogData";
@@ -11,15 +12,17 @@
   export let config: SnippetConfig;
   export let diffFrom: SnippetConfig | undefined = undefined;
 
-  hljs.registerLanguage("ts", typescript);
+  hljs.registerLanguage("typescript", typescript);
   hljs.registerLanguage("xml", xml);
-  hljs.registerLanguage("js", javascript);
+  hljs.registerLanguage("javascript", javascript);
   hljs.registerLanguage("css", css);
+  hljs.registerLanguage("java", java);
 
   let parser: string;
   $: parser = {
     svelte: "svelte",
-    ts: "typescript"
+    ts: "typescript",
+    java: "java"
   }[config.language];
 
   function highlight(snippet?: string): string | undefined {
