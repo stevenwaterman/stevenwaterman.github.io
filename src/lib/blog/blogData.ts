@@ -231,6 +231,62 @@ export const blogPosts = assertBlogPosts({
       link: "https://blog.scottlogic.com/2020/03/27/microbit-optimisation.html"
     }
   },
+  "svelte-ts": {
+    type: "technical",
+    author: "SteWaterman",
+    title: "Svelte and TypeScript - Together at last!",
+    shortDescription: "Svelte is great, and now it's even better - it supports TypeScript.",
+    longDescription: "Svelte is an up-and-coming web framework which removes the need for any runtime libraries by adding a transpilation step in its build process. The one thing stopping me going all-in was that it didn't support TypeScript - but now it does!",
+    date: new Date("2020-07-24T12:00:00Z"),
+    featured: false,
+    published: true,
+    original: {
+      text: "the Scott Logic blog",
+      link: "https://blog.scottlogic.com/2020/07/24/svelte-ts.html"
+    }
+  },
+  "typescript-builders": {
+    type: "technical",
+    author: "SteWaterman",
+    title: "TypeScript Builders: Improving your types one step at a time",
+    shortDescription: "You can use the builder pattern to implement complex type constraints.",
+    longDescription: "We can use builders to implement complex type constraints in TypeScript, giving us compile-time errors when we make a semantic error, rather than just syntactic errors.",
+    date: new Date("2020-09-16T12:00:00Z"),
+    featured: true,
+    published: true,
+    original: {
+      text: "the Scott Logic blog",
+      link: "https://blog.scottlogic.com/2020/09/16/typescript-builders.html"
+    }
+  },
+  "reducer-builder": {
+    type: "technical",
+    author: "SteWaterman",
+    title: "Better Redux Reducers with TypeScript Builders",
+    shortDescription: "You can improve Redux Reducers by using the Builder pattern in TypeScript.",
+    longDescription: "In my last blog post, I introduced the builder pattern in TypeScript and discussed how you can use it to get more accurate types in your code. It was all very abstract, so I thought it might be useful to show another more complex example.",
+    date: new Date("2020-10-01T12:00:00Z"),
+    featured: true,
+    published: true,
+    original: {
+      text: "the Scott Logic blog",
+      link: "https://blog.scottlogic.com/2020/10/01/reducer-builder.html"
+    }
+  },
+  "ergo-rabbit-hole": {
+    type: "projects",
+    author: "SteWaterman",
+    title: "Down the ergonomic keyboard rabbit hole",
+    shortDescription: "Over the past few months I've had an ergonomic keyboard obsession.",
+    longDescription: "Over the past few months I've had an ergonomic keyboard obsession. This is my story.",
+    date: new Date("2020-10-09T12:00:00Z"),
+    featured: true,
+    published: true,
+    original: {
+      text: "the Scott Logic blog",
+      link: "https://blog.scottlogic.com/2020/10/09/ergo-rabbit-hole.html"
+    }
+  },
 	"open-source-punish": {
 		type: "projects",
 		author: "SteWaterman",
@@ -331,6 +387,6 @@ export type BlogId = keyof typeof blogPosts;
 
 export type SnippetConfig = {
 	name: string;
-	language: "svelte" | "ts" | "java" | "html";
+	language: "svelte" | "ts" | "java" | "html" | "json";
 	snippet: string;
 };

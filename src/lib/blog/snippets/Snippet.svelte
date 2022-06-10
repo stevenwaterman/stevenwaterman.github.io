@@ -5,6 +5,7 @@
   import javascript from "highlight.js/lib/languages/javascript";
   import java from "highlight.js/lib/languages/java";
   import css from "highlight.js/lib/languages/css";
+  import json from "highlight.js/lib/languages/json";
   import prettier from "prettier";
   import type { SnippetConfig } from "../blogData";
   import Highlight from "./Highlight.svelte";
@@ -17,13 +18,15 @@
   hljs.registerLanguage("javascript", javascript);
   hljs.registerLanguage("css", css);
   hljs.registerLanguage("java", java);
+  hljs.registerLanguage("json", json);
 
   let parser: string;
   $: parser = {
     svelte: "svelte",
     ts: "typescript",
     java: "java",
-    html: "xml"
+    html: "xml",
+    json: "json"
   }[config.language];
 
   function highlight(snippet?: string): string | undefined {
