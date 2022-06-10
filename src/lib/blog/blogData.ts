@@ -155,6 +155,33 @@ export const blogPosts = assertBlogPosts({
       position: "top"
     }
   },
+  // --
+  // author: swaterman
+  // layout: post
+  // title: ""
+  // description: ""
+  // tags:
+  //   - optimisation
+  //   - svelte
+  //   - html
+  //   - javascript
+  // img: "posts/20200217/layers.jpg"
+  // original: ""
+  // ---
+  "minesweeper-optimisation": {
+    type: "technical",
+    author: "SteWaterman",
+    title: "Slow Code HATES him! Optimising a web app from 1 to 60fps",
+    shortDescription: "After hearing about Svelte, I set off on a journey of iterative performance improvement.",
+    longDescription: "After hearing about Svelte, a performance-first web framework, I tried it out in a web-based Minesweeper solver. SHOCKINGLY, it didn't automatically make my code fast - that took a process of iterative optimisation",
+    date: new Date("2020-02-17:12:00:00Z"),
+    featured: true,
+    published: true,
+    original: {
+      text: "the Scott Logic blog",
+      link: "https://blog.scottlogic.com/2020/02/10/minesweeper-optimisation.html"
+    }
+  },
 	"open-source-punish": {
 		type: "projects",
 		author: "SteWaterman",
