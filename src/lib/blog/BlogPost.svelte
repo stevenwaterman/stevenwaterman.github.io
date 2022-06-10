@@ -76,6 +76,20 @@
     margin: auto;
   }
 
+  .padded > :global(figure table) {
+    margin: auto;
+    text-align: center;
+  }
+
+  .padded > :global(figure) :global(th), :global(td) {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  .padded > :global(figure) :global(th) {
+    padding-bottom: 0.5em;
+  }
+
   .metadata {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -120,7 +134,28 @@
     padding-top: 1em;
   }
 
-  article :global(p code) {
+  .padded > :global(p code) {
+    background-color: var(--blue-6);
+    color: var(--blue-0);
+    font-size: 0.85em;
+    padding: 0.1em 0.2em;
+  }
+
+  .padded > :global(ul code) {
+    background-color: var(--blue-6);
+    color: var(--blue-0);
+    font-size: 0.85em;
+    padding: 0.1em 0.2em;
+  }
+
+  .padded > :global(ol code) {
+    background-color: var(--blue-6);
+    color: var(--blue-0);
+    font-size: 0.85em;
+    padding: 0.1em 0.2em;
+  }
+
+  .padded > :global(blockquote code) {
     background-color: var(--blue-6);
     color: var(--blue-0);
     font-size: 0.85em;

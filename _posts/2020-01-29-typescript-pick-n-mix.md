@@ -12,7 +12,7 @@ img: "posts/20200129/pick.png"
 original: "https://blog.scottlogic.com/2020/01/29/typescript-pick-n-mix.html"
 ---
 
-*In this article, I discuss how the `Pick` utility type can help satisfy the Interface Segregation Principle in TypeScript*
+*In this article, I discuss how the <code>Pick</code> utility type can help satisfy the Interface Segregation Principle in TypeScript*
 
 <br/>
 
@@ -47,7 +47,7 @@ interface StringList {
     remove(idx: number): boolean;
  
     /**
-     * Returns the index of an element, or `null` if it is not in the list
+     * Returns the index of an element, or <code>null</code> if it is not in the list
      */
     indexOf(elem: string): number | null;
 }
@@ -73,8 +73,8 @@ function replaceElement(
 }
 ~~~
 
-In theory, there should be nothing stopping us using the `contains` function on an immutable (read-only) list.
-It only uses the `indexOf` function and wouldn't be affected by the missing `add` and `remove` methods.
+In theory, there should be nothing stopping us using the <code>contains</code> function on an immutable (read-only) list.
+It only uses the <code>indexOf</code> function and wouldn't be affected by the missing <code>add</code> and <code>remove</code> methods.
 In practice, the TypeScript compiler won't like that.
 
 Given the immutable list implementation:
@@ -90,12 +90,12 @@ const list = {
 };
 ~~~
 
-We can't call `contains(list, "friend")` because `list` does not implement the `add` or `remove` methods on `StringList`.
-In JavaScript, I could call `contains` without any problems because I know it only uses the `indexOf` method.
-In contrast, the TypeScript compiler follows the method signature, which requires that `list` implements all of `StringList` - including `add` and `remove`.
+We can't call <code>contains(list, "friend")</code> because <code>list</code> does not implement the <code>add</code> or <code>remove</code> methods on <code>StringList</code>.
+In JavaScript, I could call <code>contains</code> without any problems because I know it only uses the <code>indexOf</code> method.
+In contrast, the TypeScript compiler follows the method signature, which requires that <code>list</code> implements all of <code>StringList</code> - including <code>add</code> and <code>remove</code>.
 
-One quick and hacky solution is to use a cast, calling `contains(list as StringList, "friend")`.
-This just disables the type checking, meaning we can't guarantee that `contains` doesn't call `add` or `remove`.
+One quick and hacky solution is to use a cast, calling <code>contains(list as StringList, "friend")</code>.
+This just disables the type checking, meaning we can't guarantee that <code>contains</code> doesn't call <code>add</code> or <code>remove</code>.
 Why even use TypeScript at that point?
 
 Another option is to implement the extra methods with stubs:
@@ -117,8 +117,8 @@ const list = {
 };
 ~~~
 
-This is even worse, because now `contains(list, "friend")` works but the compiler also allows `replaceElement(list, "hi", "hello")`.
-Since `replaceElement` uses `add` and `remove`, this will cause a runtime error.
+This is even worse, because now <code>contains(list, "friend")</code> works but the compiler also allows <code>replaceElement(list, "hi", "hello")</code>.
+Since <code>replaceElement</code> uses <code>add</code> and <code>remove</code>, this will cause a runtime error.
 
 The only remaining option is to actually implement the functionality:
 
@@ -140,7 +140,7 @@ const list = {
 };
 ~~~
 
-But we only wanted to call `contains(list, "friend")` - now we had to implement 2 methods for no reason.
+But we only wanted to call <code>contains(list, "friend")</code> - now we had to implement 2 methods for no reason.
 That's what the Interface Segregation principle was warning us about!
 
 Ok, so we know it's bad.
@@ -155,13 +155,13 @@ Both involve dividing our large interface into multiple smaller ones.
 
 The first option is to create a new interface for each *role* that can be filled by our interface.
 Each of these new interfaces is called a [*Role Interface*](https://martinfowler.com/bliki/RoleInterface.html).
-In our case, the `StringList` interface fills two roles:
+In our case, the <code>StringList</code> interface fills two roles:
 
 * **Searching** - finding elements in the list
 * **Mutation** - editing the contents of the list
 
 We should extract these roles into their own interfaces.
-The `replaceElement` function uses both roles, so we still need an interface with all 3 methods.
+The <code>replaceElement</code> function uses both roles, so we still need an interface with all 3 methods.
 That means we now have 3 interfaces:
 
 ~~~ts
@@ -182,8 +182,8 @@ interface StringList {
 ~~~
 
 And our methods can be edited to specify which role they use.
-The `contains` method searches the list, and the `setElement` method mutates the list.
-The `replaceElement` method does both.
+The <code>contains</code> method searches the list, and the <code>setElement</code> method mutates the list.
+The <code>replaceElement</code> method does both.
 
 Their method signatures now look like this:
 
@@ -206,16 +206,16 @@ function replaceElement(
 ): boolean
 ~~~
 
-Using our immutable list from before, `contains(list, "friend")` works fine.
-More importantly, `replaceElement(list, "hi", "hello")` correctly causes a compiler error.
-If we implemented `add` and `remove`, we could call `setElement` and `replaceElement`.
+Using our immutable list from before, <code>contains(list, "friend")</code> works fine.
+More importantly, <code>replaceElement(list, "hi", "hello")</code> correctly causes a compiler error.
+If we implemented <code>add</code> and <code>remove</code>, we could call <code>setElement</code> and <code>replaceElement</code>.
 This clearly satisfies the Interface Segregation Principle.
 
 It wasn't easy though - defining the boundary of each role is complex and gets harder with bigger interfaces.
 It can be difficult to use Role Interfaces and they need adjusting when functionality is added.
 Also, it is hard to slowly refactor an existing codebase to use Role Interfaces, as most of the effort happens at first when breaking down the large interfaces.
 
-There are other downsides too - any documentation on `StringList` needs to be copied to `Searchable` and `Mutable`.
+There are other downsides too - any documentation on <code>StringList</code> needs to be copied to <code>Searchable</code> and <code>Mutable</code>.
 These are likely to get out-of-sync, and we don't have a single source of truth, since each method is defined in multiple places.
 
 ### Single-Method Interfaces
@@ -224,7 +224,7 @@ Taking Role Interfaces to an extreme reveals a second option.
 We could define each method in its own Single-Method Interface (SMI).
 We can then combine interfaces using [*intersection types*](https://www.typescriptlang.org/docs/handbook/advanced-types.html#intersection-types).
 
-We don't need the `StringList` interface anymore, so we can remove than and replace it with single-method interfaces:
+We don't need the <code>StringList</code> interface anymore, so we can remove than and replace it with single-method interfaces:
 
 ~~~ts
 interface I_add {
@@ -238,7 +238,7 @@ interface I_indexOf {
 }
 ~~~
 
-Then we rewrite our methods so that any parameter with type `StringList` now specifies which methods it uses.
+Then we rewrite our methods so that any parameter with type <code>StringList</code> now specifies which methods it uses.
 The new method signatures are:
 
 ~~~ts
@@ -260,20 +260,20 @@ function replaceElement(
 ): boolean
 ~~~
 
-As before, this correctly allows `contains` but not `replaceElement` when our list has only implemented `indexOf`.
-Implementing `add` and `remove` would satisfy `I_add` and `I_remove`, allowing us to call `setElement` and `replaceElement`.
+As before, this correctly allows <code>contains</code> but not <code>replaceElement</code> when our list has only implemented <code>indexOf</code>.
+Implementing <code>add</code> and <code>remove</code> would satisfy <code>I_add</code> and <code>I_remove</code>, allowing us to call <code>setElement</code> and <code>replaceElement</code>.
 
 It can be confusing at first, and you end up with a lot of interfaces.
 It's also a pain to implement on a legacy project.
 Most of the refactoring work happens up-front, deleting and recreating any interfaces.
-On the plus side, we keep our single source of truth for each method, and we can move the documentation from `StringList` to the SMIs.
+On the plus side, we keep our single source of truth for each method, and we can move the documentation from <code>StringList</code> to the SMIs.
 
 Both solutions are workable, and in many other languages there is no alternative.
 Thankfully, TypeScript provides a third option.
 
 ## Introducing Pick
 
-In TypeScript, [`Pick`](https://www.typescriptlang.org/docs/handbook/utility-types.html#picktk) is a built-in utility type.
+In TypeScript, [<code>Pick</code>](https://www.typescriptlang.org/docs/handbook/utility-types.html#picktk) is a built-in utility type.
 Given a complex type, we can select some of its functionality and ignore the rest:
 
 ~~~ts
@@ -286,7 +286,7 @@ type Person = {
 type ThingWithAge = Pick<Person, "age" | "incrementAge">;
 ~~~
 
-The `ThingWithAge` type selects the `age` and `incrementAge` properties from the `Person` type.
+The <code>ThingWithAge</code> type selects the <code>age</code> and <code>incrementAge</code> properties from the <code>Person</code> type.
 The resulting type is:
 
 ~~~ts
@@ -299,12 +299,12 @@ type ThingWithAge = {
 ![This diagram doesn't really add anything to be honest, I just needed a picture for the article header](assets/img/posts/20200129/pick.png "Pick extracts some properties from a type")
 
 The strings are concerning, but it's completely type-safe.
-The compiler won't let you use `Pick<Person, "nonExistentField">`, as `nonExistentField` is not a property on `Person`.
+The compiler won't let you use <code>Pick<Person, "nonExistentField"></code>, as <code>nonExistentField</code> is not a property on <code>Person</code>.
 This is thanks to [String Literal types](https://www.typescriptlang.org/docs/handbook/advanced-types.html#string-literal-types) - a huge topic in and of itself.
 
 ## Interface Segregation with Pick
 
-We can use `Pick` to select parts of our large `StringList` interface.
+We can use <code>Pick</code> to select parts of our large <code>StringList</code> interface.
 Our interface is the same as it was in the first example:
 
 ~~~ts
@@ -315,7 +315,7 @@ interface StringList {
 }
 ~~~
 
-We then edit our utility functions so that their `list` parameters use `Pick` to choose the relevant parts of `StringList`.
+We then edit our utility functions so that their <code>list</code> parameters use <code>Pick</code> to choose the relevant parts of <code>StringList</code>.
 
 ~~~ts
 function contains(
@@ -346,21 +346,21 @@ function replaceElement(
 }
 ~~~
 
-Again, this solves our problem by allowing `contains` and not `replaceElement`.
+Again, this solves our problem by allowing <code>contains</code> and not <code>replaceElement</code>.
 We also don't need to write or modify any interfaces, allowing bad codebases to be refactored on a per-function basis.
-Even better, our documentation works out of the box - it is automatically exposed by `Pick`.
+Even better, our documentation works out of the box - it is automatically exposed by <code>Pick</code>.
 
 ![The documentation automatically propagates from StringList to Pick](assets/img/posts/20200129/docs.png "It's like magic")
 
-You may indexOf it strange that in `replaceElement` we used the type `Pick<StringList, "indexOf" | "add" | "remove">`.
-Since `StringList` only has those 3 methods, it's equivalent to just using `StringList` as the type for `list`.
+You may indexOf it strange that in <code>replaceElement</code> we used the type <code>Pick<StringList, "indexOf" | "add" | "remove"></code>.
+Since <code>StringList</code> only has those 3 methods, it's equivalent to just using <code>StringList</code> as the type for <code>list</code>.
 Listing the methods is best practice, even when you must list all of them.
-That way, when more methods are added to `StringList`, we don't automatically require them in `replaceElement`.
+That way, when more methods are added to <code>StringList</code>, we don't automatically require them in <code>replaceElement</code>.
 
-Another point of confusion around `replaceElement` is that we require the `add` and `remove` methods on `list` even though we don't explicitly use them.
-We need those methods because they are required by `setElement`.
+Another point of confusion around <code>replaceElement</code> is that we require the <code>add</code> and <code>remove</code> methods on <code>list</code> even though we don't explicitly use them.
+We need those methods because they are required by <code>setElement</code>.
 This can be a pain, as it requires looking at the definition for every method used.
-Also, if `setElement` added another method to the type for `list`, every function that used `setElement` would also have to be updated.
+Also, if <code>setElement</code> added another method to the type for <code>list</code>, every function that used <code>setElement</code> would also have to be updated.
 
 There is a solution to this problem, but it might get confusing.
 First, we need to define our own custom utility type:
@@ -374,18 +374,18 @@ type Parameter<
 
 So, what does that do?
 
-Our `Parameter` type depends on `Parameters`, [a base TypeScript utility type](https://www.typescriptlang.org/docs/handbook/utility-types.html#parameterst).
-To understand our type, we first need to understand `Parameters`.
+Our <code>Parameter</code> type depends on <code>Parameters</code>, [a base TypeScript utility type](https://www.typescriptlang.org/docs/handbook/utility-types.html#parameterst).
+To understand our type, we first need to understand <code>Parameters</code>.
 It's hard to describe in words, but easy to demonstrate.
 
-We have a function `function myFunc(a: string, b: number): boolean`.
-Its type is `(a: string, b: number) => boolean`.
-`Parameters<typeof myFunc>` returns `[string, number]` - a tuple of the parameter types for `myFunc`.
+We have a function <code>function myFunc(a: string, b: number): boolean</code>.
+Its type is <code>(a: string, b: number) => boolean</code>.
+<code>Parameters<typeof myFunc></code> returns <code>[string, number]</code> - a tuple of the parameter types for <code>myFunc</code>.
 If you're still confused, click the link above for more examples.
 
 Our utility type simply extracts one element of that tuple.
-`Parameter<typeof myFunc, 0>` is the same as `Parameters<typeof myFunc>[0]`, which resolves to `string`.
-We can use this utility type in the definition of `replaceElement`:
+<code>Parameter<typeof myFunc, 0></code> is the same as <code>Parameters<typeof myFunc>[0]</code>, which resolves to <code>string</code>.
+We can use this utility type in the definition of <code>replaceElement</code>:
 
 ~~~ts
 function replaceElement(
@@ -397,9 +397,9 @@ function replaceElement(
 
 Essentially, this says:
 
-> `replaceElement` accepts a parameter called list.
-I'm going to call the `indexOf` method on it, and I'm going to pass it as the first argument to `setElement`.
-Make sure it can also do whatever `setElement` needs.
+> <code>replaceElement</code> accepts a parameter called list.
+I'm going to call the <code>indexOf</code> method on it, and I'm going to pass it as the first argument to <code>setElement</code>.
+Make sure it can also do whatever <code>setElement</code> needs.
 
 ## Chaining
 
@@ -413,13 +413,13 @@ function chaining(list: StringList): StringList {
 }
 ~~~
 
-And could use it as `chaining(list).indexOf("friend")`.
+And could use it as <code>chaining(list).indexOf("friend")</code>.
 It's not that simple when using segregated interfaces:
 
-If we declare `function chaining(list: Mutable): Mutable`, then we can't call `chaining(list).indexOf("friend")`.
-`chaining(list)` outputs `Mutable`, even if the `list` parameter was actually a subtype of `Mutable`.
-Since `Mutable` does not provide a `indexOf` method, we can't call it.
-The same issue occurs with Single-Method Interfaces and `Pick`.
+If we declare <code>function chaining(list: Mutable): Mutable</code>, then we can't call <code>chaining(list).indexOf("friend")</code>.
+<code>chaining(list)</code> outputs <code>Mutable</code>, even if the <code>list</code> parameter was actually a subtype of <code>Mutable</code>.
+Since <code>Mutable</code> does not provide a <code>indexOf</code> method, we can't call it.
+The same issue occurs with Single-Method Interfaces and <code>Pick</code>.
 
 Instead, we have to use generics:
 
@@ -434,12 +434,12 @@ function chaining<T extends I_add & I_remove>(list: T): T
 function chaining<T extends Pick<StringList, "add" | "remove">(list: T): T
 ~~~
 
-Now the output of the `chaining` method is the same as the type of the `list` parameter.
-If `list` implements `indexOf`, we can do `chaining(list).indexOf("friend")`.
+Now the output of the <code>chaining</code> method is the same as the type of the <code>list</code> parameter.
+If <code>list</code> implements <code>indexOf</code>, we can do <code>chaining(list).indexOf("friend")</code>.
 
 ## Conclusion
 
 Interface Segregation is an important part of clean code and is essential for long-term maintainability of object-oriented code.
-With TypeScript, it's simple to use `Pick` to divide up a large interface.
+With TypeScript, it's simple to use <code>Pick</code> to divide up a large interface.
 It's interoperable with old code, and once you understand how it works, there's no downside.
-Do yourself a favour and start using `Pick` today.
+Do yourself a favour and start using <code>Pick</code> today.

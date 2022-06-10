@@ -56,7 +56,7 @@ I would still need to do some optimisation.
 
 In the below screenshot of the browser's developer tools, we can see that the app spent 6 seconds processing the solver before outputting one frame.
 The app's slowness can be attributed to the JavaScript, represented in yellow and blue, which took a very long time to run.
-Specifically, most of the time was spent running the `update` function, which is part of Svelte's global state management.
+Specifically, most of the time was spent running the <code>update</code> function, which is part of Svelte's global state management.
 If we want to improve the speed of the app, we need to look there.
 
 ![The entire screen is taken up with javascript running, and a single frame is output at the very end](/assets/img/posts/20200217/devtools-1.png "So speedy")
@@ -72,7 +72,7 @@ Before we start our deep-dive optimising the global state management in the app,
 Like Redux, Svelte holds its data in [stores](https://svelte.dev/docs#svelte_store) that can be subscribed to.
 When a store's value changes, any components subscribed to that store are re-rendered.
 
-We can also use the `derived` function to create a new store based on the values of our existing stores.
+We can also use the <code>derived</code> function to create a new store based on the values of our existing stores.
 It takes two parameters:
 
 1. The list of parent stores that we are deriving from
@@ -174,7 +174,7 @@ There's no point optimising our Svelte code more when it won't make a noticeable
 As shown in developer tools, the app spends lots of time computing the HTML layout of the page.
 This step in the rendering pipeline decides where each node should appear on the page, calculating their position and size.
 
-When the solver reveals a cell, it adds text to it - a number (if clear) or an `X` (if flagged).
+When the solver reveals a cell, it adds text to it - a number (if clear) or an <code>X</code> (if flagged).
 This causes the browser to think the cell might have changed position, as adding a new node to the grid would usually cause every other node to shift along one.
 Since the text is overlaid on top of the cell, we know that it won't cause any changes to the layout.
 However, the browser isn't clever enough to know that.
@@ -182,7 +182,7 @@ However, the browser isn't clever enough to know that.
 Thanks to our good friend Google, I found some really helpful documentation on [what triggers a layout](https://csstriggers.com/).
 There is a whole set of CSS properties that can be changed without triggering a layout, including the colour of text and backgrounds.
 
-Since the app knows what text will be displayed in each cell once revealed, it can simply add the text at the start with `color: transparent` (check your target browser's compatibility).
+Since the app knows what text will be displayed in each cell once revealed, it can simply add the text at the start with <code>color: transparent</code> (check your target browser's compatibility).
 Then, when the cell is revealed, the colour can be changed to make the text visible without triggering a layout.
 
 ### Results
@@ -241,12 +241,12 @@ Despite reducing the number of paint steps, that stage of the rendering pipeline
 ### Skip Transparent Text
 
 Every time there is a 0 or an unknown cell, we paint a transparent number.
-Instead of using the transparent colour, we could use `opacity: 0` and `will-change: opacity` (check your target browser's compatibility).
+Instead of using the transparent colour, we could use <code>opacity: 0</code> and <code>will-change: opacity</code> (check your target browser's compatibility).
 
-When we set `opacity` instead of `color`, the browser knows not to paint the invisible text.
-By setting `will-change: opacity`, we tell the browser not to waste its time performing a useless layout pass, since all we change is the text's opacity.
+When we set <code>opacity</code> instead of <code>color</code>, the browser knows not to paint the invisible text.
+By setting <code>will-change: opacity</code>, we tell the browser not to waste its time performing a useless layout pass, since all we change is the text's opacity.
 
-However, setting `will-change` causes the browser to split each cell into its own layer, resulting in 10,000 layers on the page.
+However, setting <code>will-change</code> causes the browser to split each cell into its own layer, resulting in 10,000 layers on the page.
 This is incredibly slow since the layers need to be combined together before rendering, in a step known as *layer compositing*.
 
 We'll just have to tolerate that the app paints transparent text, since the layers are just too slow.
@@ -271,10 +271,10 @@ In our case, since cells affect each other in all directions, I chose square lay
 If cells only affected each other horizontally, we could use long rows instead.
 
 To create these layers, I replaced the 100x100 grid of cells with a 10x10 grid of containers.
-Each contained a 10x10 grid of cells, and was placed in its own HTML layer by setting `z-index`.
+Each contained a 10x10 grid of cells, and was placed in its own HTML layer by setting <code>z-index</code>.
 
-I added `backface-visibility: hidden` to the containers which is designed for rendering 3D scenes in the browser.
-This was a bit hacky, but disabled some browser optimisation, forcing it to respect the `z-index` value and put the node in its own HTML layer.
+I added <code>backface-visibility: hidden</code> to the containers which is designed for rendering 3D scenes in the browser.
+This was a bit hacky, but disabled some browser optimisation, forcing it to respect the <code>z-index</code> value and put the node in its own HTML layer.
 
 ### Results
 

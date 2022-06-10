@@ -58,12 +58,12 @@ That could be as simple as:
 ~~~
 
 However, this only works if your program is pure JavaScript.
-Most Micro:Bit code uses the handy built-in functions, like `input.onButtonPressed` or `basic.clearScreen`.
+Most Micro:Bit code uses the handy built-in functions, like <code>input.onButtonPressed</code> or <code>basic.clearScreen</code>.
 We will need to write some extra code to let us use those functions, known as [stubbing](https://en.wikipedia.org/wiki/Method_stub) them.
 
 Stubbing a function means writing a simpler version of it, which can be used in place of the real version.
-For example, you could stub `radio.sendString` with a function that just writes the value in a text box.
-You could stub `input.onButtonPressed` like this:
+For example, you could stub <code>radio.sendString</code> with a function that just writes the value in a text box.
+You could stub <code>input.onButtonPressed</code> like this:
 
 ~~~ts
 const Button = {
@@ -85,9 +85,9 @@ const input = {
 }
 ~~~
 
-Now, other parts of your code can call `input.onButtonPressed` just like on a real Micro:Bit.
+Now, other parts of your code can call <code>input.onButtonPressed</code> just like on a real Micro:Bit.
 The final step is to add some HTML buttons to your test bench.
-When the `A` button is pressed, it should run the `aPressed` function from the stub.
+When the <code>A</code> button is pressed, it should run the <code>aPressed</code> function from the stub.
 
 ~~~html
 <html>
@@ -126,28 +126,28 @@ TypeScript isn't natively supported by the browser, so we have to [transpile](ht
 The method is quite straightforward:
 
 1. [Install npm](https://www.npmjs.com/get-npm) by clicking the link and following the instructions for your operating system
-1. Install TypeScript by running `npm install -g typescript` in the command line
-1. With your code in a file named `myCode.ts`, navigate to that folder and run `tsc myCode.ts`
+1. Install TypeScript by running <code>npm install -g typescript</code> in the command line
+1. With your code in a file named <code>myCode.ts</code>, navigate to that folder and run <code>tsc myCode.ts</code>
 
-The compiled JavaScript will be written to a file called `myCode.js`, ready to be used in your test bench.
-You'll need to repeat the last step any time you make changes to `myCode.ts`.
+The compiled JavaScript will be written to a file called <code>myCode.js</code>, ready to be used in your test bench.
+You'll need to repeat the last step any time you make changes to <code>myCode.ts</code>.
 
 ## Using the Profiler
 
 Open up your HTML file and check that your code is running.
-If you haven't set up any outputs, it could be hard to tell - try adding `console.log("It's working!")` somewhere in your code.
+If you haven't set up any outputs, it could be hard to tell - try adding <code>console.log("It's working!")</code> somewhere in your code.
 After recompiling and refreshing the web page, you should see the message printed in the console.
-To access the console, open developer tools by right-clicking on the page and selecting `Inspect Element`.
-Then, switch to the `Console` tab.
+To access the console, open developer tools by right-clicking on the page and selecting <code>Inspect Element</code>.
+Then, switch to the <code>Console</code> tab.
 
 Now we know that's all working, it's time to start inspecting your code.
-There are two tabs that we're interested in: `Performance` and `Memory`.
+There are two tabs that we're interested in: <code>Performance</code> and <code>Memory</code>.
 The Performance tab shows you how long each function is taking, both on a per-call level, and in total.
 The Memory tab shows you where memory is being allocated and how much is being used while the program was running.
 
 ### Performance
 
-In the performance tab, press the circular `Record` button and start running your program.
+In the performance tab, press the circular <code>Record</code> button and start running your program.
 After a few seconds, press the button again to stop recording and wait for it to process.
 You should see something like this:
 
@@ -175,17 +175,17 @@ If that is the case in your code, you should check out the *Memory* tab.
 ### Memory
 
 The memory tab works just like the performance tab.
-First, select the `Allocation Sampling` profile, then hit `Start`.
+First, select the <code>Allocation Sampling</code> profile, then hit <code>Start</code>.
 Your code will run much slower while the memory profiler is running, so let it run for a while before clicking to stop the recording.
 After giving it a few seconds to generate the report, it should look something like this:
 
 ![Shows the memory tab in developer tools. There is a big list of different places that memory was allocated.](/assets/img/posts/20200327/memory.png "Click an entry in the list to see more information about what is being saved in memory")
 
-The default view is `Summary` but you should change that to `Containment`.
-Then, click to open the `Window / <your url>` category.
+The default view is <code>Summary</code> but you should change that to <code>Containment</code>.
+Then, click to open the <code>Window / <your url></code> category.
 Here, you will see all of the memory allocated by your code.
-The amount of memory allocated is written in the far-right column, `Retained Size`.
-Just to the left of that, it says which line of code allocated the memory, e.g. `myCode.js:85` means line 85.
+The amount of memory allocated is written in the far-right column, <code>Retained Size</code>.
+Just to the left of that, it says which line of code allocated the memory, e.g. <code>myCode.js:85</code> means line 85.
 Look for any of your methods near the top of the list - those are the ones that are using the most memory and need fixing.
 
 The following code is an example of a function with high memory use because it creates a new object each time it gets called:
@@ -200,7 +200,7 @@ function getRange(values: number[]) {
 ~~~
 
 To reduce the memory use of a function like that, try removing any object creation and instead store the result in a global variable.
-In our case, we could use two global variables, `minResult` and `maxResult`:
+In our case, we could use two global variables, <code>minResult</code> and <code>maxResult</code>:
 
 ~~~ts
 let minResult: number = 0;

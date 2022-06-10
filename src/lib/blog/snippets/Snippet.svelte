@@ -101,7 +101,7 @@
   }
 </style>
 
-<figure class="container wide">
+<figure class="container wide snippet">
   <h2 class="name">{config.name}</h2>
 
   {#if diffFrom !== undefined}

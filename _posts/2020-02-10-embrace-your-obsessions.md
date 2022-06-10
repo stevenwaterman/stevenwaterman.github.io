@@ -34,7 +34,7 @@ That meant a lot of downtime, and I just happened to have a laptop with IntelliJ
 *(I did other things too, promise)*
 
 My solver defined Minesweeper as a set of constraints.
-Each constraint declared `This set of unknown cells contains between <min> and <max> mines`.
+Each constraint declared <code>This set of unknown cells contains between <min> and <max> mines</code>.
 If you want the details of how it all works, watch one of the talks later in this post or have a look at the [Minesweeper Constrained readme](https://github.com/stevenwaterman/Minesweeper-Constrained/blob/master/README.md#constraint-actions).
 
 I did finish my solver, and it worked - but it wasn't flawless.
@@ -54,7 +54,7 @@ I knew exactly what I wanted to talk about, and jumped at the chance to indoctri
 It was my first real Tech Talk, and I was well outside my comfort zone.
 It didn't help that everyone kept telling me that Lightning talks are the hardest kind of tech talk!
 
-I spent 2 days straight preparing for this 3 minute talk, which I titled `How to solve Minesweeper in 3 minutes`.
+I spent 2 days straight preparing for this 3 minute talk, which I titled <code>How to solve Minesweeper in 3 minutes</code>.
 It paid off though - I finished perfectly on time, and the audience really enjoyed it.
 One member of the audience enjoyed it so much that I was invited to give a longer version at the local meetup, [NE:Tech](https://www.meetup.com/NE-Tech/events/267298193/).
 
@@ -72,7 +72,7 @@ Adding audience participation just raised the bar - it's one thing to understand
 I had a week's notice before the talk, and thankfully had nothing else to do.
 After spending every available moment working on it, I finished my version of Minesweeper with a few hours to spare.
 It forced you to act like an algorithmic solver, manually combining and clearing constraints.
-I called it `Minesweeper Constrained`, and it served its purpose - though it wasn't exactly efficient.
+I called it <code>Minesweeper Constrained</code>, and it served its purpose - though it wasn't exactly efficient.
 
 You can view the [source code on GitHub](https://github.com/stevenwaterman/Minesweeper-Constrained) or try a [live version of the game on my website](http://minesweeper.stevenwaterman.uk).
 

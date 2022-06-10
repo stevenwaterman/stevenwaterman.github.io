@@ -77,7 +77,7 @@ A [ray tracer](https://en.wikipedia.org/wiki/Ray_tracing_(graphics)) is a progra
 Rather than try and explain it in words, I have created a series of pictures demonstrating the process:
 
 On the left hand side of the scene, we can see the virtual camera.
-It sits behind the origin point, and is currently looking straight ahead, in the `z` direction.
+It sits behind the origin point, and is currently looking straight ahead, in the <code>z</code> direction.
 
 ![The 3d environment is mostly white with a grid drawn on the floor. There are two darker grid lines representing x=0 and z=0. At the point where they cross, there is some text saying 0,0.](/assets/img/posts/20200303/raytrace-1.jpg "The camera is a virtual object in the scene and chooses what direction we fire the rays")
 
@@ -86,7 +86,7 @@ It sits further away from the camera, with two light sides and two dark sides.
 
 ![A few meters away from the camera, we see a square-based pyramid sitting on the grid. The side facing the camera is bright red, while the right-hand side is a darker red.](/assets/img/posts/20200303/swaterman/assets/microbit-raytracer/raytrace-2.jpg "The pyramid is the physical object that we want to render in the scene")
 
-Here, we visualise the `view plane` - the representation of the screen.
+Here, we visualise the <code>view plane</code> - the representation of the screen.
 It is a 5x5 grid, which sits 1m away from the camera.
 The width of the grid is customisable, and affects how wide of a view the camera has.
 Each LED on the Micro:Bit is represented by one cell in the grid.

@@ -94,6 +94,20 @@ export const blogPosts = assertBlogPosts({
     featured: false,
     published: true
   },
+  "sprint-with-sat": {
+    type: "technical",
+    author: "SteWaterman",
+    title: "Planning 56 sprints per second with SAT4J",
+    shortDescription: "SAT solvers are surprisingly fast and probably under-used, but can they plan our sprints?",
+    longDescription: "SAT solvers are surprisingly fast and probably under-used. Could one help us improve sprint planning meetings? Maybe, but first you'll have to change the way you think about user stories.",
+    date: new Date("2020-01-16T12:00:00Z"),
+    featured: true,
+    published: true,
+    original: {
+      text: "the Scott Logic blog",
+      link: "https://blog.scottlogic.com/2020/01/16/planning-56-sprints-per-second-with-sat4j.html"
+    }
+  },
 	"open-source-punish": {
 		type: "projects",
 		author: "SteWaterman",
