@@ -25,7 +25,7 @@
     svelte: "svelte",
     ts: "typescript",
     java: "java",
-    html: "xml",
+    html: "html",
     json: "json"
   }[config.language];
 

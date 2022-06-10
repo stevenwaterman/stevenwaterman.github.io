@@ -97,7 +97,7 @@
 
   <p>
     In any source language, the user's program is <a href="https://tech.microbit.org/software/hex-format/">compiled to a HEX file</a> which <a href="https://tech.microbit.org/software/#high-level-programming-languages">contains the ARM assembly code</a>.
-    This assembly code usually interacts with the <a href="device abstraction layer">https://tech.microbit.org/software/runtime-mbed/</a> which provides a simpler interface for controlling the board's functionality such as Bluetooth and accelerometer.
+    This assembly code usually interacts with the <a href="https://tech.microbit.org/software/runtime-mbed/">device abstraction layer</a> which provides a simpler interface for controlling the board's functionality such as Bluetooth and accelerometer.
   </p>
 
   <p>
