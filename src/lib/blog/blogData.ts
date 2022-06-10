@@ -116,7 +116,10 @@ export const blogPosts = assertBlogPosts({
     longDescription: "In my first ever tech talk, I explained how to algorithmically solve minesweeper",
     date: new Date("2020-01-17T09:00:00Z"),
     featured: false,
-    published: true
+    published: true,
+    header: {
+      fit: "contain"
+    }
   },
   "pick-n-mix": {
     type: "technical",
@@ -130,6 +133,26 @@ export const blogPosts = assertBlogPosts({
     original: {
       text: "the Scott Logic blog",
       link: "https://blog.scottlogic.com/2020/01/29/typescript-pick-n-mix.html"
+    },
+    header: {
+      fit: "contain"
+    }
+  },
+  "embrace-your-obsessions": {
+    type: "projects",
+    author: "SteWaterman",
+    title: "Embrace your Obsessions!",
+    shortDescription: "For the past 3 months, I have been a bit obsessed with Minesweeper. That's a good thing.",
+    longDescription: "For the past 3 months, I have been a bit obsessed with Minesweeper. It has plagued my honeymoon, stolen my free time, and been the subject of two tech talks. That's a good thing.",
+    date: new Date("2020-02-10T12:00:00Z"),
+    featured: false,
+    published: true,
+    original: {
+      text: "the Scott Logic blog",
+      link: "https://blog.scottlogic.com/2020/02/10/embrace-your-obsessions.html"
+    },
+    header: {
+      position: "top"
     }
   },
 	"open-source-punish": {
