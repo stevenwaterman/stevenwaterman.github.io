@@ -22,7 +22,8 @@
   $: parser = {
     svelte: "svelte",
     ts: "typescript",
-    java: "java"
+    java: "java",
+    html: "xml"
   }[config.language];
 
   function highlight(snippet?: string): string | undefined {

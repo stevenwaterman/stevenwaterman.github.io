@@ -10,11 +10,11 @@ tags:
 img: posts/20200327/testbench.png
 ---
 
-When I [wrote a ray tracer](https://blog.scottlogic.com/2020/03/10/raytracer-how-to.html) for the [BBC Micro:Bit](https://microbit.org/), I didn't expect it to be fast.
+When I <a href="https://blog.scottlogic.com/2020/03/10/raytracer-how-to.html">wrote a ray tracer</a> for the <a href="https://microbit.org/">BBC Micro:Bit</a>, I didn't expect it to be fast.
 I was right - my first attempt was unbearably slow, taking multiple seconds to respond to a button press.
-That meant I had to optimise my code, but the normal [MakeCode IDE](https://makecode.microbit.org/) doesn't provide any tools to let you inspect your program while it's running.
-Instead, I reworked my code to [run as a website](http://microbit-raytracer.stevenwaterman.uk) and used Chrome's Developer Tools.
-My test bench code is available [on GitHub](https://github.com/stevenwaterman/microbit-raytracer/tree/gh-pages).
+That meant I had to optimise my code, but the normal <a href="https://makecode.microbit.org/">MakeCode IDE</a> doesn't provide any tools to let you inspect your program while it's running.
+Instead, I reworked my code to <a href="http://microbit-raytracer.stevenwaterman.uk">run as a website</a> and used Chrome's Developer Tools.
+My test bench code is available <a href="https://github.com/stevenwaterman/microbit-raytracer/tree/gh-pages">on GitHub</a>.
 
 This post walks you through how to build a test bench website for your code and use the Chrome Developer Tools to optimise it.
 It is aimed at more advanced Micro:Bit users, but you don't need any experience with HTML or web development in general.
@@ -24,14 +24,14 @@ However, you will need a basic grasp of using the command line to navigate betwe
 
 When it comes to optimising your code, there are a lot of general tips I could give you.
 However, I can't give advice about your specific project.
-Thankfully, you can use a tool called a [profiler](https://en.wikipedia.org/wiki/Profiling_(computer_programming)) for that.
+Thankfully, you can use a tool called a <a href="https://en.wikipedia.org/wiki/Profiling_(computer_programming">profiler</a>) for that.
 
 Profilers inspect your program during execution and generate a report.
 The report lists how often each function ran and how long they took.
 It also tells you how much memory was used, and where in your code the memory was allocated.
 This helps you find the 'hot spots' in your code - the parts that are running frequently and taking a long time.
 
-![An image of some code with cartoon fire superimposed](/assets/img/posts/20200327/hotspots.png "If your code is this hot, you need more help than I can give")
+!<a href="/assets/img/posts/20200327/hotspots.png "If your code is this hot, you need more help than I can give"">An image of some code with cartoon fire superimposed</a>
 
 
 In general, a profiler lets you know which bits of your code are causing slowness and need optimising.
@@ -39,14 +39,14 @@ Since optimisation usually makes your code harder to read and maintain, this inf
 We only want to optimise the parts of the code that need it most.
 
 The MakeCode IDE doesn't include a profiler, but we can rework our code to let us use a normal JavaScript profiler.
-Google Chrome has a JavaScript profiler built-in, and you can run it on any website using the [Chrome Developer Tools](https://developers.google.com/web/tools/chrome-devtools).
+Google Chrome has a JavaScript profiler built-in, and you can run it on any website using the <a href="https://developers.google.com/web/tools/chrome-devtools">Chrome Developer Tools</a>.
 In fact, Chrome is not unique here - most browsers include profilers in their developer tools.
 In this post, I'll focus on Chrome's profiler, so make sure you are using Chrome too if you are following along at home.
 
 ## Building a Test Bench
 
 Since Chrome's profiler only works on websites, we can't use it to profile your Micro:Bit project directly.
-Instead, we need to build a website that runs your code - known as a [test bench](https://en.wikipedia.org/wiki/Test_bench).
+Instead, we need to build a website that runs your code - known as a <a href="https://en.wikipedia.org/wiki/Test_bench">test bench</a>.
 That could be as simple as:
 
 ~~~html
@@ -59,7 +59,7 @@ That could be as simple as:
 
 However, this only works if your program is pure JavaScript.
 Most Micro:Bit code uses the handy built-in functions, like <code>input.onButtonPressed</code> or <code>basic.clearScreen</code>.
-We will need to write some extra code to let us use those functions, known as [stubbing](https://en.wikipedia.org/wiki/Method_stub) them.
+We will need to write some extra code to let us use those functions, known as <a href="https://en.wikipedia.org/wiki/Method_stub">stubbing</a> them.
 
 Stubbing a function means writing a simpler version of it, which can be used in place of the real version.
 For example, you could stub <code>radio.sendString</code> with a function that just writes the value in a text box.
@@ -103,11 +103,11 @@ When the <code>A</code> button is pressed, it should run the <code>aPressed</cod
 </html>
 ~~~
 
-If you need a second example, you can look at my ray tracer's [test bench](https://github.com/stevenwaterman/microbit-raytracer/tree/gh-pages).
-There, I stubbed the LED screen using [HTML canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API).
+If you need a second example, you can look at my ray tracer's <a href="https://github.com/stevenwaterman/microbit-raytracer/tree/gh-pages">test bench</a>.
+There, I stubbed the LED screen using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">HTML canvas</a>.
 The resulting website looks like this:
 
-![My test bench shows a red pyramid on the display, and has one button for each input you can give the micro:bit, including the two buttons and the tilt gestures](/assets/img/posts/20200327/testbench.png "It's no pixar, but it's mine")
+!<a href="/assets/img/posts/20200327/testbench.png "It's no pixar, but it's mine"">My test bench shows a red pyramid on the display, and has one button for each input you can give the micro:bit, including the two buttons and the tilt gestures</a>
 
 Stubbing the Micro:Bit methods can be really hard at first, and it's often unclear what approach to take.
 Therefore, before you jump in and start stubbing the methods, you should think about whether you really need them.
@@ -121,11 +121,11 @@ You could even just run your program over and over again in a loop.
 
 ## An Important Note
 
-The 'JavaScript' code used by the Micro:Bit is actually [TypeScript](https://www.typescriptlang.org/).
-TypeScript isn't natively supported by the browser, so we have to [transpile](https://en.wikipedia.org/wiki/Source-to-source_compiler) it into JavaScript.
+The 'JavaScript' code used by the Micro:Bit is actually <a href="https://www.typescriptlang.org/">TypeScript</a>.
+TypeScript isn't natively supported by the browser, so we have to <a href="https://en.wikipedia.org/wiki/Source-to-source_compiler">transpile</a> it into JavaScript.
 The method is quite straightforward:
 
-1. [Install npm](https://www.npmjs.com/get-npm) by clicking the link and following the instructions for your operating system
+1. <a href="https://www.npmjs.com/get-npm">Install npm</a> by clicking the link and following the instructions for your operating system
 1. Install TypeScript by running <code>npm install -g typescript</code> in the command line
 1. With your code in a file named <code>myCode.ts</code>, navigate to that folder and run <code>tsc myCode.ts</code>
 
@@ -151,7 +151,7 @@ In the performance tab, press the circular <code>Record</code> button and start 
 After a few seconds, press the button again to stop recording and wait for it to process.
 You should see something like this:
 
-![The performance tab of developer tools is shown. It has a number of small squares for each function that ran](/assets/img/posts/20200327/performance.png "It's scary at first, but this is one of the most helpful things ever")
+!<a href="/assets/img/posts/20200327/performance.png "It's scary at first, but this is one of the most helpful things ever"">The performance tab of developer tools is shown. It has a number of small squares for each function that ran</a>
 
 Time increases from left to right, and each rectangle is the function in your code that was running at the time.
 When one function is under another, it means that the bottom one was called by the top one.
@@ -162,10 +162,10 @@ Those functions are the ones that you should try to optimise.
 I'm not going to discuss *how* to optimise your code, because it's an entire topic in itself.
 A few techniques I'd recommend looking into are:
 
-* [Memoization](https://en.wikipedia.org/wiki/Memoization): When a function is called with some arguments for the first time, the result is stored in a lookup table. On future calls, the arguments are used to get the result from the lookup table, instead of computing it again.
-* [Function Inlining](https://en.wikipedia.org/wiki/Inline_expansion): Copying the contents of a function into the part of the code where you previously called that function, allowing you to remove the function. This is useful when a function gets called millions of times as each function call introduces a tiny delay.
-* [Precomputation](https://en.wikipedia.org/wiki/Precomputation): Calculating every possible result of a function externally and hard-coding it into your program. This helps when the range of arguments is very small and known in advance, but the calculation is so complex that there's no realistic way to run it on the Micro:Bit.
-* [Lazy Loading](https://en.wikipedia.org/wiki/Lazy_loading): Only calculate things when you're absolutely sure the result will get used. This is a good general principle to look out for in any project, and helps reduce wasted CPU time.
+* <a href="https://en.wikipedia.org/wiki/Memoization">Memoization</a>: When a function is called with some arguments for the first time, the result is stored in a lookup table. On future calls, the arguments are used to get the result from the lookup table, instead of computing it again.
+* <a href="https://en.wikipedia.org/wiki/Inline_expansion">Function Inlining</a>: Copying the contents of a function into the part of the code where you previously called that function, allowing you to remove the function. This is useful when a function gets called millions of times as each function call introduces a tiny delay.
+* <a href="https://en.wikipedia.org/wiki/Precomputation">Precomputation</a>: Calculating every possible result of a function externally and hard-coding it into your program. This helps when the range of arguments is very small and known in advance, but the calculation is so complex that there's no realistic way to run it on the Micro:Bit.
+* <a href="https://en.wikipedia.org/wiki/Lazy_loading">Lazy Loading</a>: Only calculate things when you're absolutely sure the result will get used. This is a good general principle to look out for in any project, and helps reduce wasted CPU time.
 
 In the performance profiler, you may see that your program spends a lot of time doing *garbage collection* (GC).
 This happens when you use lots of memory in your program.
@@ -179,7 +179,7 @@ First, select the <code>Allocation Sampling</code> profile, then hit <code>Start
 Your code will run much slower while the memory profiler is running, so let it run for a while before clicking to stop the recording.
 After giving it a few seconds to generate the report, it should look something like this:
 
-![Shows the memory tab in developer tools. There is a big list of different places that memory was allocated.](/assets/img/posts/20200327/memory.png "Click an entry in the list to see more information about what is being saved in memory")
+!<a href="/assets/img/posts/20200327/memory.png "Click an entry in the list to see more information about what is being saved in memory"">Shows the memory tab in developer tools. There is a big list of different places that memory was allocated.</a>
 
 The default view is <code>Summary</code> but you should change that to <code>Containment</code>.
 Then, click to open the <code>Window / <your url></code> category.
@@ -239,4 +239,4 @@ Hopefully, with the help of a profiler, you'll be able to take your Micro:Bit co
 
 <hr/>
 
-If you're interested in reading more about how profilers can be used to optimise code, check out one of my older blog posts [Slow Code HATES him! Optimising a web app from 1 to 60fps](https://blog.scottlogic.com/2020/02/17/minesweeper-optimisation.html).
+If you're interested in reading more about how profilers can be used to optimise code, check out one of my older blog posts <a href="https://blog.scottlogic.com/2020/02/17/minesweeper-optimisation.html">Slow Code HATES him! Optimising a web app from 1 to 60fps</a>.

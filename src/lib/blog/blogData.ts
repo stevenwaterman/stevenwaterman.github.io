@@ -179,6 +179,58 @@ export const blogPosts = assertBlogPosts({
     featured: false,
     published: true
   },
+  "github-ci-cd": {
+    type: "technical",
+    author: "SteWaterman",
+    title: "GitHub is a free CI/CD/Hosting solution",
+    shortDescription: "Introducing a free GitHub Actions workflow which builds your front-end and deploys it.",
+    longDescription: "Practicing Continuous Integration & Deployment, we can get new features to users faster and tighten our feedback loops. In this introduction to CI/CD, I introduce and explain an example GitHub Actions workflow which builds your front-end and deploys it with GitHub Pages.",
+    date: new Date("2020-02-24T12:00:00Z"),
+    featured: true,
+    published: true
+  },
+  "microbit-raytracer": {
+    type: "technical",
+    author: "SteWaterman",
+    title: "3D Rendering on a Children's Toy",
+    shortDescription: "The BBC Micro:Bit is designed to do a lot of things, but 3D rendering isn't one of them.",
+    longDescription: "I recently got the chance to play around with a BBC Micro:Bit - an educational toy aimed at helping kids learn to program. It's designed to do a lot of things, but 3D rendering isn't one of them.",
+    date: new Date("2020-03-03T12:00:00Z"),
+    featured: false,
+    published: true,
+    original: {
+      text: "the Scott Logic blog",
+      link: "https://blog.scottlogic.com/2020/03/03/microbit-raytracer.html"
+    }
+  },
+  "raytracer-how-to": {
+    type: "technical",
+    author: "SteWaterman",
+    title: "How to Write a Ray Tracer Intuitively",
+    shortDescription: "Ray tracing seems complicated at first, but together we can make it simple.",
+    longDescription: "Ray tracing is the process of simulating light rays to render a 3D scene. It seems really complicated at first, but it's actually quite simple. After reading this post, you could easily implement one yourself!",
+    date: new Date("2020-03-10T12:00:00Z"),
+    featured: false,
+    published: true,
+    original: {
+      text: "the Scott Logic blog",
+      link: "https://blog.scottlogic.com/2020/03/10/raytracer-how-to.html"
+    }
+  },
+  "microbit-optimisation": {
+    type: "technical",
+    author: "SteWaterman",
+    title: "Optimise your Micro:Bit code with Chrome DevTools",
+    shortDescription: "Some might say I pushed the Micro:Bit too far. This post is not for those people.",
+    longDescription: "Some might say I pushed the Micro:Bit too far. This post is not for those people. If your Micro:Bit is also struggling, this post will show you how to optimise your code and push it further",
+    date: new Date("2020-03-27T12:00:00Z"),
+    featured: false,
+    published: true,
+    original: {
+      text: "the Scott Logic blog",
+      link: "https://blog.scottlogic.com/2020/03/27/microbit-optimisation.html"
+    }
+  },
 	"open-source-punish": {
 		type: "projects",
 		author: "SteWaterman",
@@ -279,6 +331,6 @@ export type BlogId = keyof typeof blogPosts;
 
 export type SnippetConfig = {
 	name: string;
-	language: "svelte" | "ts" | "java";
+	language: "svelte" | "ts" | "java" | "html";
 	snippet: string;
 };
