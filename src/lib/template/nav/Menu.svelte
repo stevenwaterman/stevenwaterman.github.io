@@ -150,7 +150,7 @@
 <nav>
   <a class="logoLink" href="/">
     <img class="logo" src="/assets/logoWhite.svg" alt="Logo"/>
-    <span class="logoText">Steven Waterman</span>
+    <span class="logoText">SW</span>
   </a>
 
   <div class="burgerMenuContainer">
