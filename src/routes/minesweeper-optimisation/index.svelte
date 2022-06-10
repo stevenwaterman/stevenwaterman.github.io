@@ -411,7 +411,7 @@ import Snippet from "$lib/blog/snippets/Snippet.svelte";
 
   <figure>
     <img
-      src="/assets/blog/minesweeper-optimisation/layers.png"
+      src="/assets/blog/minesweeper-optimisation/header.png"
       title="It would be hard to play Minesweeper like this"
       alt="The board is split into 100 squares, each 10x10 cells. They are slightly overlapping in this view"
     />
