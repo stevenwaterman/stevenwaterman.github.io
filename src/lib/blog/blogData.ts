@@ -108,6 +108,30 @@ export const blogPosts = assertBlogPosts({
       link: "https://blog.scottlogic.com/2020/01/16/planning-56-sprints-per-second-with-sat4j.html"
     }
   },
+  "minesweeper-lightning-talk": {
+    type: "media",
+    author: "SteWaterman",
+    title: "How to solve Minesweeper in 3 minutes",
+    shortDescription: "In my first ever tech talk, I explained how to algorithmically solve minesweeper",
+    longDescription: "In my first ever tech talk, I explained how to algorithmically solve minesweeper",
+    date: new Date("2020-01-17T09:00:00Z"),
+    featured: false,
+    published: true
+  },
+  "pick-n-mix": {
+    type: "technical",
+    author: "SteWaterman",
+    title: "Typescript Pick 'n' Mix",
+    shortDescription: "In TypeScript, we can just Pick the good bits of an interface, so let's do that.",
+    longDescription: "Interface Segregation is an important part of writing clean and maintainable code. In most languages, it requires constant maintenance and naturally degrades over time. In TypeScript, we can just Pick the good bits.",
+    date: new Date("2020-01-29T12:00:00Z"),
+    featured: true,
+    published: true,
+    original: {
+      text: "the Scott Logic blog",
+      link: "https://blog.scottlogic.com/2020/01/29/typescript-pick-n-mix.html"
+    }
+  },
 	"open-source-punish": {
 		type: "projects",
 		author: "SteWaterman",
