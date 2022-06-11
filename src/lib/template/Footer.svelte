@@ -118,7 +118,7 @@
 
     <h3 class="contactHeader">Contact</h3>
     <div class="contactBody">
-      <p>Email: <a href="mailto:steven@lexoral.com">steven@lexoral.com</a></p>
+      <p>Email: <a href="mailto:blog@stevenwaterman.uk">blog@stevenwaterman.uk</a></p>
       <p>Lexoral is Open-Source Software<br>published under the <a href="https://github.com/stevenwaterman/Lexoral/blob/stage/LICENSE">GPL License</a></p>
       <p>© Lexoral 2021</p>
     </div>

@@ -22,7 +22,7 @@ export const authors = assertAuthors({
 		job: "Technical Coach",
 		bio: "I've spent my career making development simple. I'm always happy to chat with you - feel free to get in touch!",
 		links: {
-			email: "steven@lexoral.com",
+			email: "blog@stevenwaterman.uk",
       calendly: "lexoral/office-hours",
 			github: "StevenWaterman",
 			twitter: "SteWaterman",
@@ -370,7 +370,7 @@ export const blogPosts = assertBlogPosts({
     shortDescription: "I've always been open to chat with people, but now it's official. You can book a slot in my diary to chat about anything.",
     longDescription: "I've always been available to chat, but now I've taken it a step further. Anyone can book time in my diary to chat about anything - even if you just want my advice. Why did I decide to do that? Let's talk about it.",
     date: new Date("2022-04-08T18:00:00Z"),
-    featured: true,
+    featured: false,
     published: true,
     header: {
       position: "top",
@@ -379,6 +379,19 @@ export const blogPosts = assertBlogPosts({
     original: {
       text: "the Lexoral blog",
       link: "https://lexoral.com/blog/office-hours/"
+    }
+  },
+  "opening-up-burnout": {
+    type: "coaching",
+    author: "SteWaterman",
+    title: "Opening Up About Burnout",
+    shortDescription: "Last year, I suffered from some pretty severe burnout. It's time we started talking about this stuff.",
+    longDescription: "All too often, we forget our human sides at work. We lie to ourselves and others, that everything is okay. I think it's time we start opening up, so I'll go first. Last year, I suffered from burnout. Here's the story.",
+    date: new Date("2022-06-11T12:00:00Z"),
+    featured: true,
+    published: false,
+    header: {
+      position: "top"
     }
   }
 } as const);

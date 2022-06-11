@@ -74,7 +74,7 @@
     text-decoration: none;
   }
 
-  .signIn {
+  .chat {
     justify-self: flex-end;
   }
 
@@ -192,9 +192,9 @@
             {label: "Lexoral", link: "https://lexoral.com"},
             {label: "MuseTree", link: "https://stevenwaterman.uk/musetree/"},
             {label: "No Time to Stalk", link: "https://stevenwaterman.uk/NoTimeToStalk"},
-            {label: "Narration.Studio", link: "https://github.com/stevenwaterman/sharpshot"},
+            {label: "Narration.Studio", link: "https://github.com/stevenwaterman/narration.studio"},
             {label: "Spiro", link:"https://stevenwaterman.uk/Spiro/"},
-            {label: "Prevoid", link:"https://linktr.ee/prevoid_art"},
+            {label: "Art", link:"https://linktr.ee/prevoid_art"},
             {label: "Music", link:"https://soundcloud.com/user-872603169"},
           ]}
         />

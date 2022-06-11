@@ -353,6 +353,6 @@
   </p>
 
   <p>
-    <a href="mailto:steven@lexoral.com">Send me a message</a> if you make something cool!
+    <a href="mailto:blog@stevenwaterman.uk.com">Send me a message</a> if you make something cool!
   </p>
 </BlogPost>

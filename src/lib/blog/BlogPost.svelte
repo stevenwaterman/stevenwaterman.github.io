@@ -25,9 +25,7 @@
 
   /*
   TODO list
-  - link to the main blog
   - recommended posts
-  - Head meta stuff for twitter etc
   */
 </script>
 
@@ -134,32 +132,37 @@
     padding-top: 1em;
   }
 
-  .padded > :global(p code) {
+  .padded :global(p code) {
     background-color: var(--blue-6);
     color: var(--blue-0);
     font-size: 0.85em;
     padding: 0.1em 0.2em;
   }
 
-  .padded > :global(ul code) {
+  .padded :global(ul code) {
     background-color: var(--blue-6);
     color: var(--blue-0);
     font-size: 0.85em;
     padding: 0.1em 0.2em;
   }
 
-  .padded > :global(ol code) {
+  .padded :global(ol code) {
     background-color: var(--blue-6);
     color: var(--blue-0);
     font-size: 0.85em;
     padding: 0.1em 0.2em;
   }
 
-  .padded > :global(blockquote code) {
+  .padded :global(blockquote code) {
     background-color: var(--blue-6);
     color: var(--blue-0);
     font-size: 0.85em;
     padding: 0.1em 0.2em;
+  }
+
+  .padded :global(cite) {
+    display: block;
+    text-align: right;
   }
 
   @media (max-width: 1599px) {
@@ -204,7 +207,7 @@
 	<meta property="og:description" content={post.longDescription}>
 	<meta property="og:image" content={`https://stevenwaterman.uk/assets/blog/${id}/header.png`}>
 	<meta property="og:type" content="article">
-	<meta property="og:site_name" content="Lexoral">
+	<meta property="og:site_name" content="Steven Waterman">
 	<meta property="og:url" content={`https://stevenwaterman.uk/${id}`}>
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:site" content="@SteWaterman">
