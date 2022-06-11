@@ -186,17 +186,17 @@
   </p>
 
   <ul>
-    <li>Whenever it starts is the right time</li>
-    <li>When it's over it's over</li>
-    <li>Whatever happens, happens</li>
-    <li>There is one "Law", the "Law of two feet"</li>
+    <li>Whoever comes is the right people</li>
+    <li>Whatever happens is the only thing that could have</li>
+    <li>When it starts is the right time</li>
+    <li>When it’s over it’s over</li>
   </ul>
 
   <h2>Conclusion</h2>
 
   <p>
     If you're struggling with burnout, or worry that you might be heading in that direction, please look after yourself.
-    Find something that motivates you, and something that reinforces those reward circuits.
+    Find something that motivates you, reinforce those reward cycles, and remember to water your human plant.
   </p>
 
   <p>
@@ -204,10 +204,6 @@
     Time off, or less work, isn't always the solution, and that's ok.
     If you need someone to talk to, I'm here.
     Even if you just need someone to get excited with.
-  </p>
-
-  <p>
-    and remember to feed and water your human.
   </p>
 
   <div class="center">
