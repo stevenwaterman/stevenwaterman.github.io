@@ -197,6 +197,27 @@
       padding-left: calc(0.5em + 30pt);
     }
   }
+
+  applause-button {
+    width: 4em;
+    height: 4em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+  }
+
+  .topSection {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1em;
+    align-items: center;
+  }
+
+  .bottomClapContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 3em;
+    margin-bottom: -2em;
+  }
 </style>
 
 <svelte:head>
@@ -212,6 +233,8 @@
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:site" content="@SteWaterman">
 	<meta name="twitter:image" content={`https://stevenwaterman.uk/assets/blog/${id}/header.png`}>
+  <link rel="stylesheet" href="/applause/applause-button.css" />
+  <script src="/applause/applause-button.js"></script>
 </svelte:head>
 
 <Template title={post.title}>
@@ -235,16 +258,37 @@
               {post.title}
             {/if}
           </h1>
-          <summary>{post.longDescription}</summary>
 
-          {#if post.original !== undefined}
-            <p class="original">Originally posted on <a href={post.original.link}>{post.original.text}</a></p>
-          {/if}
+          <div class="topSection">
+            <div class="left">
+              <summary>{post.longDescription}</summary>
 
-          <slot name="updates"></slot>
+              {#if post.original !== undefined}
+                <p class="original">Originally posted on <a href={post.original.link}>{post.original.text}</a></p>
+              {/if}
+
+              <slot name="updates"></slot>
+            </div>
+
+            {#if post.original === undefined}
+              <applause-button url={`https://stevenwaterman.uk/${id}`} color="var(--blue-1)"/>
+            {:else}
+              <applause-button url={post.original?.link} color="var(--blue-1)"/>
+            {/if}
+
+          </div>
+
           <hr/>
 
           <slot></slot>
+
+          <div class="bottomClapContainer">
+            {#if post.original === undefined}
+              <applause-button url={`https://stevenwaterman.uk/${id}`} color="var(--blue-1)"/>
+            {:else}
+              <applause-button url={post.original?.link} color="var(--blue-1)"/>
+            {/if}
+          </div>
         </div>
       </article>
     </TextContainer>
