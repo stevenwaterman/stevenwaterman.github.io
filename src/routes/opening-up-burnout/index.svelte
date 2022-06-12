@@ -121,7 +121,7 @@
 
   <p>
     Eventually, I accepted that things weren't going to get better on their own.
-    I had to force myself to self-care.
+    I had to force myself to self-care, and treat it as a full-time job.
     If my body was a plant, it would've died by now.
     I started caring for myself a bit more, and embraced harm reduction.
   </p>
