@@ -98,6 +98,12 @@
     They knew it was coming, and we left on good terms, but it still felt like a failure.
   </p>
 
+  <p>
+    I'm in a very priveleged position to be able to do that.
+    If I didn't have the support network, the savings, and the low cost of living to support that period of unemployment, I don't know where I would be now.
+    I have come to terms with my journey, but it's uniquely mine.
+  </p>
+
   <h2>Aftermath</h2>
 
   <p>
@@ -179,7 +185,7 @@
   </p>
 
   <p>
-    I may have moved on from Lexoral now (more on that in the next post), but I wouldn't change it.
+    <a href="/a-new-trajectory">I may have moved on from Lexoral now</a>, but I wouldn't change it.
     Looking back, it's a miracle I ended up where I am today.
     At each turning point, the opportunity was only possible due to all the decisions I'd made so far.
     I'm reminded of the <em>Open Space Technology</em> principles:

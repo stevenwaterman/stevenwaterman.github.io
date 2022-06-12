@@ -387,8 +387,21 @@ export const blogPosts = assertBlogPosts({
     title: "Opening Up About Burnout",
     shortDescription: "Last year, I suffered from some pretty severe burnout. It's time we started talking about this stuff.",
     longDescription: "All too often, we forget our human sides at work. We lie to ourselves and others, that everything is okay. I think it's time we start opening up, so I'll go first. Last year, I suffered from burnout. Here's the story.",
-    date: new Date("2022-06-11T12:00:00Z"),
+    date: new Date("2022-06-12T12:00:00Z"),
     featured: true,
+    published: true,
+    header: {
+      position: "top"
+    }
+  },
+  "a-new-trajectory": {
+    type: "coaching",
+    author: "SteWaterman",
+    title: "A New Trajectory",
+    shortDescription: "I used to be a developer, and now I'm a Technical Coach. Let's discuss what it means, and how I got here.",
+    longDescription: "I used to be a developer, and now I'm helping developers. It's not the change I expected, but it was long overdue. Let's discuss what a Technical Coach is, and how I got here. In other words, let's recap the last year of my life.",
+    date: new Date("2022-06-13T12:00:00Z"),
+    featured: false,
     published: false,
     header: {
       position: "top"
