@@ -23,7 +23,7 @@ export const authors = assertAuthors({
 		bio: "I've spent my career making development simple. I'm always happy to chat with you - feel free to get in touch!",
 		links: {
 			email: "blog@stevenwaterman.uk",
-      calendly: "lexoral/office-hours",
+      calendly: "stewaterman/30min",
 			github: "StevenWaterman",
 			twitter: "SteWaterman",
 			twitch: "SteWaterman",

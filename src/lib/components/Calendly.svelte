@@ -1,5 +1,5 @@
 <script lang="ts">
-  const handler: any = "Calendly.initPopupWidget({url: 'https://calendly.com/lexoral/office-hours'});return false;";
+  const handler: any = "Calendly.initPopupWidget({url: 'https://calendly.com/stewaterman/30min'});return false;";
 </script>
 
 <style>

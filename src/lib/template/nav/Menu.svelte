@@ -167,7 +167,7 @@
 
       <li>
         <DropdownLabel
-          topEntry={{label: "About", link: "/assets/cv.pdf"}}
+          topEntry={{label: "CV", link: "/assets/cv.pdf"}}
         />
       </li>
 
@@ -180,7 +180,7 @@
             { label: "LinkedIn", link: "https://www.linkedin.com/in/steven-waterman/" },
             { label: "Twitch", link: "https://twitch.tv/SteWaterman/" },
             { label: "Email", link: "mailto:website@stevenwaterman.uk" },
-            { label: "Calendly", link: "https://calendly.com/lexoral/office-hours" },
+            { label: "Calendly", link: "https://calendly.com/stewaterman/30min" },
           ]}
         />
       </li>

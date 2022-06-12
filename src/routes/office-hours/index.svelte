@@ -125,7 +125,7 @@
     <li>Twitch: <a href="https://twitch.tv/stewaterman">Mon/Wed/Fri/Sat/Sun 8:30am UTC @lexoral</a></li>
     <li>Twitter: <a href="https://twitter.com/stewaterman">@lexoral</a></li>
     <!-- <li>Slack: <a href="http://slack.lexoral.com">slack.lexoral.com</a></li> -->
-    <li>Or <a href="https://calendly.com/lexoral/office-hours">book a time to chat!</a></li>
+    <li>Or <a href="https://calendly.com/stewaterman/30min">book a time to chat!</a></li>
   </ul>
 
   <p>
