@@ -271,9 +271,9 @@
             </div>
 
             {#if post.original === undefined}
-              <applause-button url={`https://stevenwaterman.uk/${id}`} color="var(--blue-1)"/>
+              <applause-button url={`https://stevenwaterman.uk/${id}`} color="var(--blue-1)" multiclap="true"/>
             {:else}
-              <applause-button url={post.original?.link} color="var(--blue-1)"/>
+              <applause-button url={post.original?.link} color="var(--blue-1)" multiclap="true"/>
             {/if}
 
           </div>
@@ -284,9 +284,9 @@
 
           <div class="bottomClapContainer">
             {#if post.original === undefined}
-              <applause-button url={`https://stevenwaterman.uk/${id}`} color="var(--blue-1)"/>
+              <applause-button url={`https://stevenwaterman.uk/${id}`} color="var(--blue-1)" multiclap="true"/>
             {:else}
-              <applause-button url={post.original?.link} color="var(--blue-1)"/>
+              <applause-button url={post.original?.link} color="var(--blue-1)" multiclap="true"/>
             {/if}
           </div>
         </div>
