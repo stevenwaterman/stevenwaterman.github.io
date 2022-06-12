@@ -15,7 +15,7 @@
 
 <BlogPost id="a-new-trajectory">
   <p>
-    Over the past year, I've been recovering from burnout.
+    Over the past year, I've been <a href="/opening-up-burnout">recovering from burnout</a>.
     I started <a href="https://lexoral.com">Lexoral</a> to help with my partner's PhD work, and rekindle my love for programming.
     It worked!
     I really enjoy programming again, and Lexoral made Artie's PhD transcription less painful.
