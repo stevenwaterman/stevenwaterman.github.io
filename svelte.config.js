@@ -20,14 +20,6 @@ const config = {
 			}
 		},
     prerender: {
-      onError: ({ status, path, referrer, referenceType }) => {
-        if (status === 404 && (
-          path.startsWith("/demo") ||
-          path.startsWith("/editor") ||
-          path.startsWith("/dashboard")
-        )) return;
-        throw new Error(`${status} ${path}${referrer ? ` (${referenceType} from ${referrer})` : ''}`);
-      },
       default: true
     }
 	}
