@@ -138,7 +138,7 @@
   </div>
 
   <div class="container">
-    <img class="headerImage" src={`/assets/blog/${id}/header.png`} style={`object-fit: ${fit}; object-position: ${position};`} alt="Header"/>
+    <img class="headerImage" src={`/assets/blog/${id}/th_header.jpg`} style={`object-fit: ${fit}; object-position: ${position};`} alt="Header"/>
     <div class="padded">
       <div class="meta">
         <p>{toDateString(post.date)}</p>
