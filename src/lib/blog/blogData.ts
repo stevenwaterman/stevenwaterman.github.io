@@ -184,7 +184,7 @@ export const blogPosts = assertBlogPosts({
     author: "SteWaterman",
     title: "GitHub is a free CI/CD/Hosting solution",
     shortDescription: "Introducing a free GitHub Actions workflow which builds your front-end and deploys it.",
-    longDescription: "Practicing Continuous Integration & Deployment, we can get new features to users faster and tighten our feedback loops. In this introduction to CI/CD, I introduce and explain an example GitHub Actions workflow which builds your front-end and deploys it with GitHub Pages.",
+    longDescription: "Practicing Continuous Integration and Deployment, we can get new features to users faster and tighten our feedback loops. In this introduction to CI/CD, I introduce and explain an example GitHub Actions workflow which builds your front-end and deploys it with GitHub Pages.",
     date: new Date("2020-02-24T12:00:00Z"),
     featured: true,
     published: true
@@ -285,6 +285,9 @@ export const blogPosts = assertBlogPosts({
     original: {
       text: "the Scott Logic blog",
       link: "https://blog.scottlogic.com/2020/10/09/ergo-rabbit-hole.html"
+    },
+    header: {
+      position: "top"
     }
   },
 	"open-source-punish": {
