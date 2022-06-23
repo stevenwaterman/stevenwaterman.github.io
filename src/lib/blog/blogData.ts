@@ -409,6 +409,16 @@ export const blogPosts = assertBlogPosts({
     header: {
       position: "top"
     }
+  },
+  "kind-and-true": {
+    type: "coaching",
+    author: "SteWaterman",
+    title: "Kind and True",
+    shortDescription: "The world is full of thoughts that are both kind and true, but don't need saying. What would happen if we said them anyway?",
+    longDescription: "For years, I've followed a kind of 'heuristic triangle' to determine whether a thought is worth sharing. However, that triangle has one implication that I've avoided until now, because it feels vulnerable, alien, and uncomfortable.",
+    date: new Date("2022-06-23T14:00:00Z"),
+    featured: true,
+    published: true
   }
 } as const);
 
