@@ -123,7 +123,7 @@ import Balance from "$lib/components/Balance.svelte";
       <img src={`/assets/blog/authors/${author}.jpg`} alt={authorDetails.longName}/>
       <h2 class="name">{authorDetails.longName}</h2>
       <p class="job">{authorDetails.job}</p>
-      <p class="bio">{authorDetails.bio}</p>
+      <!-- <p class="bio">{authorDetails.bio}</p> -->
     </div>
 
     <Balance height="4em"/>
