@@ -126,7 +126,7 @@ import Balance from "$lib/components/Balance.svelte";
       <!-- <p class="bio">{authorDetails.bio}</p> -->
     </div>
 
-    <Balance height="4em"/>
+    <Balance height="8em"/>
     
     <ul class="links">
       {#if authorDetails.links.email}
