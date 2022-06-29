@@ -6,7 +6,7 @@
 
   import type { Author, AuthorDetails } from "./blogData";
   import { authors } from "./blogData";
-import Balance from "$lib/components/Balance.svelte";
+  import Balance from "$lib/components/Balance.svelte";
   
   export let author: Author;
   
@@ -22,7 +22,7 @@ import Balance from "$lib/components/Balance.svelte";
     justify-items: center;
     align-items: center;
 
-    row-gap: 2em;
+    row-gap: 1em;
     column-gap: 4em;
     padding: 2em 1em;
   }
@@ -75,7 +75,7 @@ import Balance from "$lib/components/Balance.svelte";
     font-size: 2em;
   }
 
-  @media (min-width: 1600px) and (max-height: 899px) {
+  @media (min-width: 1600px) and (max-height: 999px) {
     .links {
       display: flex;
       flex-direction: row;
@@ -126,7 +126,7 @@ import Balance from "$lib/components/Balance.svelte";
       <!-- <p class="bio">{authorDetails.bio}</p> -->
     </div>
 
-    <Balance height="8em"/>
+    <Balance height="6em"/>
     
     <ul class="links">
       {#if authorDetails.links.email}
