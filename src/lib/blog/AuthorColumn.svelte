@@ -22,7 +22,7 @@
     justify-items: center;
     align-items: center;
 
-    row-gap: 1em;
+    row-gap: 2em;
     column-gap: 4em;
     padding: 2em 1em;
   }
@@ -75,7 +75,7 @@
     font-size: 2em;
   }
 
-  @media (min-width: 1600px) and (max-height: 999px) {
+  @media (min-width: 1600px) and (max-height: 1099px) {
     .links {
       display: flex;
       flex-direction: row;
