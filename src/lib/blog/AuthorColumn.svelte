@@ -6,6 +6,7 @@
 
   import type { Author, AuthorDetails } from "./blogData";
   import { authors } from "./blogData";
+import Balance from "$lib/components/Balance.svelte";
   
   export let author: Author;
   
@@ -124,6 +125,8 @@
       <p class="job">{authorDetails.job}</p>
       <p class="bio">{authorDetails.bio}</p>
     </div>
+
+    <Balance height="4em"/>
     
     <ul class="links">
       {#if authorDetails.links.email}

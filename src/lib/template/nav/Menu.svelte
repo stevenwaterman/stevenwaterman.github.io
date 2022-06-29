@@ -1,6 +1,5 @@
 <script>
   import Calendly from "$lib/components/Calendly.svelte";
-  import LinkButton from "$lib/components/LinkButton.svelte";
   import { faBars } from "@fortawesome/free-solid-svg-icons";
   import Fa from "svelte-fa/src/fa.svelte";
   import DropdownLabel from "./DropdownLabel.svelte";
@@ -189,6 +188,7 @@
         <DropdownLabel
           topEntry={{label: "Projects", link: "/#community"}}
           menuEntries={[
+            {label: "Balance Scores", link: "https://stevenwaterman.uk/Balance/"},
             {label: "Lexoral", link: "https://lexoral.com"},
             {label: "MuseTree", link: "https://stevenwaterman.uk/musetree/"},
             {label: "No Time to Stalk", link: "https://stevenwaterman.uk/NoTimeToStalk"},

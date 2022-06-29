@@ -108,8 +108,6 @@
     <p class="subtitle">Assorted thoughts on agility, tech, and existing in this world</p>
   </div>
 
-  <!-- <h2>Featured Posts</h2> -->
-
   <ol class="featured">
     {#each featuredPosts as id (id)}
       <li><FeaturedLink {id}/></li>
