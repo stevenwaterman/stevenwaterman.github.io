@@ -142,8 +142,8 @@
   </p>
 
   <figure>
-    <!-- STL viewer -->
-    <figcaption>The Case</figcaption>
+    <iframe style="width: 100%; height: 30em;" title="The case files" src="https://viewscreen.githubusercontent.com/view/solid?enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f73746576656e77617465726d616e2f42616c616e63652f323236326437343034333631373137323936343639366236643866346464306362616339366165312f7072696e74657246696c65732f6578706c6f6465642e73746c"></iframe>
+    <figcaption>The 3d Printer Files for the Case</figcaption>
   </figure>
 
   <p>
