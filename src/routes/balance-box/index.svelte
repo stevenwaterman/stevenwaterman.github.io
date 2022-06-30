@@ -83,6 +83,8 @@
     And there's a big glowing box on my desk to remind me.
   </p>
 
+  <!-- Picture of my box -->
+
   <h2>Balance Scores</h2>
 
   <p>
@@ -101,6 +103,14 @@
     At the start of each meeting, try going around the room and sharing your balance scores.
     By openly sharing our emotional state, it becomes much easier to use productive reasoning.
     It sets the stage for a discussion that fosters relationships, rather than one that damages them.
+  </p>
+
+  <p>
+    Of course, everyone will have a different idea of what a 5 means, or even what personal wellbeing is.
+    It doesn't really matter though.
+    Over time, you get a feeling for what someone's baseline is, and whether they're better or worse than usual on a given day.
+    It's not really about the numbers anyway, it's about creating a space for emotions and vulnerability, so do whatever works best for you.
+    Feel free to just use `good` / `neutral` / `bad` instead, if that's easier.
   </p>
 
   <p>
