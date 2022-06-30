@@ -23,7 +23,10 @@
     It's <strong>one second</strong> out of date:
   </p>
 
-  <!-- Video -->
+  <figure>
+    <!-- TODO -->
+    <p><em>video to go here</em></p>
+  </figure>
 
   <h2>Why?</h2>
 
