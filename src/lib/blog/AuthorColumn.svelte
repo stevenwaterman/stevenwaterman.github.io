@@ -93,6 +93,11 @@
       grid-template-columns: 20em auto;
       padding: 2em 4em;
     }
+
+    .links {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+    }
   }
 
   @media (max-width: 1199px) {
@@ -109,6 +114,11 @@
       padding: 1em;
       max-width: 20em;
       width: 100vw;
+    }
+
+    .links {
+      grid-column: 1;
+      grid-row: 3;
     }
   }
 </style>
