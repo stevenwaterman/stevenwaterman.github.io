@@ -75,7 +75,7 @@
     font-size: 2em;
   }
 
-  @media (min-width: 1600px) and (max-height: 1099px) {
+  @media (min-width: 1600px) and (max-height: 949px) {
     .links {
       display: flex;
       flex-direction: row;

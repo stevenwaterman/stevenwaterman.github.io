@@ -6,13 +6,16 @@
   import java from "highlight.js/lib/languages/java";
   import css from "highlight.js/lib/languages/css";
   import json from "highlight.js/lib/languages/json";
+  import c from "highlight.js/lib/languages/c";
   import prettier from "prettier";
   import type { SnippetConfig } from "../blogData";
   import Highlight from "./Highlight.svelte";
+import type { HighlightResult } from "highlight.js";
 
   export let config: SnippetConfig;
   export let diffFrom: SnippetConfig | undefined = undefined;
 
+  hljs.registerLanguage("c", c)
   hljs.registerLanguage("typescript", typescript);
   hljs.registerLanguage("xml", xml);
   hljs.registerLanguage("javascript", javascript);
@@ -20,21 +23,39 @@
   hljs.registerLanguage("java", java);
   hljs.registerLanguage("json", json);
 
-  let parser: string;
+  let parser: {
+    name: string;
+    noPrettify?: true;
+    highlightAuto?: true;
+  };
   $: parser = {
-    svelte: "svelte",
-    ts: "typescript",
-    java: "java",
-    html: "html",
-    json: "json"
+    c: { name: "c", noPrettify: true },
+    svelte: { name: "svelte", highlightAuto: true },
+    ts: { name: "typescript" },
+    java: { name: "java" },
+    html: { name: "html" },
+    json: { name: "json" },
   }[config.language];
 
   function highlight(snippet?: string): string | undefined {
     if (snippet === undefined) return undefined;
 
     const trimmed = snippet.trim();
-    const formatted = prettier.format(trimmed, { parser }).trimEnd();
-    const highlighted = hljs.highlightAuto(formatted).value;
+
+    let formatted: string;
+    if (parser.noPrettify) {
+      formatted = trimmed;
+    } else {
+      formatted = prettier.format(trimmed, { parser: parser.name }).trimEnd()
+    }
+
+    let highlighted: string;
+    if (parser.highlightAuto) {
+      highlighted = hljs.highlightAuto(formatted).value;
+    } else {
+      highlighted = hljs.highlight(parser.name, formatted).value;
+    }
+
     return highlighted;
   }
 </script>
