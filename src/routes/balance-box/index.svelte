@@ -5,6 +5,13 @@
   import snippets from "./snippets";
 </script>
 
+<style>
+  video {
+    border: 2px solid var(--grey-0);
+    border-radius: 4px;
+  }
+</style>
+
 <BlogPost id="balance-box">
   <p>
     There's a box sitting on my desk.
@@ -24,8 +31,9 @@
   </p>
 
   <figure>
-    <!-- TODO -->
-    <p><em>video to go here</em></p>
+    <!-- svelte-ignore a11y-media-has-caption -->
+    <video autoplay loop src="/assets/blog/balance-box/box-gif.mp4" />
+    <figcaption>You really are seeing it in real-time</figcaption>
   </figure>
 
   <h2>Why?</h2>

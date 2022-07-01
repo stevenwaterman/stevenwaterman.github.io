@@ -72,6 +72,12 @@
 
   .padded > :global(figure img) {
     margin: auto;
+    max-width: 100%;
+  }
+
+  .padded > :global(figure video) {
+    margin: auto;
+    max-width: 100%;
   }
 
   .padded > :global(figure table) {
