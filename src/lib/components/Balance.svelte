@@ -29,6 +29,6 @@
 
 <div class="container" style={`height: ${height};`}>
   <a href="https://stevenwaterman.uk/Balance"><div class="overlay"></div></a>
-  <iframe title="Balance Scores" src="https://stevenwaterman.uk/Balance"></iframe>
+  <iframe title="Balance Scores" src="https://stevenwaterman.uk/Balance" loading="lazy"></iframe>
 </div>
 

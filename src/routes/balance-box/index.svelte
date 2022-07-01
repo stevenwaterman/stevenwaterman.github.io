@@ -136,12 +136,8 @@
   <p>
     So I went a step futher, and built a box that live-updates everyone on how I'm feeling.
     Just three digits, 0-9, visible for anyone that wants to look.
-    You can see my scores on page of the blog, or at <a href="https://stevenwaterman.uk/Balance">https://stevenwaterman.uk/Balance</a>:
+    You can see my scores on any blog post, or at <a href="https://stevenwaterman.uk/Balance">https://stevenwaterman.uk/Balance</a>.
   </p>
-
-  <figure>
-    <Balance/>
-  </figure>
 
   <h2>How?</h2>
 
@@ -175,7 +171,12 @@
   </p>
 
   <figure>
-    <iframe style="width: 100%; height: 30em;" title="The case files" src="https://viewscreen.githubusercontent.com/view/solid?enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f73746576656e77617465726d616e2f42616c616e63652f323236326437343034333631373137323936343639366236643866346464306362616339366165312f7072696e74657246696c65732f6578706c6f6465642e73746c"></iframe>
+    <iframe
+      style="width: 100%; height: 30em;"
+      src="https://viewscreen.githubusercontent.com/view/solid?enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f73746576656e77617465726d616e2f42616c616e63652f663964366538313333343937343664316161363136663831613336336164336631373462626232642f7072696e74657246696c65732f6578706c6f6465642e73746c"
+      title="The case files"
+      name="56009715-555d-4e55-9648-cf14f7f40f43"
+    ></iframe>
     <figcaption>The 3d Printer Files for the Case</figcaption>
   </figure>
 
@@ -306,10 +307,6 @@
     Then, to display the balance scores on this blog, I just add an <code>iframe</code>, and it all works nicely!
     (I <a href="/you-dont-need-js">still refuse</a> to enable JS on this blog)
   </p>
-
-  <figure>
-    <Balance/>
-  </figure>
 
   <h2>Conclusion</h2>
 
