@@ -43,7 +43,7 @@
   <h2>Why?</h2>
 
   <p>
-    Online, we curate an image of ourselves, like a personal brand, by only present one side of day-to-day life.
+    Online, we curate an image of ourselves, like a personal brand, by only presenting one side of day-to-day life.
     For many of us, it's the same at work too.
     Opening up is uncomfortable, because it makes us feel vulnerable.
     Even though we know that everyone else has bad days too, it doesn't feel nice to admit it.
@@ -109,14 +109,14 @@
 
   <p>
     Reading <a href="https://itrevolution.com/a-radical-enterprise/">A Radical Enterprise</a>, I learnt about <em>Balance Scores</em>.
-    A balance score is a set of three ratings, describing how you feel at the time, and giving a little bit of context for how you act.
-    There's no explanation, no questions allowed, just three scores out of ten:
+    A balance score is a set of three ratings, describing how you're balancing the different aspects of your life, and giving a little bit of context for how you act.
+    There's no explanation, and no questions or sympathy allowed, just three scores out of ten:
   </p>
 
   <ul>
-    <li><strong>Personal</strong> - Your mental health, physical health, happiness, and general wellbeing</li>
-    <li><strong>Professional</strong> - How much you are enjoying your job, and feel productive</li>
-    <li><strong>Spiritual</strong> - Up to you. For me, it's a sense of belonging, knowing that I've found my place in the world and have true belief in a mission / purpose.</li>
+    <li><strong>Personal</strong> - Your mental/physical health, happiness, home life, and general wellbeing.</li>
+    <li><strong>Professional</strong> - How much you are enjoying your job, work life, and feeling productive.</li>
+    <li><strong>Spiritual</strong> - Encompasses a sense of higher purpose, but ultimately up to the individual. For me, it's a sense of belonging, knowing that I've found my place in the world and have true belief in a mission / purpose.</li>
   </ul>
 
   <p>
@@ -126,15 +126,15 @@
   </p>
 
   <p>
-    Of course, everyone will have a different idea of what a 5 means, or even what personal wellbeing is.
+    Of course, everyone will have a different idea of what a <code>5</code> means, or even what personal wellbeing is.
     It doesn't really matter though.
-    Over time, you get a feeling for what someone's baseline is, and whether they're better or worse than usual on a given day.
+    Over time, you intuitively understand what someone's baseline is, and whether they're having a good or bad day.
     It's not really about the numbers anyway, it's about creating a space for emotions and vulnerability, so do whatever works best for you.
-    Feel free to just use `good` / `neutral` / `bad` instead, if that's easier.
+    Feel free to just use <code>good</code> / <code>neutral</code> / <code>bad</code> for each category instead, if that's easier.
   </p>
 
   <p>
-    So I went a step futher, and built a box that live-updates everyone on how I'm feeling.
+    I went one step futher, and built a box that shares my balance scores in real time.
     Just three digits, 0-9, visible for anyone that wants to look.
     You can see my scores on any blog post, or at <a href="https://stevenwaterman.uk/Balance">https://stevenwaterman.uk/Balance</a>.
   </p>
@@ -142,7 +142,7 @@
   <h2>How?</h2>
 
   <p>
-    The system is fairly simple, conceptually, and everything you need to make one for yourself is available on <a href="https://github.com/stevenwaterman/Balance">GitHub</a>.
+    The system is conceptually simple, and everything you need to make one for yourself is available on <a href="https://github.com/stevenwaterman/Balance">GitHub</a>, including a parts list and instructions.
     An Arduino is connected to my PC via USB, constantly reporting the current values set on the sliders.
     My PC writes that to Firestore, which updates any of the browsers currently on the page.
   </p>
@@ -208,7 +208,7 @@
 
   <p>
     Each <a href="https://en.wikipedia.org/wiki/Seven-segment_display">7-segment display</a> consists of 7 LEDs, each with their own pin named A-G.
-    Because I need to run 3 of these displays, and the arduino doesn't have 21 pins, I have to use a <a href="https://en.wikipedia.org/wiki/Shift_register">shift register</a> for each one.
+    Because I need to run 3 of these displays, and the arduino doesn't have 21 logic pins, I have to use a <a href="https://en.wikipedia.org/wiki/Shift_register">shift register</a> for each one.
     That lets me control the 7 output pins using only 3 pins on the arduino, writing pin states serially and outputting them in parallel.
   </p>
 
@@ -220,6 +220,7 @@
   <p>
     Honestly, if I did this again, I'd probably not bother with the 7-segment displays.
     Instead, I'd use a potentiometer with discrete steps, or mark on the casing where each value was.
+    It <em>does</em> look cool though.
   </p>
 
   
@@ -277,7 +278,7 @@
   <p>
     For security, I have the database configured to deny all writes, and then I use the <code>firebase-admin</code> package to bypass those permissions.
     This requires a certificate stored locally, which gets read from storage and passed to <code>firebase-admin</code>.
-    In the future I'll probably integrate authentication so that I can update my scores from my phone too.
+    In the future I'll probably integrate authentication so I can update my scores from my phone too.
   </p>
 
   <p>
@@ -294,8 +295,8 @@
 
   <p>
     It uses Firestore's <a href="https://firebase.google.com/docs/firestore/query-data/listen">realtime update</a> feature to listen for changes.
-    Whenever the document is updated, 
-    Again, this code has been cut down to only show one of the three values:
+    Whenever the document is updated, a callback is triggered, which updates the variables, causing Svelte to update the page.
+    Following the trend, this code has been cut down to only show one of the three values:
   </p>
 
   <figure>
@@ -330,5 +331,9 @@
 
   <p>
     If you want to make your own Balance box, everything you need is available on <a href="https://github.com/stevenwaterman/Balance">GitHub</a>.
+  </p>
+
+  <p>
+    Good luck, and have fun!
   </p>
 </BlogPost>
