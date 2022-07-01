@@ -426,7 +426,7 @@ export const blogPosts = assertBlogPosts({
     title: "My Balance Box",
     shortDescription: "It's about time we started to accept that humans have emotion, so I built a box that tells everyone how I feel, live!",
     longDescription: "It's about time we started to accept that humans have emotions, and share them with each other. As part of my ongoing committment to radical vulnerability, I built a box that tells everyone how I feel in real time.",
-    date: new Date("2022-06-30T14:00:00Z"),
+    date: new Date("2022-07-01T11:30:00Z"),
     featured: true,
     published: true,
     header: {
