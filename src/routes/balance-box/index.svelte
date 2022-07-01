@@ -32,7 +32,11 @@
 
   <figure>
     <!-- svelte-ignore a11y-media-has-caption -->
-    <video autoplay loop src="/assets/blog/balance-box/box-gif.mp4" />
+    <video autoplay loop 
+      title="Sorry for how overexposed this is. Clever Steven told his camera to auto-adjust ISO based on black plastic..."
+      src="/assets/blog/balance-box/box-gif.mp4" 
+      alt="A screen recording of this website, also showing my webcam. I am holding the balance box, and adjust the personal slider from 5 to 7. After a second, the value on the website updates. I adjust it back to 5, and the website updates again."
+    />
     <figcaption>You really are seeing it in real-time</figcaption>
   </figure>
 
@@ -91,7 +95,15 @@
     And there's a big glowing box on my desk to remind me.
   </p>
 
-  <!-- Picture of my box -->
+  <figure>
+    <img 
+      style="max-height: 30em; margin-bottom: 1em;"
+      src="/assets/blog/balance-box/box.png"
+      title="It's quite menacing to be honest"
+      alt="The finished balance box. It is a tall box made of black plastic, presenting a front face with three sliders, and a 7-segment display above each. The brightly glowing displays show the numbers 6-7-7."
+    />
+    <figcaption>The Finished Box</figcaption>
+  </figure>
 
   <h2>Balance Scores</h2>
 
