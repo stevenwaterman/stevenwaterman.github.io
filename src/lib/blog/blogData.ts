@@ -432,6 +432,19 @@ export const blogPosts = assertBlogPosts({
     header: {
       position: "top"
     }
+  },
+  "blog-illustration": {
+    type: "projects",
+    author: "SteWaterman",
+    title: "Decorate your Blog with AI",
+    shortDescription: "I create art for every blog post using AI. In this post, I explain my workflow and how you can do it too!",
+    longDescription: "For every blog post I release, I create a header image from scratch using text-to-image AI tools. Let's discuss my workflow, the custom tools I've made, and how you can get started with it too.",
+    date: new Date("2022-07-03T12:00:00Z"),
+    featured: true,
+    published: false,
+    header: {
+      position: "bottom"
+    }
   }
 } as const);
 
