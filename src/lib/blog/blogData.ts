@@ -441,7 +441,7 @@ export const blogPosts = assertBlogPosts({
     longDescription: "For every blog post I release, I create a header image from scratch using text-to-image AI tools. Let's discuss my workflow, the custom tools I've made, and how you can get started with it too.",
     date: new Date("2022-07-03T12:00:00Z"),
     featured: true,
-    published: false,
+    published: true,
     header: {
       position: "bottom"
     }
