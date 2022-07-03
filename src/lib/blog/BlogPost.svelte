@@ -68,6 +68,7 @@
     padding-right: 0;
     margin-top: 2em;
     margin-bottom: 2em;
+    max-width: 100vw;
   }
 
   .padded > :global(figure img) {

@@ -1,7 +1,11 @@
 <script lang="ts">
   import BlogPost from "$lib/blog/BlogPost.svelte";
-import ToolRow from "$lib/blog/postComponents/blog-illustration/ToolRow.svelte";
+  import ToolRow from "$lib/blog/postComponents/blog-illustration/ToolRow.svelte";
 </script>
+
+<style>
+
+</style>
 
 <BlogPost id="blog-illustration">
   <p>
