@@ -454,7 +454,7 @@ export const blogPosts = assertBlogPosts({
     longDescription: "When we're trying a new task, it's scary to fail. If we think the task is easy, then failing is even more demotivating. If the only way we can learn is through trial and error, let's make failing fun.",
     date: new Date("2022-07-23T15:30:00Z"),
     featured: true,
-    published: false
+    published: true
   },
 } as const);
 
