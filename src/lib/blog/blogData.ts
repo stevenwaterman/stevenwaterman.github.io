@@ -456,6 +456,16 @@ export const blogPosts = assertBlogPosts({
     featured: true,
     published: true
   },
+  "sunk-cost-fallacy": {
+    type: "coaching",
+    author: "SteWaterman",
+    title: "The Sunk Cost Fallacy, and what it isn't",
+    shortDescription: "",
+    longDescription: "",
+    date: new Date("2022-08-08T12:00:00Z"),
+    featured: true,
+    published: false
+  }
 } as const);
 
 export type BlogId = keyof typeof blogPosts;
