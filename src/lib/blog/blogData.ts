@@ -523,6 +523,25 @@ export const blogPosts = assertBlogPosts({
 			text: "the TalkJS blog",
 			link: "https://talkjs.com/resources/onboarding-at-a-radical-enterprise/"
 		}
+	},
+	"what-makes-a-great-metaphor": {
+		type: "coaching",
+		author: "SteWaterman",
+		title: "Supercharge your Teaching with Metaphors",
+		shortDescription:
+			"Metaphors can be an amazing tool to communicate quickly with others, but they're not all equal.",
+		longDescription:
+			"Metaphors can be an amazing tool to communicate quickly with others, but they're not all equal. What makes one metaphor better than another?",
+		date: new Date("2023-08-10T11:00:00Z"),
+		featured: true,
+		published: true,
+    header: {
+      position: "bottom"
+    },
+		original: {
+			text: "the TalkJS blog",
+			link: "https://talkjs.com/resources/what-makes-a-great-metaphor/"
+		}
 	}
 } as const);
 
