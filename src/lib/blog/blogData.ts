@@ -19,7 +19,7 @@ export const authors = assertAuthors({
 	SteWaterman: {
 		shortName: "Steven",
 		longName: "Steven Waterman",
-		job: "Technical Coach",
+		job: "Pressing buttons",
 		bio: "I've spent my career making development simple. I'm always happy to chat with you - feel free to get in touch!",
 		links: {
 			email: "blog@stevenwaterman.uk",
@@ -535,24 +535,26 @@ export const blogPosts = assertBlogPosts({
 		date: new Date("2023-08-10T11:00:00Z"),
 		featured: true,
 		published: true,
-    header: {
-      position: "bottom"
-    },
+		header: {
+			position: "bottom"
+		},
 		original: {
 			text: "the TalkJS blog",
 			link: "https://talkjs.com/resources/what-makes-a-great-metaphor/"
 		}
 	},
-  "good-luck-bad-luck": {
-    type: "coaching",
-    author: "SteWaterman",
-    title: "Luckily I got hit by a car",
-    shortDescription: "I have a strange view on lucky and unlucky events, and it feels really peaceful.",
-    longDescription: "After being hit by a car earlier this week, I started thinking about luck, and how I feel about historical events in my life.",
-    date: new Date("2023-08-24T12:00:00Z"),
-    featured: true,
-    published: true
-  }
+	"good-luck-bad-luck": {
+		type: "coaching",
+		author: "SteWaterman",
+		title: "Luckily I got hit by a car",
+		shortDescription:
+			"I have a strange view on lucky and unlucky events, and it feels really peaceful.",
+		longDescription:
+			"After being hit by a car earlier this week, I started thinking about luck, and how I feel about historical events in my life.",
+		date: new Date("2023-08-24T12:00:00Z"),
+		featured: true,
+		published: true
+	}
 } as const);
 
 export type BlogId = keyof typeof blogPosts;
