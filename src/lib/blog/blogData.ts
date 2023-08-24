@@ -542,7 +542,17 @@ export const blogPosts = assertBlogPosts({
 			text: "the TalkJS blog",
 			link: "https://talkjs.com/resources/what-makes-a-great-metaphor/"
 		}
-	}
+	},
+  "good-luck-bad-luck": {
+    type: "coaching",
+    author: "SteWaterman",
+    title: "Luckily I got hit by a car",
+    shortDescription: "I have a strange view on lucky and unlucky events, and it feels really peaceful.",
+    longDescription: "After being hit by a car earlier this week, I started thinking about luck, and how I feel about historical events in my life.",
+    date: new Date("2023-08-24T12:00:00Z"),
+    featured: true,
+    published: true
+  }
 } as const);
 
 export type BlogId = keyof typeof blogPosts;
