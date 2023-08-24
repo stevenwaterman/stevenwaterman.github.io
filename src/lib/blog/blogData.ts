@@ -553,7 +553,10 @@ export const blogPosts = assertBlogPosts({
 			"After being hit by a car earlier this week, I started thinking about luck, and how I feel about historical events in my life.",
 		date: new Date("2023-08-24T12:00:00Z"),
 		featured: true,
-		published: true
+		published: true,
+		header: {
+			position: "top"
+		}
 	}
 } as const);
 
