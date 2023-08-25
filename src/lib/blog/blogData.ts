@@ -36,7 +36,7 @@ export const authors = assertAuthors({
 export type Author = keyof typeof authors;
 
 export type BlogPost = {
-	type: "coaching" | "technical" | "projects" | "media";
+	type: "life" | "coaching" | "technical" | "projects" | "media";
 	author: keyof typeof authors;
 	title: string;
 	stylisedTitle?: string;
@@ -415,7 +415,7 @@ export const blogPosts = assertBlogPosts({
 		}
 	},
 	"opening-up-burnout": {
-		type: "coaching",
+		type: "life",
 		author: "SteWaterman",
 		title: "Opening Up About Burnout",
 		shortDescription:
@@ -430,7 +430,7 @@ export const blogPosts = assertBlogPosts({
 		}
 	},
 	"a-new-trajectory": {
-		type: "coaching",
+		type: "life",
 		author: "SteWaterman",
 		title: "A New Trajectory",
 		shortDescription:
@@ -509,7 +509,7 @@ export const blogPosts = assertBlogPosts({
 		published: false
 	},
 	"onboarding-radical-enterprise": {
-		type: "coaching",
+		type: "life",
 		author: "SteWaterman",
 		title: "Onboarding at a Radical Enterprise",
 		shortDescription:
@@ -544,7 +544,7 @@ export const blogPosts = assertBlogPosts({
 		}
 	},
 	"good-luck-bad-luck": {
-		type: "coaching",
+		type: "life",
 		author: "SteWaterman",
 		title: "Luckily I got hit by a car",
 		shortDescription:
