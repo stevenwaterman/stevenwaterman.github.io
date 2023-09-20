@@ -106,7 +106,7 @@ export const blogPosts = assertBlogPosts({
 		longDescription:
 			"SAT solvers are surprisingly fast and probably under-used. Could one help us improve sprint planning meetings? Maybe, but first you'll have to change the way you think about user stories.",
 		date: new Date("2020-01-16T12:00:00Z"),
-		featured: true,
+		featured: false,
 		published: true,
 		original: {
 			text: "the Scott Logic blog",
@@ -175,7 +175,7 @@ export const blogPosts = assertBlogPosts({
 		longDescription:
 			"After hearing about Svelte, a performance-first web framework, I tried it out in a web-based Minesweeper solver. SHOCKINGLY, it didn't automatically make my code fast - that took a process of iterative optimisation",
 		date: new Date("2020-02-17:12:00:00Z"),
-		featured: true,
+		featured: false,
 		published: true,
 		original: {
 			text: "the Scott Logic blog",
@@ -202,7 +202,7 @@ export const blogPosts = assertBlogPosts({
 		longDescription:
 			"Practicing Continuous Integration and Deployment, we can get new features to users faster and tighten our feedback loops. In this introduction to CI/CD, I introduce and explain an example GitHub Actions workflow which builds your front-end and deploys it with GitHub Pages.",
 		date: new Date("2020-02-24T12:00:00Z"),
-		featured: true,
+		featured: false,
 		published: true
 	},
 	"microbit-raytracer": {
@@ -290,7 +290,7 @@ export const blogPosts = assertBlogPosts({
 		longDescription:
 			"In my last blog post, I introduced the builder pattern in TypeScript and discussed how you can use it to get more accurate types in your code. It was all very abstract, so I thought it might be useful to show another more complex example.",
 		date: new Date("2020-10-01T12:00:00Z"),
-		featured: true,
+		featured: false,
 		published: true,
 		original: {
 			text: "the Scott Logic blog",
@@ -324,7 +324,7 @@ export const blogPosts = assertBlogPosts({
 		longDescription:
 			"You can read the code for Lexoral, and even use it in your own projects. There's a lot of benefits to being open-source, but there's one that you don't hear people talking about: it lets you punish us for not sticking to our promises.",
 		date: new Date("2022-01-04T12:10:00Z"),
-		featured: true,
+		featured: false,
 		published: true,
 		header: {
 			fit: "contain"
@@ -381,7 +381,7 @@ export const blogPosts = assertBlogPosts({
 		longDescription:
 			"Do the words 'public speaking' strike fear into your heart? It doesn't come naturally to me either, but over time I've slowly improved. This post is all about the things that helped me, so you can learn too.",
 		date: new Date("2022-04-04T12:30:00Z"),
-		featured: true,
+		featured: false,
 		published: true,
 		header: {
 			position: "top",
@@ -423,7 +423,7 @@ export const blogPosts = assertBlogPosts({
 		longDescription:
 			"All too often, we forget our human sides at work. We lie to ourselves and others, that everything is okay. I think it's time we start opening up, so I'll go first. Last year, I suffered from burnout. Here's the story.",
 		date: new Date("2022-06-12T12:00:00Z"),
-		featured: true,
+		featured: false,
 		published: true,
 		header: {
 			position: "top"
@@ -438,7 +438,7 @@ export const blogPosts = assertBlogPosts({
 		longDescription:
 			"I used to be a developer, and now I'm helping developers. It's not the change I expected, but it was long overdue. Let's discuss what a Technical Coach is, and how I got here. In other words, let's recap the last year of my life.",
 		date: new Date("2022-06-13T12:00:00Z"),
-		featured: true,
+		featured: false,
 		published: true,
 		header: {
 			position: "top"
@@ -453,7 +453,7 @@ export const blogPosts = assertBlogPosts({
 		longDescription:
 			"For years, I've followed a kind of 'heuristic triangle' to determine whether a thought is worth sharing. However, that triangle has one implication that I've avoided until now, because it feels vulnerable, alien, and uncomfortable.",
 		date: new Date("2022-06-23T14:00:00Z"),
-		featured: true,
+		featured: false,
 		published: true
 	},
 	"balance-box": {
@@ -465,7 +465,7 @@ export const blogPosts = assertBlogPosts({
 		longDescription:
 			"It's about time we started to accept that humans have emotions, and share them with each other. As part of my ongoing commitment to radical vulnerability, I built a box that tells everyone how I feel in real time.",
 		date: new Date("2022-07-01T11:30:00Z"),
-		featured: true,
+		featured: false,
 		published: true,
 		header: {
 			position: "top"
@@ -480,7 +480,7 @@ export const blogPosts = assertBlogPosts({
 		longDescription:
 			"For every blog post I release, I create a header image from scratch using text-to-image AI tools. Let's discuss my workflow, the custom tools I've made, and how you can get started with it too.",
 		date: new Date("2022-07-03T12:00:00Z"),
-		featured: true,
+		featured: false,
 		published: true,
 		header: {
 			position: "bottom"
@@ -495,7 +495,7 @@ export const blogPosts = assertBlogPosts({
 		longDescription:
 			"When we're trying a new task, it's scary to fail. If we think the task is easy, then failing is even more demotivating. If the only way we can learn is through trial and error, let's make failing fun.",
 		date: new Date("2022-07-23T15:30:00Z"),
-		featured: true,
+		featured: false,
 		published: true
 	},
 	"sunk-cost-fallacy": {
@@ -517,7 +517,7 @@ export const blogPosts = assertBlogPosts({
 		longDescription:
 			"Recently, I joined an organisation with some radical ideas about company culture. Let's look back over my time at TalkJS so far, and discuss the things that stood out to me — both good and bad.",
 		date: new Date("2022-10-31T10:30:00Z"),
-		featured: true,
+		featured: false,
 		published: true,
 		original: {
 			text: "the TalkJS blog",
@@ -552,11 +552,23 @@ export const blogPosts = assertBlogPosts({
 		longDescription:
 			"After being hit by a car earlier this week, I started thinking about luck, and how I feel about historical events in my life.",
 		date: new Date("2023-08-24T12:00:00Z"),
-		featured: true,
+		featured: false,
 		published: true,
 		header: {
 			position: "top"
 		}
+	},
+	"burden-deliberate-choice": {
+		type: "life",
+		author: "SteWaterman",
+		title: "The burden of deliberate choice",
+		shortDescription:
+			"The world is unimaginably complex, and that means we have to make some difficult choices.",
+		longDescription:
+			"Recently I've been thinking about how complex the world is, and how all that complexity makes everyday life feel draining. I don't have the answers, but in the spirit of radical vulnerability, I wanted to share my feelings.",
+		date: new Date("2023-09-20T12:00:00Z"),
+		featured: true,
+		published: true
 	}
 } as const);
 
