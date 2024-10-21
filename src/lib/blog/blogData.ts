@@ -569,6 +569,16 @@ export const blogPosts = assertBlogPosts({
 		date: new Date("2023-09-20T12:00:00Z"),
 		featured: true,
 		published: true
+	},
+	"nomerge-comments": {
+		type: "technical",
+		author: "SteWaterman",
+		title: "NOMERGE is a TODO you can't forget",
+		shortDescription: "",
+		longDescription: "",
+		date: new Date("2024-10-21T21:00:00Z"),
+		featured: true,
+		published: true
 	}
 } as const);
 
@@ -576,6 +586,6 @@ export type BlogId = keyof typeof blogPosts;
 
 export type SnippetConfig = {
 	name: string;
-	language: "svelte" | "ts" | "java" | "html" | "json";
+	language: "svelte" | "ts" | "java" | "html" | "json" | "yaml";
 	snippet: string;
 };
