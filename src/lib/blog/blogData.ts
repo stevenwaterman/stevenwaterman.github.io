@@ -574,8 +574,9 @@ export const blogPosts = assertBlogPosts({
 		type: "technical",
 		author: "SteWaterman",
 		title: "NOMERGE is a TODO you can't forget",
-		shortDescription: "",
-		longDescription: "",
+		shortDescription: "A cool tip that helps you remember to fix things before releasing your code",
+		longDescription:
+			"I added support for NOMERGE comments to our codebase, which the CI pipeline uses to prevent temporary, unfinished, or debug code from being released accidentally.",
 		date: new Date("2024-10-21T21:00:00Z"),
 		featured: true,
 		published: true
