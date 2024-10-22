@@ -573,7 +573,7 @@ export const blogPosts = assertBlogPosts({
 	"nomerge-comments": {
 		type: "technical",
 		author: "SteWaterman",
-		title: "NOMERGE is a TODO you can't forget",
+		title: "Prevent Mistakes with NOMERGE Comments in CI/CD Pipelines",
 		shortDescription: "A cool tip that helps you remember to fix things before releasing your code",
 		longDescription:
 			"I added support for NOMERGE comments to our codebase, which the CI pipeline uses to prevent temporary, unfinished, or debug code from being released accidentally.",

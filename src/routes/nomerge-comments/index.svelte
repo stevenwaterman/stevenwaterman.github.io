@@ -27,8 +27,8 @@
 
 	<p>
 		We use GitHub actions for CI. It was as simple as adding a new job which greps the codebase for
-		`NOMERGE`. If found, the CI job will fail, making it clear that there's something that you
-		forgot to do.
+		<code>NOMERGE</code>. If found, the CI job will fail, making it clear that there's something
+		that you forgot to do.
 	</p>
 
 	<Snippet config={snippets.actions} />
@@ -55,20 +55,35 @@
 
 		<li>
 			When deliberately breaking things to reproduce bugs:<br /><code
-				>NOMERGE this terminates the connection whenever immediately</code
+				>// NOMERGE this terminates the connection whenever immediately</code
 			>
 		</li>
 
-		<li>When reviewing big PRs<br /><code>// NOMERGE Does this code ever run?</code></li>
+		<li>
+			When doing dangerous things to make experimentation easier:<br /><code
+				>// NOMERGE this means we don't verify auth tokens</code
+			>
+		</li>
 
 		<li>
-			When I'm deep in flow but have a concerning thought<br /><code
+			When I'm deep in flow but have a concerning thought:<br /><code
 				>// NOMERGE I think these events could happen out of order</code
+			>
+		</li>
+
+		<li>
+			When reviewing big PRs and GitHub's UI is too clunky:<br /><code
+				>// NOMERGE Does this code ever run?</code
 			>
 		</li>
 	</ul>
 
-	<p>Hope it's useful.</p>
+	<p>
+		There are better ways to prevent some of these issues. Linting can catch a stray <code
+			>console.log</code
+		>, and your tests could catch a deliberately-broken class. But they're not perfect, and I've
+		found NOMERGE to be incredibly useful and versatile.
+	</p>
 
 	<hr />
 
