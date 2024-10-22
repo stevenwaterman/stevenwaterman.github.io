@@ -1,0 +1,21 @@
+import{S as H,i as q,s as P,q as W,r as g,m as z,k as F,w as N,e as l,g as a,c as o,f as i}from"../../chunks/vendor-b123dbec.js";import{B as R}from"../../chunks/BlogPost-fb5b6ef4.js";import"../../chunks/Template-7e2d3e9c.js";function D(x){let n,p,s,f,r,_,m,$,u,C,h,T,d,B,y,L,w,A,c,M,b,S,v,j,I,E,k;return{c(){n=l("p"),n.textContent=`I'd enjoy being a 15th-century shepherd.
+    Not that I've got any particular skills that would make me good at it.
+    And not that I think it would be an easy job.
+    I think it would be pretty grueling.`,p=a(),s=l("p"),s.textContent=`So why does it seem so appealing?
+    So idyllic?
+    So safe?`,f=a(),r=l("p"),r.textContent=`I think it's the simplicity.
+    The lack of choice, and the comfort I find in the meandering path of that life.`,_=a(),m=l("p"),m.textContent=`I remember talking to a friend about how, in the last hundred years or so, the world has opened up immensely.
+    A hundred years ago, your path in life was clear.
+    Perhaps there were a few options, but the son of a poor coal miner never was never given the choice of becoming the town's dentist.`,$=a(),u=l("p"),u.textContent="It feels a bit heinous that I am, I suppose, grumpy at the choices in life that are afforded by social mobility...",C=a(),h=l("p"),h.innerHTML=`Frankly, that same social mobility means there&#39;s very little stopping me from completely pivoting my life onto a path towards shepherdhood.
+    But it wouldn&#39;t be the same, because that in itself, is a choice.
+    Waking up every morning and deciding to continue living that grueling life, <a href="https://www.youtube.com/watch?v=lkpLbEM06qE">is a choice</a>.`,T=a(),d=l("p"),d.textContent="It's not specifically about life paths and social mobility, though.",B=a(),y=l("p"),y.innerHTML=`<em>Everything</em> I interact with on a day-to-day basis is so complex that it feels fundamentally unknowable.
+    I could dedicate my entire life to learning about the cable that connects this keyboard to my computer, or where the orange in my fridge came from, or the roof over my head.`,L=a(),w=l("p"),w.innerHTML=`A lifetime is not enough to learn everything there is to know about any of the mundane objects or processes we interact with daily.
+    Even crazier though, it&#39;s not even enough time to learn everything humanity <em>already</em> knows about them.`,A=a(),c=l("p"),c.textContent=`The modern world is endlessly complex, and we have endlessly deep knowledge about endlessly broad topics.
+    There are endless options, endless choices, endless opportunities that we decline without even realising.`,M=a(),b=l("p"),b.innerHTML=`Right now, I am acutely aware of the constant deluge of opportunities I&#39;m declining through inaction.
+    And I <strong>hate it</strong>.
+    I&#39;m given the power to choose what I want, and therefore have to deal with the burden of choosing what I want, from an endless pool of unknowable options.`,S=a(),v=l("p"),v.textContent=`I can choose to not choose.
+    To act on impulse.
+    But that too, is a choice.
+    As with choosing to become a shepherd today, it would be a choice I have to make continuously for the rest of my life.
+    Like an eternal trolley problem.`,j=a(),I=l("p"),I.textContent=`I'd love to end with some kind of optimistic resolution that ties everything together, and resolves this inner tension.
+    But it's unresolved.`,E=a(),k=l("p"),k.textContent="Which is why I'd enjoy being a 15th-century shepherd."},m(e,t){o(e,n,t),o(e,p,t),o(e,s,t),o(e,f,t),o(e,r,t),o(e,_,t),o(e,m,t),o(e,$,t),o(e,u,t),o(e,C,t),o(e,h,t),o(e,T,t),o(e,d,t),o(e,B,t),o(e,y,t),o(e,L,t),o(e,w,t),o(e,A,t),o(e,c,t),o(e,M,t),o(e,b,t),o(e,S,t),o(e,v,t),o(e,j,t),o(e,I,t),o(e,E,t),o(e,k,t)},d(e){e&&i(n),e&&i(p),e&&i(s),e&&i(f),e&&i(r),e&&i(_),e&&i(m),e&&i($),e&&i(u),e&&i(C),e&&i(h),e&&i(T),e&&i(d),e&&i(B),e&&i(y),e&&i(L),e&&i(w),e&&i(A),e&&i(c),e&&i(M),e&&i(b),e&&i(S),e&&i(v),e&&i(j),e&&i(I),e&&i(E),e&&i(k)}}}function G(x){let n,p;return n=new R({props:{id:"burden-deliberate-choice",$$slots:{default:[D]},$$scope:{ctx:x}}}),{c(){W(n.$$.fragment)},m(s,f){g(n,s,f),p=!0},p(s,[f]){const r={};f&1&&(r.$$scope={dirty:f,ctx:s}),n.$set(r)},i(s){p||(z(n.$$.fragment,s),p=!0)},o(s){F(n.$$.fragment,s),p=!1},d(s){N(n,s)}}}class Q extends H{constructor(n){super();q(this,n,null,G,P,{})}}export{Q as default};

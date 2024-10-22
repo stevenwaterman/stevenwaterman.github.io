@@ -1,0 +1,563 @@
+{
+  ".svelte-kit/runtime/client/start.js": {
+    "file": "start-8a93d36b.js",
+    "src": ".svelte-kit/runtime/client/start.js",
+    "isEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js"
+    ],
+    "dynamicImports": [
+      ".svelte-kit/runtime/components/layout.svelte",
+      ".svelte-kit/runtime/components/error.svelte",
+      "src/routes/index.svelte",
+      "src/routes/onboarding-radical-enterprise/index.svelte",
+      "src/routes/what-makes-a-great-metaphor/index.svelte",
+      "src/routes/minesweeper-lightning-talk/index.svelte",
+      "src/routes/burden-deliberate-choice/index.svelte",
+      "src/routes/minesweeper-optimisation/index.svelte",
+      "src/routes/speaking-with-confidence/index.svelte",
+      "src/routes/svelte-firestore-binding/index.svelte",
+      "src/routes/embrace-your-obsessions/index.svelte",
+      "src/routes/minesweeper-netech-talk/index.svelte",
+      "src/routes/introducing-sharpshot/index.svelte",
+      "src/routes/microbit-optimisation/index.svelte",
+      "src/routes/typescript-builders/index.svelte",
+      "src/routes/good-luck-bad-luck/index.svelte",
+      "src/routes/its-rocket-science/index.svelte",
+      "src/routes/microbit-raytracer/index.svelte",
+      "src/routes/open-source-punish/index.svelte",
+      "src/routes/opening-up-burnout/index.svelte",
+      "src/routes/blog-illustration/index.svelte",
+      "src/routes/sunk-cost-fallacy/index.svelte",
+      "src/routes/a-new-trajectory/index.svelte",
+      "src/routes/ergo-rabbit-hole/index.svelte",
+      "src/routes/nomerge-comments/index.svelte",
+      "src/routes/raytracer-how-to/index.svelte",
+      "src/routes/you-dont-need-js/index.svelte",
+      "src/routes/reducer-builder/index.svelte",
+      "src/routes/sprint-with-sat/index.svelte",
+      "src/routes/stevie-w-60-fps/index.svelte",
+      "src/routes/rethinking-dto/index.svelte",
+      "src/routes/kind-and-true/index.svelte",
+      "src/routes/github-ci-cd/index.svelte",
+      "src/routes/office-hours/index.svelte",
+      "src/routes/balance-box/index.svelte",
+      "src/routes/pick-n-mix/index.svelte",
+      "src/routes/svelte-ts/index.svelte"
+    ]
+  },
+  ".svelte-kit/runtime/components/layout.svelte": {
+    "file": "layout.svelte-2f98237f.js",
+    "src": ".svelte-kit/runtime/components/layout.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js"
+    ]
+  },
+  ".svelte-kit/runtime/components/error.svelte": {
+    "file": "error.svelte-5d5bd4e4.js",
+    "src": ".svelte-kit/runtime/components/error.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js"
+    ]
+  },
+  "src/routes/index.svelte": {
+    "file": "pages/index.svelte-3431bd4b.js",
+    "src": "src/routes/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_Template-7e2d3e9c.js"
+    ],
+    "css": [
+      "assets/pages/index.svelte-f95ed658.css"
+    ]
+  },
+  "src/routes/onboarding-radical-enterprise/index.svelte": {
+    "file": "pages/onboarding-radical-enterprise/index.svelte-0b7bb673.js",
+    "src": "src/routes/onboarding-radical-enterprise/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Template-7e2d3e9c.js"
+    ]
+  },
+  "src/routes/what-makes-a-great-metaphor/index.svelte": {
+    "file": "pages/what-makes-a-great-metaphor/index.svelte-fcee2299.js",
+    "src": "src/routes/what-makes-a-great-metaphor/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Template-7e2d3e9c.js"
+    ]
+  },
+  "src/routes/minesweeper-lightning-talk/index.svelte": {
+    "file": "pages/minesweeper-lightning-talk/index.svelte-5e1af7ee.js",
+    "src": "src/routes/minesweeper-lightning-talk/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_YoutubeEmbed-3d57994a.js",
+      "_Template-7e2d3e9c.js"
+    ],
+    "css": [
+      "assets/YoutubeEmbed.svelte_svelte_type_style_lang-01364c42.css"
+    ]
+  },
+  "src/routes/burden-deliberate-choice/index.svelte": {
+    "file": "pages/burden-deliberate-choice/index.svelte-f91b144b.js",
+    "src": "src/routes/burden-deliberate-choice/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Template-7e2d3e9c.js"
+    ]
+  },
+  "src/routes/minesweeper-optimisation/index.svelte": {
+    "file": "pages/minesweeper-optimisation/index.svelte-e888a5f6.js",
+    "src": "src/routes/minesweeper-optimisation/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Snippet-0180392a.js",
+      "_Template-7e2d3e9c.js"
+    ]
+  },
+  "src/routes/speaking-with-confidence/index.svelte": {
+    "file": "pages/speaking-with-confidence/index.svelte-747d2ac4.js",
+    "src": "src/routes/speaking-with-confidence/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Template-7e2d3e9c.js"
+    ]
+  },
+  "src/routes/svelte-firestore-binding/index.svelte": {
+    "file": "pages/svelte-firestore-binding/index.svelte-f45f928f.js",
+    "src": "src/routes/svelte-firestore-binding/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Snippet-0180392a.js",
+      "_Template-7e2d3e9c.js"
+    ]
+  },
+  "src/routes/embrace-your-obsessions/index.svelte": {
+    "file": "pages/embrace-your-obsessions/index.svelte-b7849ba3.js",
+    "src": "src/routes/embrace-your-obsessions/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_YoutubeEmbed-3d57994a.js",
+      "_Template-7e2d3e9c.js"
+    ],
+    "css": [
+      "assets/YoutubeEmbed.svelte_svelte_type_style_lang-01364c42.css"
+    ]
+  },
+  "src/routes/minesweeper-netech-talk/index.svelte": {
+    "file": "pages/minesweeper-netech-talk/index.svelte-7bb348f2.js",
+    "src": "src/routes/minesweeper-netech-talk/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_YoutubeEmbed-3d57994a.js",
+      "_Template-7e2d3e9c.js"
+    ],
+    "css": [
+      "assets/YoutubeEmbed.svelte_svelte_type_style_lang-01364c42.css"
+    ]
+  },
+  "src/routes/introducing-sharpshot/index.svelte": {
+    "file": "pages/introducing-sharpshot/index.svelte-9e13c7d7.js",
+    "src": "src/routes/introducing-sharpshot/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_YoutubeEmbed-3d57994a.js",
+      "_Template-7e2d3e9c.js"
+    ],
+    "css": [
+      "assets/YoutubeEmbed.svelte_svelte_type_style_lang-01364c42.css"
+    ]
+  },
+  "src/routes/microbit-optimisation/index.svelte": {
+    "file": "pages/microbit-optimisation/index.svelte-ee5ee97e.js",
+    "src": "src/routes/microbit-optimisation/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Snippet-0180392a.js",
+      "_Template-7e2d3e9c.js"
+    ]
+  },
+  "src/routes/typescript-builders/index.svelte": {
+    "file": "pages/typescript-builders/index.svelte-948ba976.js",
+    "src": "src/routes/typescript-builders/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Snippet-0180392a.js",
+      "_Template-7e2d3e9c.js"
+    ],
+    "css": [
+      "assets/pages/typescript-builders/index.svelte-1605d221.css"
+    ]
+  },
+  "src/routes/good-luck-bad-luck/index.svelte": {
+    "file": "pages/good-luck-bad-luck/index.svelte-771c3d5b.js",
+    "src": "src/routes/good-luck-bad-luck/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Template-7e2d3e9c.js"
+    ]
+  },
+  "src/routes/its-rocket-science/index.svelte": {
+    "file": "pages/its-rocket-science/index.svelte-c9eda42e.js",
+    "src": "src/routes/its-rocket-science/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Template-7e2d3e9c.js"
+    ],
+    "css": [
+      "assets/pages/its-rocket-science/index.svelte-787fa699.css"
+    ]
+  },
+  "src/routes/microbit-raytracer/index.svelte": {
+    "file": "pages/microbit-raytracer/index.svelte-406999a0.js",
+    "src": "src/routes/microbit-raytracer/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_YoutubeEmbed-3d57994a.js",
+      "_Template-7e2d3e9c.js"
+    ],
+    "css": [
+      "assets/YoutubeEmbed.svelte_svelte_type_style_lang-01364c42.css"
+    ]
+  },
+  "src/routes/open-source-punish/index.svelte": {
+    "file": "pages/open-source-punish/index.svelte-ad6b117d.js",
+    "src": "src/routes/open-source-punish/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Template-7e2d3e9c.js"
+    ]
+  },
+  "src/routes/opening-up-burnout/index.svelte": {
+    "file": "pages/opening-up-burnout/index.svelte-5443db99.js",
+    "src": "src/routes/opening-up-burnout/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Template-7e2d3e9c.js"
+    ],
+    "css": [
+      "assets/pages/opening-up-burnout/index.svelte-568a5b70.css",
+      "assets/YoutubeEmbed.svelte_svelte_type_style_lang-01364c42.css"
+    ]
+  },
+  "src/routes/blog-illustration/index.svelte": {
+    "file": "pages/blog-illustration/index.svelte-4bed2261.js",
+    "src": "src/routes/blog-illustration/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Template-7e2d3e9c.js"
+    ],
+    "css": [
+      "assets/pages/blog-illustration/index.svelte-0b134246.css"
+    ]
+  },
+  "src/routes/sunk-cost-fallacy/index.svelte": {
+    "file": "pages/sunk-cost-fallacy/index.svelte-cd93a001.js",
+    "src": "src/routes/sunk-cost-fallacy/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Template-7e2d3e9c.js"
+    ]
+  },
+  "src/routes/a-new-trajectory/index.svelte": {
+    "file": "pages/a-new-trajectory/index.svelte-8eeaf1c0.js",
+    "src": "src/routes/a-new-trajectory/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Template-7e2d3e9c.js"
+    ],
+    "css": [
+      "assets/pages/a-new-trajectory/index.svelte-f4408401.css"
+    ]
+  },
+  "src/routes/ergo-rabbit-hole/index.svelte": {
+    "file": "pages/ergo-rabbit-hole/index.svelte-c7c685b6.js",
+    "src": "src/routes/ergo-rabbit-hole/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Template-7e2d3e9c.js"
+    ]
+  },
+  "src/routes/nomerge-comments/index.svelte": {
+    "file": "pages/nomerge-comments/index.svelte-db855566.js",
+    "src": "src/routes/nomerge-comments/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Snippet-0180392a.js",
+      "_Template-7e2d3e9c.js"
+    ],
+    "css": [
+      "assets/pages/nomerge-comments/index.svelte-963133ca.css"
+    ]
+  },
+  "src/routes/raytracer-how-to/index.svelte": {
+    "file": "pages/raytracer-how-to/index.svelte-9b63555d.js",
+    "src": "src/routes/raytracer-how-to/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Template-7e2d3e9c.js"
+    ]
+  },
+  "src/routes/you-dont-need-js/index.svelte": {
+    "file": "pages/you-dont-need-js/index.svelte-5b97ae75.js",
+    "src": "src/routes/you-dont-need-js/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Snippet-0180392a.js",
+      "_Template-7e2d3e9c.js"
+    ],
+    "css": [
+      "assets/pages/you-dont-need-js/index.svelte-19c12662.css"
+    ]
+  },
+  "src/routes/reducer-builder/index.svelte": {
+    "file": "pages/reducer-builder/index.svelte-e6993f5b.js",
+    "src": "src/routes/reducer-builder/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Snippet-0180392a.js",
+      "_Template-7e2d3e9c.js"
+    ]
+  },
+  "src/routes/sprint-with-sat/index.svelte": {
+    "file": "pages/sprint-with-sat/index.svelte-570cbdbe.js",
+    "src": "src/routes/sprint-with-sat/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Template-7e2d3e9c.js"
+    ]
+  },
+  "src/routes/stevie-w-60-fps/index.svelte": {
+    "file": "pages/stevie-w-60-fps/index.svelte-d853134c.js",
+    "src": "src/routes/stevie-w-60-fps/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_YoutubeEmbed-3d57994a.js",
+      "_Template-7e2d3e9c.js"
+    ],
+    "css": [
+      "assets/YoutubeEmbed.svelte_svelte_type_style_lang-01364c42.css"
+    ]
+  },
+  "src/routes/rethinking-dto/index.svelte": {
+    "file": "pages/rethinking-dto/index.svelte-52520e33.js",
+    "src": "src/routes/rethinking-dto/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Snippet-0180392a.js",
+      "_Template-7e2d3e9c.js"
+    ]
+  },
+  "src/routes/kind-and-true/index.svelte": {
+    "file": "pages/kind-and-true/index.svelte-103466b5.js",
+    "src": "src/routes/kind-and-true/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Template-7e2d3e9c.js"
+    ]
+  },
+  "src/routes/github-ci-cd/index.svelte": {
+    "file": "pages/github-ci-cd/index.svelte-ba302fd4.js",
+    "src": "src/routes/github-ci-cd/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Template-7e2d3e9c.js"
+    ]
+  },
+  "src/routes/office-hours/index.svelte": {
+    "file": "pages/office-hours/index.svelte-1604a9a4.js",
+    "src": "src/routes/office-hours/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Template-7e2d3e9c.js"
+    ],
+    "css": [
+      "assets/pages/office-hours/index.svelte-fa992f9f.css"
+    ]
+  },
+  "src/routes/balance-box/index.svelte": {
+    "file": "pages/balance-box/index.svelte-8d3fce18.js",
+    "src": "src/routes/balance-box/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Snippet-0180392a.js",
+      "_Template-7e2d3e9c.js"
+    ],
+    "css": [
+      "assets/pages/balance-box/index.svelte-d938b6dd.css"
+    ]
+  },
+  "src/routes/pick-n-mix/index.svelte": {
+    "file": "pages/pick-n-mix/index.svelte-d2d8f8b7.js",
+    "src": "src/routes/pick-n-mix/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Snippet-0180392a.js",
+      "_Template-7e2d3e9c.js"
+    ],
+    "css": [
+      "assets/YoutubeEmbed.svelte_svelte_type_style_lang-01364c42.css"
+    ]
+  },
+  "src/routes/svelte-ts/index.svelte": {
+    "file": "pages/svelte-ts/index.svelte-69c0ff8f.js",
+    "src": "src/routes/svelte-ts/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_BlogPost-fb5b6ef4.js",
+      "_Snippet-0180392a.js",
+      "_Template-7e2d3e9c.js"
+    ]
+  },
+  "_vendor-b123dbec.js": {
+    "file": "chunks/vendor-b123dbec.js",
+    "css": [
+      "assets/vendor-ec9510ad.css"
+    ]
+  },
+  "_Template-7e2d3e9c.js": {
+    "file": "chunks/Template-7e2d3e9c.js",
+    "imports": [
+      "_vendor-b123dbec.js"
+    ],
+    "css": [
+      "assets/Template-8f63f35a.css"
+    ]
+  },
+  "_BlogPost-fb5b6ef4.js": {
+    "file": "chunks/BlogPost-fb5b6ef4.js",
+    "imports": [
+      "_vendor-b123dbec.js",
+      "_Template-7e2d3e9c.js"
+    ],
+    "css": [
+      "assets/BlogPost-27f41e79.css"
+    ]
+  },
+  "_YoutubeEmbed-3d57994a.js": {
+    "file": "chunks/YoutubeEmbed-3d57994a.js",
+    "imports": [
+      "_vendor-b123dbec.js"
+    ],
+    "css": [
+      "assets/YoutubeEmbed.svelte_svelte_type_style_lang-01364c42.css"
+    ]
+  },
+  "_Snippet-0180392a.js": {
+    "file": "chunks/Snippet-0180392a.js",
+    "imports": [
+      "_vendor-b123dbec.js"
+    ],
+    "css": [
+      "assets/Snippet-1ad9e017.css"
+    ]
+  }
+}

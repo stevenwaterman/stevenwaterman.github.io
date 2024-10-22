@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>Steven Waterman's Blog</title>
+<description>Assorted thoughts on agility, tech, and existing in this world</description>
+<link>https://stevenwaterman.uk</link>
+<atom:link href="https://stevenwaterman.uk/rss.xml" rel="self" type="application/rss+xml"/>
+<item>
+<guid isPermaLink="true">https://stevenwaterman.uk/introducing-sharpshot</guid>
+<title>Introducing SharpShot</title>
+<link>https://stevenwaterman.uk/introducing-sharpshot</link>
+<description>In October 2018, I participated in Durhack, a hackathon run by the university's computing society. The idea was simple: An esoteric 2-dimensional visual programming language, where data flies around the screen in real-time.</description>
+<pubDate>Mon, 22 Jul 2019 18:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/rethinking-dto</guid>
+<title>Rethinking the Java DTO</title>
+<link>https://stevenwaterman.uk/rethinking-dto</link>
+<description>DTOs help translate data between server and client. By going back to first principles, how can we utilise static type-checking and integration with modern IDEs to write a better DTO?</description>
+<pubDate>Fri, 03 Jan 2020 11:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/minesweeper-netech-talk</guid>
+<title>Solving Minesweeper in Polynomial Time</title>
+<link>https://stevenwaterman.uk/minesweeper-netech-talk</link>
+<description>I gave a talk on solving minesweeper at NE:Tech. Things got weird!</description>
+<pubDate>Mon, 13 Jan 2020 09:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/sprint-with-sat</guid>
+<title>Planning 56 sprints per second with SAT4J</title>
+<link>https://stevenwaterman.uk/sprint-with-sat</link>
+<description>SAT solvers are surprisingly fast and probably under-used. Could one help us improve sprint planning meetings? Maybe, but first you'll have to change the way you think about user stories.</description>
+<pubDate>Thu, 16 Jan 2020 12:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/minesweeper-lightning-talk</guid>
+<title>How to solve Minesweeper in 3 minutes</title>
+<link>https://stevenwaterman.uk/minesweeper-lightning-talk</link>
+<description>In my first ever tech talk, I explained how to algorithmically solve minesweeper</description>
+<pubDate>Fri, 17 Jan 2020 09:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/pick-n-mix</guid>
+<title>Typescript Pick 'n' Mix</title>
+<link>https://stevenwaterman.uk/pick-n-mix</link>
+<description>Interface Segregation is an important part of writing clean and maintainable code. In most languages, it requires constant maintenance and naturally degrades over time. In TypeScript, we can just Pick the good bits.</description>
+<pubDate>Wed, 29 Jan 2020 12:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/embrace-your-obsessions</guid>
+<title>Embrace your Obsessions!</title>
+<link>https://stevenwaterman.uk/embrace-your-obsessions</link>
+<description>For the past 3 months, I have been a bit obsessed with Minesweeper. It has plagued my honeymoon, stolen my free time, and been the subject of two tech talks. That's a good thing.</description>
+<pubDate>Mon, 10 Feb 2020 12:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/minesweeper-optimisation</guid>
+<title>Slow Code HATES him! From 1 to 60fps</title>
+<link>https://stevenwaterman.uk/minesweeper-optimisation</link>
+<description>After hearing about Svelte, a performance-first web framework, I tried it out in a web-based Minesweeper solver. SHOCKINGLY, it didn't automatically make my code fast - that took a process of iterative optimisation</description>
+<pubDate>Mon, 17 Feb 2020 12:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/stevie-w-60-fps</guid>
+<title>Stevie W and the Quest for 60 FPS</title>
+<link>https://stevenwaterman.uk/stevie-w-60-fps</link>
+<description>Will our daring adventurer optimise his Svelte app to 60fps? Find out in this tech talk!</description>
+<pubDate>Fri, 21 Feb 2020 09:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/github-ci-cd</guid>
+<title>GitHub is a free CI/CD/Hosting solution</title>
+<link>https://stevenwaterman.uk/github-ci-cd</link>
+<description>Practicing Continuous Integration and Deployment, we can get new features to users faster and tighten our feedback loops. In this introduction to CI/CD, I introduce and explain an example GitHub Actions workflow which builds your front-end and deploys it with GitHub Pages.</description>
+<pubDate>Mon, 24 Feb 2020 12:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/microbit-raytracer</guid>
+<title>3D Rendering on a Children's Toy</title>
+<link>https://stevenwaterman.uk/microbit-raytracer</link>
+<description>I recently got the chance to play around with a BBC Micro:Bit - an educational toy aimed at helping kids learn to program. It's designed to do a lot of things, but 3D rendering isn't one of them.</description>
+<pubDate>Tue, 03 Mar 2020 12:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/raytracer-how-to</guid>
+<title>How to Write a Ray Tracer Intuitively</title>
+<link>https://stevenwaterman.uk/raytracer-how-to</link>
+<description>Ray tracing is the process of simulating light rays to render a 3D scene. It seems really complicated at first, but it's actually quite simple. After reading this post, you could easily implement one yourself!</description>
+<pubDate>Tue, 10 Mar 2020 12:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/microbit-optimisation</guid>
+<title>Optimise your Micro:Bit code with Chrome DevTools</title>
+<link>https://stevenwaterman.uk/microbit-optimisation</link>
+<description>Some might say I pushed the Micro:Bit too far. This post is not for those people. If your Micro:Bit is also struggling, this post will show you how to optimise your code and push it further</description>
+<pubDate>Fri, 27 Mar 2020 12:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/svelte-ts</guid>
+<title>Svelte and TypeScript - Together at last!</title>
+<link>https://stevenwaterman.uk/svelte-ts</link>
+<description>Svelte is an up-and-coming web framework which removes the need for any runtime libraries by adding a transpilation step in its build process. The one thing stopping me going all-in was that it didn't support TypeScript - but now it does!</description>
+<pubDate>Fri, 24 Jul 2020 12:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/typescript-builders</guid>
+<title>TypeScript Builders: Improving your types one step at a time</title>
+<link>https://stevenwaterman.uk/typescript-builders</link>
+<description>We can use builders to implement complex type constraints in TypeScript, giving us compile-time errors when we make a semantic error, rather than just syntactic errors.</description>
+<pubDate>Wed, 16 Sep 2020 12:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/reducer-builder</guid>
+<title>Better Redux Reducers with TypeScript Builders</title>
+<link>https://stevenwaterman.uk/reducer-builder</link>
+<description>In my last blog post, I introduced the builder pattern in TypeScript and discussed how you can use it to get more accurate types in your code. It was all very abstract, so I thought it might be useful to show another more complex example.</description>
+<pubDate>Thu, 01 Oct 2020 12:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/ergo-rabbit-hole</guid>
+<title>Down the ergonomic keyboard rabbit hole</title>
+<link>https://stevenwaterman.uk/ergo-rabbit-hole</link>
+<description>Over the past few months I've had an ergonomic keyboard obsession. This is my story.</description>
+<pubDate>Fri, 09 Oct 2020 12:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/open-source-punish</guid>
+<title>Lexoral is open-source so you can punish us</title>
+<link>https://stevenwaterman.uk/open-source-punish</link>
+<description>You can read the code for Lexoral, and even use it in your own projects. There's a lot of benefits to being open-source, but there's one that you don't hear people talking about: it lets you punish us for not sticking to our promises.</description>
+<pubDate>Tue, 04 Jan 2022 12:10:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/svelte-firestore-binding</guid>
+<title>Database sync like magic, with Svelte + Firestore</title>
+<link>https://stevenwaterman.uk/svelte-firestore-binding</link>
+<description>Both Firestore and Svelte are event-driven and reactive. By forgetting everything we know about data layers and building one from first principles, we've made it easy to synchronise data both ways between the browser and the database.</description>
+<pubDate>Wed, 16 Feb 2022 18:30:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/you-dont-need-js</guid>
+<title>5 things you don't need Javascript for</title>
+<link>https://stevenwaterman.uk/you-dont-need-js</link>
+<description>Javascript can do a lot, but it's really over-used. HTML and CSS are surprisingly powerful on their own, so let's have a look at some of the things you can achieve without Javascript (or a backend) - from animated diagrams to dark mode.</description>
+<pubDate>Mon, 28 Feb 2022 12:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/speaking-with-confidence</guid>
+<title>You can learn to Speak Confidently</title>
+<link>https://stevenwaterman.uk/speaking-with-confidence</link>
+<description>Do the words 'public speaking' strike fear into your heart? It doesn't come naturally to me either, but over time I've slowly improved. This post is all about the things that helped me, so you can learn too.</description>
+<pubDate>Mon, 04 Apr 2022 12:30:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/office-hours</guid>
+<title>We Need to Talk (if you want)</title>
+<link>https://stevenwaterman.uk/office-hours</link>
+<description>I've always been available to chat, but now I've taken it a step further. Anyone can book time in my diary to chat about anything - even if you just want my advice. Why did I decide to do that? Let's talk about it.</description>
+<pubDate>Fri, 08 Apr 2022 18:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/opening-up-burnout</guid>
+<title>Opening Up About Burnout</title>
+<link>https://stevenwaterman.uk/opening-up-burnout</link>
+<description>All too often, we forget our human sides at work. We lie to ourselves and others, that everything is okay. I think it's time we start opening up, so I'll go first. Last year, I suffered from burnout. Here's the story.</description>
+<pubDate>Sun, 12 Jun 2022 12:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/a-new-trajectory</guid>
+<title>A New Trajectory</title>
+<link>https://stevenwaterman.uk/a-new-trajectory</link>
+<description>I used to be a developer, and now I'm helping developers. It's not the change I expected, but it was long overdue. Let's discuss what a Technical Coach is, and how I got here. In other words, let's recap the last year of my life.</description>
+<pubDate>Mon, 13 Jun 2022 12:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/kind-and-true</guid>
+<title>Kind and True</title>
+<link>https://stevenwaterman.uk/kind-and-true</link>
+<description>For years, I've followed a kind of 'heuristic triangle' to determine whether a thought is worth sharing. However, that triangle has one implication that I've avoided until now, because it feels vulnerable, alien, and uncomfortable.</description>
+<pubDate>Thu, 23 Jun 2022 14:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/balance-box</guid>
+<title>My Balance Box</title>
+<link>https://stevenwaterman.uk/balance-box</link>
+<description>It's about time we started to accept that humans have emotions, and share them with each other. As part of my ongoing commitment to radical vulnerability, I built a box that tells everyone how I feel in real time.</description>
+<pubDate>Fri, 01 Jul 2022 11:30:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/blog-illustration</guid>
+<title>Decorate your Blog with AI</title>
+<link>https://stevenwaterman.uk/blog-illustration</link>
+<description>For every blog post I release, I create a header image from scratch using text-to-image AI tools. Let's discuss my workflow, the custom tools I've made, and how you can get started with it too.</description>
+<pubDate>Sun, 03 Jul 2022 12:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/its-rocket-science</guid>
+<title>Don't Worry, it's Rocket Science</title>
+<link>https://stevenwaterman.uk/its-rocket-science</link>
+<description>When we're trying a new task, it's scary to fail. If we think the task is easy, then failing is even more demotivating. If the only way we can learn is through trial and error, let's make failing fun.</description>
+<pubDate>Sat, 23 Jul 2022 15:30:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/sunk-cost-fallacy</guid>
+<title>The Sunk Cost Fallacy, and what it isn't</title>
+<link>https://stevenwaterman.uk/sunk-cost-fallacy</link>
+<description></description>
+<pubDate>Mon, 08 Aug 2022 12:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/onboarding-radical-enterprise</guid>
+<title>Onboarding at a Radical Enterprise</title>
+<link>https://stevenwaterman.uk/onboarding-radical-enterprise</link>
+<description>Recently, I joined an organisation with some radical ideas about company culture. Let's look back over my time at TalkJS so far, and discuss the things that stood out to me — both good and bad.</description>
+<pubDate>Mon, 31 Oct 2022 10:30:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/what-makes-a-great-metaphor</guid>
+<title>Supercharge your Teaching with Metaphors</title>
+<link>https://stevenwaterman.uk/what-makes-a-great-metaphor</link>
+<description>Metaphors can be an amazing tool to communicate quickly with others, but they're not all equal. What makes one metaphor better than another?</description>
+<pubDate>Thu, 10 Aug 2023 11:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/good-luck-bad-luck</guid>
+<title>Luckily I got hit by a car</title>
+<link>https://stevenwaterman.uk/good-luck-bad-luck</link>
+<description>After being hit by a car earlier this week, I started thinking about luck, and how I feel about historical events in my life.</description>
+<pubDate>Thu, 24 Aug 2023 12:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/burden-deliberate-choice</guid>
+<title>The burden of deliberate choice</title>
+<link>https://stevenwaterman.uk/burden-deliberate-choice</link>
+<description>Recently I've been thinking about how complex the world is, and how all that complexity makes everyday life feel draining. I don't have the answers, but in the spirit of radical vulnerability, I wanted to share my feelings.</description>
+<pubDate>Wed, 20 Sep 2023 12:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://stevenwaterman.uk/nomerge-comments</guid>
+<title>Prevent Mistakes with NOMERGE Comments in CI/CD Pipelines</title>
+<link>https://stevenwaterman.uk/nomerge-comments</link>
+<description>I added support for NOMERGE comments to our codebase, which the CI pipeline uses to prevent temporary, unfinished, or debug code from being released accidentally.</description>
+<pubDate>Mon, 21 Oct 2024 21:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>
