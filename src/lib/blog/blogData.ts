@@ -580,6 +580,18 @@ export const blogPosts = assertBlogPosts({
 		date: new Date("2024-10-21T21:00:00Z"),
 		featured: true,
 		published: true
+	},
+	"authenticating-javascript-websockets": {
+		type: "technical",
+		author: "SteWaterman",
+		title: "Authenticating JavaScript WebSockets",
+		shortDescription:
+			"Renewable authentication for WebSockets is awful in JavaScript, but you can work around it",
+		longDescription:
+			"When a WebSocket fails to connect, you receive no information about why. This makes renewable authentication an absolute nightmare, unless you do in-band authentication.",
+		date: new Date("2025-05-21T11:00:00Z"),
+		featured: true,
+		published: true
 	}
 } as const);
 
