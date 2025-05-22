@@ -6,9 +6,9 @@
 
 <BlogPost id="authenticating-javascript-websockets">
 	<p>
-		When I was the naive new guy at TalkJS, someone suggested that I could tackle renewable
-		authentication for our WebSockets. And after only a couple of weeks, it worked great on my
-		machine™.
+		When I was the naive new guy at <a href="https://talkjs.com/">TalkJS</a>, someone suggested that
+		I could tackle renewable authentication for our WebSockets. And after only a couple of weeks, it
+		worked great on my machine™.
 	</p>
 
 	<p>...but if your token expired while you were in a tunnel then it would break forever.</p>
@@ -27,7 +27,7 @@
 	<figure>
 		<img
 			src="/assets/blog/authenticating-javascript-websockets/meme.jpg"
-			alt={`A "for the better, right?"" meme, using cats, "Your WebSocket connection failed" / "Because I'm in a tunnel, right?" / <blank> / "Because I'm in a tunnel, right?"`}
+			alt={`A "for the better, right?" meme, using cats, "Your WebSocket connection failed" / "Because I'm in a tunnel, right?" / <blank> / "Because I'm in a tunnel, right?"`}
 			style="max-width: 50%"
 		/>
 		<figcaption>Me encountering reality (2024)</figcaption>
