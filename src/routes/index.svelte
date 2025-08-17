@@ -105,7 +105,7 @@
 <Template title="Steven Waterman">
   <div class="title">
     <h1>My Blog <a class="rss" href="/rss.xml" title="RSS feed"><Fa icon={faRss}/></a></h1>
-    <p class="subtitle">Assorted thoughts on agility, tech, and existing in this world</p>
+    <p class="subtitle">Assorted thoughts on systems, tech, and existing in this world</p>
   </div>
 
   <ol class="featured">

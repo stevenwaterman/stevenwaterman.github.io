@@ -22,7 +22,7 @@ function render(posts: Array<[BlogId, BlogPost]>) {
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
 <title>Steven Waterman's Blog</title>
-<description>Assorted thoughts on agility, tech, and existing in this world</description>
+<description>Assorted thoughts on systems, tech, and existing in this world</description>
 <link>https://stevenwaterman.uk</link>
 <atom:link href="https://stevenwaterman.uk/rss.xml" rel="self" type="application/rss+xml"/>
 ${postsXml.join("")}
