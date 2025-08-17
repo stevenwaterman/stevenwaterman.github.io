@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="description"
+			content="I'm a software developer, technical coach, over-analyser. This is where I do those things. Mostly over-analysing."
+		/>
+		<link rel="icon" href="/favicon.png" />
+		<link rel="stylesheet" href="/global.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta http-equiv="content-security-policy" content=""><title>Rethinking the Java DTO</title><meta name="description" content="DTOs help translate data between server and client. By going back to first principles, how can we utilise static type-checking and integration with modern IDEs to write a better DTO?"><link rel="alternate" type="application/rss+xml" href="https://stevenwaterman.uk/rss.xml" title="Steven Waterman's Blog"><link rel="canonical" href="https://stevenwaterman.uk/rethinking-dto"><meta property="og:title" content="Rethinking the Java DTO"><meta property="og:description" content="DTOs help translate data between server and client. By going back to first principles, how can we utilise static type-checking and integration with modern IDEs to write a better DTO?"><meta property="og:image" content="https://stevenwaterman.uk/assets/blog/rethinking-dto/header.png"><meta property="og:type" content="article"><meta property="og:site_name" content="Steven Waterman"><meta property="og:url" content="https://stevenwaterman.uk/rethinking-dto"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@SteWaterman"><meta name="twitter:image" content="https://stevenwaterman.uk/assets/blog/rethinking-dto/header.png"><meta name="twitter:creator" content="@SteWaterman">
+	<link rel="stylesheet" href="/_app/assets/vendor-ec9510ad.css">
+	<link rel="stylesheet" href="/_app/assets/BlogPost-27f41e79.css">
+	<link rel="stylesheet" href="/_app/assets/Template-8f63f35a.css">
+	<link rel="stylesheet" href="/_app/assets/Snippet-1ad9e017.css">
+	</head>
+	<body>
+		
+
+
+
+
+
+
+<div class="gradient svelte-1thle15"><div class="panX svelte-1atbztl"><div class="panY svelte-1atbztl"><div class="gradient svelte-1atbztl"></div></div></div></div>
+
+<nav class="svelte-1nxg8xt"><a class="logoLink svelte-1nxg8xt" href="/"><img class="logo svelte-1nxg8xt" src="/assets/logoWhite.svg" alt="Logo">
+		<span class="logoText svelte-1nxg8xt">SW</span></a>
+
+	<div class="burgerMenuContainer svelte-1nxg8xt"><span tabindex="0" class="burgerMenuOpen svelte-1nxg8xt"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 448 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(224 256)" transform-origin="112 0"><g transform="translate(0,0) scale(1,1)"><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" fill="currentColor" transform="translate(-224 -256)"></path></g></g></svg></span>
+
+		<ul class="menu svelte-1nxg8xt"><li class="svelte-1nxg8xt"><span class="label svelte-101pjyx"><a class="topLink svelte-101pjyx" href="/">Blog</a>
+  </span></li>
+
+			<li class="svelte-1nxg8xt"><span class="label svelte-101pjyx"><a class="topLink svelte-101pjyx" href="/assets/cv.pdf">CV</a>
+  </span></li>
+
+			<li class="svelte-1nxg8xt"><span class="label svelte-101pjyx"><a class="topLink svelte-101pjyx">Socials</a>
+  <div class="menu svelte-101pjyx"><div class="menu-arrow svelte-101pjyx"><div class="menu-arrow-fill svelte-101pjyx"></div></div>
+      <div class="menu-content svelte-101pjyx"><ul class="svelte-101pjyx"><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://twitter.com/SteWaterman/">Twitter</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://github.com/StevenWaterman/">GitHub</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://www.linkedin.com/in/steven-waterman/">LinkedIn</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://twitch.tv/SteWaterman/">Twitch</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="mailto:website@stevenwaterman.uk">Email</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://calendly.com/stewaterman/30min">Calendly</a>
+            </li></ul></div></div></span></li>
+
+			<li class="svelte-1nxg8xt"><span class="label svelte-101pjyx"><a class="topLink svelte-101pjyx" href="/#community">Projects</a>
+  <div class="menu svelte-101pjyx"><div class="menu-arrow svelte-101pjyx"><div class="menu-arrow-fill svelte-101pjyx"></div></div>
+      <div class="menu-content svelte-101pjyx"><ul class="svelte-101pjyx"><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://tunescape07.com">TuneScape</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://stevenwaterman.uk/Balance/">Balance Scores</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://lexoral.com">Lexoral</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://stevenwaterman.uk/musetree/">MuseTree</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://stevenwaterman.uk/NoTimeToStalk">No Time to Stalk</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://github.com/stevenwaterman/narration.studio">Narration.Studio</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://stevenwaterman.uk/Spiro/">Spiro</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://linktr.ee/prevoid_art">Art</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://soundcloud.com/user-872603169">Music</a>
+            </li></ul></div></div></span></li>
+
+			<li class="chat svelte-1nxg8xt"><div class="container svelte-1atmfra">
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+  <button onclick="Calendly.initPopupWidget({url: &#39;https://calendly.com/stewaterman/30min&#39;});return false;" class="svelte-1atmfra">Let&#39;s Chat<span class="arrow svelte-1atmfra">&gt;</span></button>
+  </div></li></ul></div>
+</nav>
+
+<div class="column svelte-1thle15"><div class="grid svelte-1quqrs0"><div class="textContainer svelte-11sshxl" style=""><article><a href="/assets/blog/rethinking-dto/header.png"><img class="headerImage svelte-1quqrs0" src="/assets/blog/rethinking-dto/header.png" style="object-fit: contain; object-position: center;" alt="Header"></a>
+				<div class="padded svelte-1quqrs0"><div class="metadata svelte-1quqrs0"><p class="type svelte-1quqrs0">technical</p>
+						<p class="date svelte-1quqrs0">Published <time>2020-01-03</time></p>
+						<p class="author svelte-1quqrs0">By Steven Waterman</p></div>
+
+					<h1 class="svelte-1quqrs0">Rethinking the Java DTO</h1>
+
+					<div class="topSection svelte-1quqrs0"><div class="left"><summary class="svelte-1quqrs0">DTOs help translate data between server and client. By going back to first principles, how can we utilise static type-checking and integration with modern IDEs to write a better DTO?</summary>
+
+							<p class="original svelte-1quqrs0">Originally posted on <a href="https://blog.scottlogic.com/2020/01/03/rethinking-the-java-dto.html">the Scott Logic blog</a></p>
+
+							</div>
+
+						</div>
+
+					<hr class="svelte-1quqrs0">
+
+					<p>As part of Scott Logic&#39;s graduate training program, I spent 12 weeks working with the other grads on an internal 
+    project.
+    One aspect stuck with me more than the rest - the style and structure of our DTOs.
+    It was controversial during the project, and the subject of much debate, but I&#39;ve really grown to like it.
+    
+    It&#39;s not *the one true solution to all problems*, but it&#39;s an interesting approach which integrates well with 
+    modern IDEs.
+    Hopefully, the initial shock will pass and you&#39;ll like it too!
+  </p>
+  
+  <h2>What <em>is</em> a DTO (Data Transfer Object)?</h2>
+  
+  <p>In client-server projects, data is often structured differently by the client (<em>presentation layer</em>) and the server (<em>domain layer</em>).
+    This allows the server to store its information in a database-friendly or performant way, while providing a user-friendly representation for the client.
+    The server needs a way to translate between the two data formats.
+    Different architectures <em>do</em> exist, but we are just considering this one for simplicity.
+    DTO-like objects can be used between any two data representations.
+  </p>
+  
+  <figure><img src="/assets/blog/rethinking-dto/header.png" title="Data Representation Layers" alt="The Client and API both use the Presentation Layer data representation. The Service and Domain layers both use the domain representation, while the Controller layer uses both representations and maps between them."></figure>
+  
+  <p>A DTO is a server-side <a href="https://en.wikipedia.org/wiki/Value_object">value object</a> which stores data using the presentation layer representation.
+    We separate DTOs into those received by the server (<code>Request</code>), and those returned by the server (<code>Response</code>).
+    They are automatically serialised/deserialised by Spring.
+  </p>
+  
+  <p>For context, here is an example endpoint using DTOs:
+  </p>
+
+  <figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Endpoint</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true"><details class="svelte-19djgjm"><summary class="svelte-19djgjm">&lt;Show 24 identical lines&gt;</summary>
+    <div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Controller</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-comment">// Getters, Constructors, Validation, and Documentation ommitted</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CreateProductRequest</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">private</span> String name;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">private</span> Double price;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ProductResponse</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">private</span> Long id;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">private</span> String name;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">private</span> Double price;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">16</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">16</div>
+        <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">17</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">17</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">18</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">18</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-meta">@PostMapping(&quot;/products&quot;)</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">19</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">19</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">public</span> ResponseEntity&lt;ProductResponse&gt; <span class="hljs-title function_">createProduct</span><span class="hljs-params">(</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">20</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">20</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-meta">@RequestBody</span> CreateProductRequest request</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">21</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">21</div>
+        <div class="code hidden svelte-19djgjm">  )</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">22</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">22</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-comment">/*...*/</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">23</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">23</div>
+        <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">24</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">24</div>
+        <div class="code hidden svelte-19djgjm">}</div></details>
+
+<div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Controller</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-comment">// Getters, Constructors, Validation, and Documentation ommitted</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CreateProductRequest</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">private</span> String name;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">private</span> Double price;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ProductResponse</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">private</span> Long id;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">private</span> String name;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">private</span> Double price;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">16</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">16</div>
+  <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">17</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">17</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">18</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">18</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-meta">@PostMapping(&quot;/products&quot;)</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">19</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">19</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">public</span> ResponseEntity&lt;ProductResponse&gt; <span class="hljs-title function_">createProduct</span><span class="hljs-params">(</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">20</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">20</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-meta">@RequestBody</span> CreateProductRequest request</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">21</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">21</div>
+  <div class="code hidden svelte-19djgjm">  )</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">22</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">22</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-comment">/*...*/</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">23</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">23</div>
+  <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">24</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">24</div>
+  <div class="code hidden svelte-19djgjm">}</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Controller</span> {
+
+  <span class="hljs-comment">// Getters, Constructors, Validation, and Documentation ommitted</span>
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CreateProductRequest</span> {
+
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> Double price;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ProductResponse</span> {
+
+    <span class="hljs-keyword">private</span> Long id;
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> Double price;
+  }
+
+  <span class="hljs-meta">@PostMapping(&quot;/products&quot;)</span>
+  <span class="hljs-keyword">public</span> ResponseEntity&lt;ProductResponse&gt; <span class="hljs-title function_">createProduct</span><span class="hljs-params">(
+    <span class="hljs-meta">@RequestBody</span> CreateProductRequest request
+  )</span> {
+    <span class="hljs-comment">/*...*/</span>
+  }
+}</code>
+</figure>
+  
+  <h2>What makes a good DTO?</h2>
+  
+  <p>First, it&#39;s important to remember that you don&#39;t <strong>have</strong> to use DTOs.
+    They are a programming <em>pattern</em>, and your code will work just fine without them.
+  </p>
+
+  <ul><li>If you want to keep the same data representation in both layers, you can just use your entities as DTOs.</li>
+    <li>If you want to manually serialise your entities into presentation layer JSON, I can&#39;t stop you!</li></ul>
+  
+  <p>They also document the presentation layer in a declarative human-readable way.
+    I like DTOs, and think you should use them because they decouple the presentation layer and domain layer, allowing you to be more flexible while reducing the maintenance load.
+  </p>
+
+  <p>However, not all DTOs are <em>good</em> DTOs.
+    A <em>good</em> DTO should encourage API best practices and clean code principles.
+  </p>
+  
+  <p>They should allow developers to write APIs that are internally consistent.
+    Knowledge about a parameter on one endpoint should apply to parameters with the same name on all related endpoints.
+    For example, given the snippet above, if the request&#39;s <code>price</code> includes VAT then the response&#39;s <code>price</code> should include it too.
+    A consistent API prevents bugs that would be caused by differences between endpoints, while facilitating the learning of developers new to a project.
+  </p> 
+  
+  <p>They should minimise boilerplate, and be fool-proof to write.
+    If it is easy to make a mistake when writing a DTO, you will struggle to be consistent.
+    DTOs should also be readable - we have this amazing description of the presentation layer&#39;s data representation, but it&#39;s useless if our DTOs are illegible.
+    They should allow you to quickly view the data structure, even from another class.
+  </p>
+
+  <p>Let&#39;s have a look at our DTOs before seeing whether they achieve those goals.
+  </p>
+  
+  <h2>Show us the code!</h2>
+  
+  <p>This code will be confusing at first, but stick with it.
+    Under the code, I describe how it all fits together.
+    In the remainder of the post, I explain why we implemented it this way, and what the benefits are.
+    Hopefully you&#39;ll understand the code and appreciate it by the end!
+  </p>
+
+  <p>It is based roughly on actual code we wrote in our grad project, translated into the context of an online store.
+    For each product, we store the name, sale price, and wholesale cost of its products.
+    Prices are stored as floating-point numbers for the purposes of this example, but in real projects <a href="https://dzone.com/articles/never-use-float-and-double-for-monetary-calculatio">should be stored as BigDecimal</a>.
+  </p>
+  
+  <figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">ProductDTO</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true"><details class="svelte-19djgjm"><summary class="svelte-19djgjm">&lt;Show 56 identical lines&gt;</summary>
+    <div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">ProductDTO</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="code hidden svelte-19djgjm">  ;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">private</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Id</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-meta">@Positive</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="code hidden svelte-19djgjm">    Long <span class="hljs-title function_">getId</span><span class="hljs-params">()</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">private</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Name</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-meta">@NotBlank</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+        <div class="code hidden svelte-19djgjm">    String <span class="hljs-title function_">getName</span><span class="hljs-params">()</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+        <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">private</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Price</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-meta">@Positive</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">16</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">16</div>
+        <div class="code hidden svelte-19djgjm">    Double <span class="hljs-title function_">getPrice</span><span class="hljs-params">()</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">17</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">17</div>
+        <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">18</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">18</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">19</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">19</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">private</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Cost</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">20</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">20</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-meta">@Positive</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">21</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">21</div>
+        <div class="code hidden svelte-19djgjm">    Double <span class="hljs-title function_">getCost</span><span class="hljs-params">()</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">22</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">22</div>
+        <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">23</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">23</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">24</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">24</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Request</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">25</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">25</div>
+        <div class="code hidden svelte-19djgjm">    ;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">26</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">26</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">27</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">27</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-meta">@Value</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">28</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">28</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Create</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Name</span>, Price, Cost {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">29</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">29</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">30</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">30</div>
+        <div class="code hidden svelte-19djgjm">      String name;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">31</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">31</div>
+        <div class="code hidden svelte-19djgjm">      Double price;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">32</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">32</div>
+        <div class="code hidden svelte-19djgjm">      Double cost;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">33</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">33</div>
+        <div class="code hidden svelte-19djgjm">    }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">34</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">34</div>
+        <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">35</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">35</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">36</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">36</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Response</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">37</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">37</div>
+        <div class="code hidden svelte-19djgjm">    ;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">38</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">38</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">39</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">39</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-meta">@Value</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">40</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">40</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Public</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Id</span>, Name, Price {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">41</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">41</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">42</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">42</div>
+        <div class="code hidden svelte-19djgjm">      Long id;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">43</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">43</div>
+        <div class="code hidden svelte-19djgjm">      String name;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">44</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">44</div>
+        <div class="code hidden svelte-19djgjm">      Double price;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">45</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">45</div>
+        <div class="code hidden svelte-19djgjm">    }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">46</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">46</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">47</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">47</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-meta">@Value</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">48</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">48</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Private</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Id</span>, Name, Price, Cost {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">49</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">49</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">50</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">50</div>
+        <div class="code hidden svelte-19djgjm">      Long id;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">51</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">51</div>
+        <div class="code hidden svelte-19djgjm">      String name;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">52</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">52</div>
+        <div class="code hidden svelte-19djgjm">      Double price;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">53</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">53</div>
+        <div class="code hidden svelte-19djgjm">      Double cost;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">54</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">54</div>
+        <div class="code hidden svelte-19djgjm">    }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">55</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">55</div>
+        <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">56</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">56</div>
+        <div class="code hidden svelte-19djgjm">}</div></details>
+
+<div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">ProductDTO</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code hidden svelte-19djgjm">  ;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">private</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Id</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-meta">@Positive</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="code hidden svelte-19djgjm">    Long <span class="hljs-title function_">getId</span><span class="hljs-params">()</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">private</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Name</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-meta">@NotBlank</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+  <div class="code hidden svelte-19djgjm">    String <span class="hljs-title function_">getName</span><span class="hljs-params">()</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+  <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">private</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Price</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-meta">@Positive</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">16</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">16</div>
+  <div class="code hidden svelte-19djgjm">    Double <span class="hljs-title function_">getPrice</span><span class="hljs-params">()</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">17</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">17</div>
+  <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">18</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">18</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">19</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">19</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">private</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Cost</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">20</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">20</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-meta">@Positive</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">21</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">21</div>
+  <div class="code hidden svelte-19djgjm">    Double <span class="hljs-title function_">getCost</span><span class="hljs-params">()</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">22</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">22</div>
+  <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">23</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">23</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">24</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">24</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Request</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">25</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">25</div>
+  <div class="code hidden svelte-19djgjm">    ;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">26</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">26</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">27</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">27</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-meta">@Value</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">28</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">28</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Create</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Name</span>, Price, Cost {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">29</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">29</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">30</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">30</div>
+  <div class="code hidden svelte-19djgjm">      String name;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">31</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">31</div>
+  <div class="code hidden svelte-19djgjm">      Double price;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">32</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">32</div>
+  <div class="code hidden svelte-19djgjm">      Double cost;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">33</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">33</div>
+  <div class="code hidden svelte-19djgjm">    }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">34</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">34</div>
+  <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">35</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">35</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">36</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">36</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Response</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">37</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">37</div>
+  <div class="code hidden svelte-19djgjm">    ;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">38</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">38</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">39</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">39</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-meta">@Value</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">40</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">40</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Public</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Id</span>, Name, Price {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">41</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">41</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">42</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">42</div>
+  <div class="code hidden svelte-19djgjm">      Long id;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">43</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">43</div>
+  <div class="code hidden svelte-19djgjm">      String name;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">44</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">44</div>
+  <div class="code hidden svelte-19djgjm">      Double price;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">45</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">45</div>
+  <div class="code hidden svelte-19djgjm">    }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">46</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">46</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">47</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">47</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-meta">@Value</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">48</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">48</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Private</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Id</span>, Name, Price, Cost {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">49</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">49</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">50</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">50</div>
+  <div class="code hidden svelte-19djgjm">      Long id;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">51</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">51</div>
+  <div class="code hidden svelte-19djgjm">      String name;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">52</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">52</div>
+  <div class="code hidden svelte-19djgjm">      Double price;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">53</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">53</div>
+  <div class="code hidden svelte-19djgjm">      Double cost;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">54</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">54</div>
+  <div class="code hidden svelte-19djgjm">    }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">55</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">55</div>
+  <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">56</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">56</div>
+  <div class="code hidden svelte-19djgjm">}</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">ProductDTO</span> {
+  ;
+
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Id</span> {
+    <span class="hljs-meta">@Positive</span>
+    Long <span class="hljs-title function_">getId</span><span class="hljs-params">()</span>;
+  }
+
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Name</span> {
+    <span class="hljs-meta">@NotBlank</span>
+    String <span class="hljs-title function_">getName</span><span class="hljs-params">()</span>;
+  }
+
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Price</span> {
+    <span class="hljs-meta">@Positive</span>
+    Double <span class="hljs-title function_">getPrice</span><span class="hljs-params">()</span>;
+  }
+
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Cost</span> {
+    <span class="hljs-meta">@Positive</span>
+    Double <span class="hljs-title function_">getCost</span><span class="hljs-params">()</span>;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Request</span> {
+    ;
+
+    <span class="hljs-meta">@Value</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Create</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Name</span>, Price, Cost {
+
+      String name;
+      Double price;
+      Double cost;
+    }
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Response</span> {
+    ;
+
+    <span class="hljs-meta">@Value</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Public</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Id</span>, Name, Price {
+
+      Long id;
+      String name;
+      Double price;
+    }
+
+    <span class="hljs-meta">@Value</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Private</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Id</span>, Name, Price, Cost {
+
+      Long id;
+      String name;
+      Double price;
+      Double cost;
+    }
+  }
+}</code>
+</figure>
+
+  <p>We create one file for each controller.
+    It contains a top-level enum with no values, in this case <code>ProductDTO</code>.
+    Under that, we split into <code>Request</code> and <code>Response</code>.
+    We create one <code>Request</code> DTO per controller endpoint, and as many <code>Response</code> DTOs as necessary.
+    In this case, we have two <code>Response</code> DTOs, where <code>Public</code> is safe to send to any user and <code>Private</code> includes the wholesale cost of a product.
+  </p>
+  
+  <p>For each API parameter, we create an interface with the same name as the parameter.
+    Each defines a single method - the getter for that parameter.
+    Any validation goes on the interface&#39;s method - for example, the `@NotBlank` annotation ensures that no DTO will ever have `&quot;&quot;` as its name.
+  </p>
+
+  <p>For each field on a DTO, we implement the associated interface.
+    <a href="https://projectlombok.org/features/Value">Lombok&#39;s <code>@Value</code> annotation</a> auto-generates getters which satisfy the interfaces.
+  </p>
+
+  <hr>
+  
+  <p>For a full comparison with documentation, see the two examples: <a href="https://gist.github.com/stevenwaterman/93881ec1b81d23066dfed96bbf636104">before</a> and <a href="https://gist.github.com/stevenwaterman/28f0ec03a0cc0370a3b0c9351917976b">after</a>.
+    Bear in mind that this is a small example, and the differences become more apparent as you add more DTOs.
+  </p>
+  
+  <hr>
+  
+  <h2>&quot;I hate it&quot;</h2>
+
+  <p>It <em>is</em> really weird.
+    There&#39;s a lot of unusual things going on there - let&#39;s discuss a few in detail.
+  </p>
+
+  <p><strong>There&#39;s three enums and none have any values!</strong>
+    This is a <a href="https://stackoverflow.com/a/26619349">trick</a> to create namespaces in java, meaning we can reference a DTO as `ProductDTO.Request.Create`.
+    That trick is also the reason there&#39;s a trailing <code>;</code> after each enum.
+    The semicolon indicates the end of the (empty) list of values!
+    Using namespaces improves discoverability by allowing us to type <code>ProductDTO</code> and rely on auto-completion to list the DTOs.
+    There are other ways of achieving that, but this way is very concise, while preventing <code>new ProductDTO()</code> and <code>new Create()</code>.
+    Honestly, this is personal preference and you can organise the classes however you like.
+  </p>
+  
+  <p><strong>There are also a lot of interfaces - one per API parameter!</strong>
+    This is because we use the interfaces as a single source of truth for that parameter.
+    I will talk a lot more about this later - but trust me that it brings a lot of benefits.
+  </p>
+  
+  <p><strong>The interface methods never get implemented!</strong>
+    Yeah, this one is pretty weird and I wish there was a better way.
+    Using Lombok&#39;s auto-generated getters to implement the interface is quite hacky.
+    It would be much nicer to just define fields on the interfaces, which would also mean the DTO classes could be one-line long.
+    However, java doesn&#39;t allow interfaces to have non-static fields.
+    If you followed this pattern in other languages, it would be much neater.
+  </p>
+  
+  <h2>It&#39;s (almost) perfect</h2>
+
+  <p>Let&#39;s go back to the list of things that make a good DTO.
+    Does this style achieve those goals?
+  </p>
+  
+  <h3>Consistent Syntax</h3>
+
+  <p>We definitely enforce consistent syntax - and that was the main reason we started using this pattern.
+    Each API parameter has its syntax defined by the associated interface.
+    If the DTO class contains a typo in a parameter name or incorrect return type, the code won&#39;t compile and your 
+    IDE will warn you.
+    For example:
+  </p>
+  
+  <figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">SyntaxError</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true"><details class="svelte-19djgjm"><summary class="svelte-19djgjm">&lt;Show 8 identical lines&gt;</summary>
+    <div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-meta">@Value</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PatchPrice</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Id</span>, Price {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="code hidden svelte-19djgjm">  String id; <span class="hljs-comment">// Should be Long id;</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="code hidden svelte-19djgjm">  Double prise; <span class="hljs-comment">// Should be Double price;</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-comment">// PatchPrice is not abstract and does not override abstract method getId() in Id</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-comment">// PatchPrice is not abstract and does not override abstract method getPrice() in Price</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="code hidden svelte-19djgjm">}</div></details>
+
+<div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-meta">@Value</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PatchPrice</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Id</span>, Price {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code hidden svelte-19djgjm">  String id; <span class="hljs-comment">// Should be Long id;</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="code hidden svelte-19djgjm">  Double prise; <span class="hljs-comment">// Should be Double price;</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-comment">// PatchPrice is not abstract and does not override abstract method getId() in Id</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-comment">// PatchPrice is not abstract and does not override abstract method getPrice() in Price</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="code hidden svelte-19djgjm">}</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-meta">@Value</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PatchPrice</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Id</span>, Price {
+
+  String id; <span class="hljs-comment">// Should be Long id;</span>
+  Double prise; <span class="hljs-comment">// Should be Double price;</span>
+  <span class="hljs-comment">// PatchPrice is not abstract and does not override abstract method getId() in Id</span>
+  <span class="hljs-comment">// PatchPrice is not abstract and does not override abstract method getPrice() in Price</span>
+}</code>
+</figure>
+  
+  <p>Additionally, since validation is placed on the interfaces, it is consistent between DTOs.
+    You can never have a situation where a value can be valid for a parameter on one endpoint but not another.
+  </p>
+
+  <h3>Consistent Semantics</h3>
+
+  <p>This style helps enforce consistent semantics through inherited documentation.
+    Each parameter has its semantic meaning defined by the documentation on associated interface method.
+    For example:
+  </p>
+
+  <figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Semantics</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true"><details class="svelte-19djgjm"><summary class="svelte-19djgjm">&lt;Show 9 identical lines&gt;</summary>
+    <div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">private</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Cost</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-comment">/**</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="code hidden svelte-19djgjm">   * The amount that it costs us to purchase this product</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="code hidden svelte-19djgjm">   * For the amount we sell a product for, see the {<span class="hljs-doctag">@link</span> Price Price} parameter.</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="code hidden svelte-19djgjm">   * &lt;b&gt;This data is confidential&lt;/b&gt;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="code hidden svelte-19djgjm">   */</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-meta">@Positive</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="code hidden svelte-19djgjm">  Double <span class="hljs-title function_">getCost</span><span class="hljs-params">()</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="code hidden svelte-19djgjm">}</div></details>
+
+<div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">private</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Cost</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-comment">/**</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code hidden svelte-19djgjm">   * The amount that it costs us to purchase this product</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code hidden svelte-19djgjm">   * For the amount we sell a product for, see the {<span class="hljs-doctag">@link</span> Price Price} parameter.</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="code hidden svelte-19djgjm">   * &lt;b&gt;This data is confidential&lt;/b&gt;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="code hidden svelte-19djgjm">   */</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-meta">@Positive</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="code hidden svelte-19djgjm">  Double <span class="hljs-title function_">getCost</span><span class="hljs-params">()</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="code hidden svelte-19djgjm">}</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">private</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Cost</span> {
+  <span class="hljs-comment">/**
+   * The amount that it costs us to purchase this product
+   * For the amount we sell a product for, see the {<span class="hljs-doctag">@link</span> Price Price} parameter.
+   * &lt;b&gt;This data is confidential&lt;/b&gt;
+   */</span>
+  <span class="hljs-meta">@Positive</span>
+  Double <span class="hljs-title function_">getCost</span><span class="hljs-params">()</span>;
+}</code>
+</figure>
+  
+  <p>Since the DTO classes implement the interfaces, the documentation is automatically inherited by the getters.
+    This means that on every DTO instance, you can learn the semantic meaning and validation rules for a field by viewing the documentation for the method:
+  </p>
+
+  <figure><img src="/assets/blog/rethinking-dto/documentation.png" title="Documentation for getCost()" alt="The documentation for getCost() on a DTO class is automatically copied from the Cost interface."></figure>
+  
+  <p>You&#39;re also guaranteed that this documentation is present and consistent across all DTOs that implement a given interface.
+    In the rare case where an API parameter with the same name *should* have different semantics, this style enforces that a new interface should be created.
+    While this is a hassle, it forces the developer to stop and think, while also allowing future readers to immediately see that something is different.
+  </p>
+
+  <h3>Readable &amp; Maintainable</h3>
+  
+  <p>There&#39;s no getting around this - our style introduces a lot of boilerplate.
+    There are four interfaces that could be removed, and each DTO class has a long <code>implements</code> list that doesn&#39;t need to be there.
+    However, the interfaces can be hidden away in their own package, which helps maintain the signal:noise ratio of the actual DTO class.
+    Still, the boilerplate is the main downside of this style, and it&#39;s reasonable to choose a different style on that basis.
+    To me, it&#39;s worth the extra interface definitions.
+  </p>
+
+  <p>Our style really shines when it comes to creating a new DTO.
+    You simply write <code>@Value public static class [name] implements</code>, followed by a list of the fields you want.
+    Then, declare the fields demanded by your IDE until it stops complaining.
+    You&#39;re done - a full DTO with validation!
+  </p>
+  
+  <p>Additionally, it&#39;s trivial to see the structure of our DTO classes.
+    Looking at the code, you can see everything you need from the class signature.
+    Each field is listed in the <code>implements</code> list.
+    Since it&#39;s all declared in the class signature, you can simply press `ctrl+q` in IntelliJ and see the list of fields.
+  </p>
+  
+  <figure><img src="/assets/blog/rethinking-dto/implements.png" title="The list of interfaces implemented by a DTO" alt="When viewing the documentation for ProductDTO.Response.Private, you can see that it implements ID, Name, Price, and Cost."></figure>
+  
+  <p>Our style has write-once validation, as all validation is added to the interface methods.
+    When writing a DTO, you get validation for free after implementing the interface.
+  </p>
+
+  <p>Finally, thanks to our single-method interfaces, we can write reusable utility methods.
+    For example, given the sale price and wholesale cost of a product, we can calculate its markup:
+  </p>
+
+  <p><code>markup = (sale_price - cost_price) / cost_price</code></p>
+  
+  <p>In Java, we can implement this using a generic method with type parameter <code>T</code>:
+  </p>
+  
+  <figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Generic Types</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true"><details class="svelte-19djgjm"><summary class="svelte-19djgjm">&lt;Show 6 identical lines&gt;</summary>
+    <div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GenericExample</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Price</span> &amp; Cost&gt; Double <span class="hljs-title function_">getMarkup</span><span class="hljs-params">(T dto)</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">return</span> (dto.getPrice() - dto.getCost()) / dto.getCost();</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="code hidden svelte-19djgjm">}</div></details>
+
+<div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GenericExample</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Price</span> &amp; Cost&gt; Double <span class="hljs-title function_">getMarkup</span><span class="hljs-params">(T dto)</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">return</span> (dto.getPrice() - dto.getCost()) / dto.getCost();</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="code hidden svelte-19djgjm">}</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GenericExample</span> {
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Price</span> &amp; Cost&gt; Double <span class="hljs-title function_">getMarkup</span><span class="hljs-params">(T dto)</span> {
+    <span class="hljs-keyword">return</span> (dto.getPrice() - dto.getCost()) / dto.getCost();
+  }
+}</code>
+</figure>
+
+  <p>Our single parameter has type T, which is a generic <a href="https://en.wikipedia.org/wiki/Intersection_type">intersection type</a>.
+    <code>dto</code> must implement both <code>Price</code> and <code>Cost</code> - meaning you can&#39;t pass a <code>Public</code> response to <code>getMarkup</code> (as it does not implement <code>Cost</code>).
+    With normal DTO classes, we would have to write this as a method which takes two parameters, adding overloads for each DTO (<a href="https://gist.github.com/stevenwaterman/93881ec1b81d23066dfed96bbf636104">see the example</a>).
+    This offloads the work onto the caller, and risks getting the parameters backwards, causing bugs.
+  </p>
+  
+  <h2>Conclusion</h2>
+  
+  <p>I don&#39;t expect you to go away and rewrite all your DTOs right now.
+    There are, however, a lot of small things you can take away:
+  </p>
+
+  <ol><li>Establish a single source of truth for your API parameters</li>
+    <li>Small interfaces are better</li>
+    <li>Try being weird, maybe you&#39;ll like it!</li></ol>
+
+					</div></article></div>
+
+		
+
+<div class="textContainer svelte-11sshxl" style="position: sticky; top: 1em;"><div class="authorCol svelte-1ghjldr"><div class="details svelte-1ghjldr"><img src="/assets/blog/authors/SteWaterman.jpg" alt="Steven Waterman" class="svelte-1ghjldr">
+			<h2 class="name svelte-1ghjldr">Steven Waterman</h2>
+			<p class="job svelte-1ghjldr">Over-thinker</p>
+			</div>
+
+		
+
+		<ul class="links svelte-1ghjldr"><li class="svelte-1ghjldr"><a href="mailto:blog@stevenwaterman.uk" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 512 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(256 256)" transform-origin="128 0"><g transform="translate(0,0) scale(1,1)"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z" fill="currentColor" transform="translate(-256 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">blog@stevenwaterman.uk</span></a></li>
+
+			<li class="svelte-1ghjldr"><a href="https://calendly.com/stewaterman/30min" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 448 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(224 256)" transform-origin="112 0"><g transform="translate(0,0) scale(1,1)"><path d="M436 160H12c-6.627 0-12-5.373-12-12v-36c0-26.51 21.49-48 48-48h48V12c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v52h128V12c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v52h48c26.51 0 48 21.49 48 48v36c0 6.627-5.373 12-12 12zM12 192h424c6.627 0 12 5.373 12 12v260c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V204c0-6.627 5.373-12 12-12zm333.296 95.947l-28.169-28.398c-4.667-4.705-12.265-4.736-16.97-.068L194.12 364.665l-45.98-46.352c-4.667-4.705-12.266-4.736-16.971-.068l-28.397 28.17c-4.705 4.667-4.736 12.265-.068 16.97l82.601 83.269c4.667 4.705 12.265 4.736 16.97.068l142.953-141.805c4.705-4.667 4.736-12.265.068-16.97z" fill="currentColor" transform="translate(-224 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">Office Hours</span></a></li>
+
+			<li class="svelte-1ghjldr"><a href="https://github.com/StevenWaterman/" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 496 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(248 256)" transform-origin="124 0"><g transform="translate(0,0) scale(1,1)"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" fill="currentColor" transform="translate(-248 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">@StevenWaterman</span></a></li>
+
+			<li class="svelte-1ghjldr"><a href="https://twitter.com/SteWaterman/" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 512 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(256 256)" transform-origin="128 0"><g transform="translate(0,0) scale(1,1)"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z" fill="currentColor" transform="translate(-256 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">@SteWaterman</span></a></li>
+
+			<li class="svelte-1ghjldr"><a href="https://twitch.tv/SteWaterman/" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 512 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(256 256)" transform-origin="128 0"><g transform="translate(0,0) scale(1,1)"><path d="M391.17,103.47H352.54v109.7h38.63ZM285,103H246.37V212.75H285ZM120.83,0,24.31,91.42V420.58H140.14V512l96.53-91.42h77.25L487.69,256V0ZM449.07,237.75l-77.22,73.12H294.61l-67.6,64v-64H140.14V36.58H449.07Z" fill="currentColor" transform="translate(-256 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">@SteWaterman</span></a></li>
+
+			<li class="svelte-1ghjldr"><a href="https://www.linkedin.com/in/steven-waterman/" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 448 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(224 256)" transform-origin="112 0"><g transform="translate(0,0) scale(1,1)"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" fill="currentColor" transform="translate(-224 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">@steven-waterman</span></a></li>
+
+			</ul></div></div></div></div>
+
+
+
+
+	</body>
+</html>

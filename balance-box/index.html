@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="description"
+			content="I'm a software developer, technical coach, over-analyser. This is where I do those things. Mostly over-analysing."
+		/>
+		<link rel="icon" href="/favicon.png" />
+		<link rel="stylesheet" href="/global.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta http-equiv="content-security-policy" content=""><title>My Balance Box</title><meta name="description" content="It&#39;s about time we started to accept that humans have emotions, and share them with each other. As part of my ongoing commitment to radical vulnerability, I built a box that tells everyone how I feel in real time."><link rel="alternate" type="application/rss+xml" href="https://stevenwaterman.uk/rss.xml" title="Steven Waterman's Blog"><link rel="canonical" href="https://stevenwaterman.uk/balance-box"><meta property="og:title" content="My Balance Box"><meta property="og:description" content="It&#39;s about time we started to accept that humans have emotions, and share them with each other. As part of my ongoing commitment to radical vulnerability, I built a box that tells everyone how I feel in real time."><meta property="og:image" content="https://stevenwaterman.uk/assets/blog/balance-box/header.png"><meta property="og:type" content="article"><meta property="og:site_name" content="Steven Waterman"><meta property="og:url" content="https://stevenwaterman.uk/balance-box"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@SteWaterman"><meta name="twitter:image" content="https://stevenwaterman.uk/assets/blog/balance-box/header.png"><meta name="twitter:creator" content="@SteWaterman">
+	<link rel="stylesheet" href="/_app/assets/vendor-ec9510ad.css">
+	<link rel="stylesheet" href="/_app/assets/pages/balance-box/index.svelte-d938b6dd.css">
+	<link rel="stylesheet" href="/_app/assets/BlogPost-27f41e79.css">
+	<link rel="stylesheet" href="/_app/assets/Template-8f63f35a.css">
+	<link rel="stylesheet" href="/_app/assets/Snippet-1ad9e017.css">
+	</head>
+	<body>
+		
+
+
+
+
+
+
+<div class="gradient svelte-1thle15"><div class="panX svelte-1atbztl"><div class="panY svelte-1atbztl"><div class="gradient svelte-1atbztl"></div></div></div></div>
+
+<nav class="svelte-1nxg8xt"><a class="logoLink svelte-1nxg8xt" href="/"><img class="logo svelte-1nxg8xt" src="/assets/logoWhite.svg" alt="Logo">
+		<span class="logoText svelte-1nxg8xt">SW</span></a>
+
+	<div class="burgerMenuContainer svelte-1nxg8xt"><span tabindex="0" class="burgerMenuOpen svelte-1nxg8xt"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 448 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(224 256)" transform-origin="112 0"><g transform="translate(0,0) scale(1,1)"><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" fill="currentColor" transform="translate(-224 -256)"></path></g></g></svg></span>
+
+		<ul class="menu svelte-1nxg8xt"><li class="svelte-1nxg8xt"><span class="label svelte-101pjyx"><a class="topLink svelte-101pjyx" href="/">Blog</a>
+  </span></li>
+
+			<li class="svelte-1nxg8xt"><span class="label svelte-101pjyx"><a class="topLink svelte-101pjyx" href="/assets/cv.pdf">CV</a>
+  </span></li>
+
+			<li class="svelte-1nxg8xt"><span class="label svelte-101pjyx"><a class="topLink svelte-101pjyx">Socials</a>
+  <div class="menu svelte-101pjyx"><div class="menu-arrow svelte-101pjyx"><div class="menu-arrow-fill svelte-101pjyx"></div></div>
+      <div class="menu-content svelte-101pjyx"><ul class="svelte-101pjyx"><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://twitter.com/SteWaterman/">Twitter</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://github.com/StevenWaterman/">GitHub</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://www.linkedin.com/in/steven-waterman/">LinkedIn</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://twitch.tv/SteWaterman/">Twitch</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="mailto:website@stevenwaterman.uk">Email</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://calendly.com/stewaterman/30min">Calendly</a>
+            </li></ul></div></div></span></li>
+
+			<li class="svelte-1nxg8xt"><span class="label svelte-101pjyx"><a class="topLink svelte-101pjyx" href="/#community">Projects</a>
+  <div class="menu svelte-101pjyx"><div class="menu-arrow svelte-101pjyx"><div class="menu-arrow-fill svelte-101pjyx"></div></div>
+      <div class="menu-content svelte-101pjyx"><ul class="svelte-101pjyx"><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://tunescape07.com">TuneScape</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://stevenwaterman.uk/Balance/">Balance Scores</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://lexoral.com">Lexoral</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://stevenwaterman.uk/musetree/">MuseTree</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://stevenwaterman.uk/NoTimeToStalk">No Time to Stalk</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://github.com/stevenwaterman/narration.studio">Narration.Studio</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://stevenwaterman.uk/Spiro/">Spiro</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://linktr.ee/prevoid_art">Art</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://soundcloud.com/user-872603169">Music</a>
+            </li></ul></div></div></span></li>
+
+			<li class="chat svelte-1nxg8xt"><div class="container svelte-1atmfra">
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+  <button onclick="Calendly.initPopupWidget({url: &#39;https://calendly.com/stewaterman/30min&#39;});return false;" class="svelte-1atmfra">Let&#39;s Chat<span class="arrow svelte-1atmfra">&gt;</span></button>
+  </div></li></ul></div>
+</nav>
+
+<div class="column svelte-1thle15"><div class="grid svelte-1quqrs0"><div class="textContainer svelte-11sshxl" style=""><article><a href="/assets/blog/balance-box/header.png"><img class="headerImage svelte-1quqrs0" src="/assets/blog/balance-box/header.png" style="object-fit: cover; object-position: top;" alt="Header"></a>
+				<div class="padded svelte-1quqrs0"><div class="metadata svelte-1quqrs0"><p class="type svelte-1quqrs0">projects</p>
+						<p class="date svelte-1quqrs0">Published <time>2022-07-01</time></p>
+						<p class="author svelte-1quqrs0">By Steven Waterman</p></div>
+
+					<h1 class="svelte-1quqrs0">My Balance Box</h1>
+
+					<div class="topSection svelte-1quqrs0"><div class="left"><summary class="svelte-1quqrs0">It&#39;s about time we started to accept that humans have emotions, and share them with each other. As part of my ongoing commitment to radical vulnerability, I built a box that tells everyone how I feel in real time.</summary>
+
+							
+
+							</div>
+
+						</div>
+
+					<hr class="svelte-1quqrs0">
+
+					<p>There&#39;s a box sitting on my desk.
+    Three sliders, and a number above each.
+    How I feel in myself, how I feel professionally, and how I feel spiritually.
+    With 0 being the worst, and 9 being the best.
+    I try to keep it updated:
+  </p>
+  
+  <figure><div class="container svelte-1aehn3w" style="height: 8em;"><a href="https://stevenwaterman.uk/Balance"><div class="overlay svelte-1aehn3w"></div></a>
+  <iframe title="Balance Scores" src="https://stevenwaterman.uk/Balance" loading="lazy" class="svelte-1aehn3w"></iframe></div></figure>
+
+  <p>Of course, updating my website <em>instantly</em> isn&#39;t doable.
+    It&#39;s <strong>one second</strong> out of date:
+  </p>
+
+  <figure>
+    <video autoplay loop title="Sorry for how overexposed this is. Clever Steven told his camera to auto-adjust ISO based on black plastic..." src="/assets/blog/balance-box/box-gif.mp4" alt="A screen recording of this website, also showing my webcam. I am holding the balance box, and adjust the personal slider from 5 to 7. After a second, the value on the website updates. I adjust it back to 5, and the website updates again." class="svelte-v4wve8"></video>
+    <figcaption>You really are seeing it in real-time</figcaption></figure>
+
+  <h2>Why?</h2>
+
+  <p>Online, we curate an image of ourselves, like a personal brand, by only presenting one side of day-to-day life.
+    For many of us, it&#39;s the same at work too.
+    Opening up is uncomfortable, because it makes us feel vulnerable.
+    Even though we know that everyone else has bad days too, it doesn&#39;t feel nice to admit it.
+  </p>
+
+  <p>I recently finished reading <a href="https://agileconversations.com/agile-conversation-book/">Agile Conversations</a>, which talks in detail about <a href="http://www.aral.com.au/resources/argyris2.html#a_as_m12">Argyris&#39; two models of reasoning</a>.
+    That last paragraph is a clear example of <em>Defensive Reasoning</em> (aka Model I), which we tend to use when there&#39;s something important on the line.
+    Defensive Reasoning is undepinned by four principles:
+  </p>
+
+  <ol><li>Achieve the purposes as the actor perceives them</li>
+    <li>Maximise winning and minimise losing</li>
+    <li>Minimise eliciting negative feelings</li>
+    <li>Be rational and minimise emotionality</li></ol>
+
+  <p>You can probably think of a time when you followed those rules, trying to win an argument.
+    Contrast that with Model II, <em>Productive Reasoning</em>, which aims to foster relationships and collaborate towards the best possible solution:
+  </p>
+
+  <ol><li>Valid information</li>
+    <li>Free and informed choice</li>
+    <li>Internal commitment to the choice and constant monitoring of the implementation</li></ol>
+
+  <p>If I asked how you thought people should act in a discussion, you&#39;d probably describe Model II.
+    If I put you in a group, and offered a cash prize for the person who won the argument, you&#39;d probably exhibit Model I.
+  </p>
+
+  <p>Defensive Reasoning is stressful, harms relationships, and produces worse outcomes.
+    <strong>Screw everything about that.</strong>
+    I have always preached openness, authenticity, and Productive Reasoning, but it&#39;s time for me to commit to it.
+    Time to practice what I preach.
+  </p>
+
+  <p><strong>I have emotions</strong>.
+    And you know what?
+    <strong>I have bad days too</strong>.
+    And when I&#39;m not feeling great?
+    <strong>I&#39;ll tell you</strong>.
+    This is me, committing to openness, Productive Reasoning, and vulnerability.
+    And there&#39;s a big glowing box on my desk to remind me.
+  </p>
+
+  <figure><img style="max-height: 30em; margin-bottom: 1em;" src="/assets/blog/balance-box/box.png" title="It's quite menacing to be honest" alt="The finished balance box. It is a tall box made of black plastic, presenting a front face with three sliders, and a 7-segment display above each. The brightly glowing displays show the numbers 6-7-7.">
+    <figcaption>The Finished Box</figcaption></figure>
+
+  <h2>Balance Scores</h2>
+
+  <p>Reading <a href="https://itrevolution.com/a-radical-enterprise/">A Radical Enterprise</a>, I learnt about <em>Balance Scores</em>.
+    A balance score is a set of three ratings, describing how you&#39;re balancing the different aspects of your life, and giving a little bit of context for how you act.
+    There&#39;s no explanation, and no questions or sympathy allowed, just three scores out of ten:
+  </p>
+
+  <ul><li><strong>Personal</strong> - Your mental/physical health, happiness, home life, and general wellbeing.</li>
+    <li><strong>Professional</strong> - How much you are enjoying your job, work life, and feeling productive.</li>
+    <li><strong>Spiritual</strong> - Encompasses a sense of higher purpose, but ultimately up to the individual. For me, it&#39;s a sense of belonging, knowing that I&#39;ve found my place in the world and have true belief in a mission / purpose.</li></ul>
+
+  <p>At the start of each meeting, try going around the room and sharing your balance scores.
+    By openly sharing our emotional state, it becomes much easier to use productive reasoning.
+    It sets the stage for a discussion that fosters relationships, rather than one that damages them.
+  </p>
+
+  <p>Of course, everyone will have a different idea of what a <code>5</code> means, or even what personal wellbeing is.
+    It doesn&#39;t really matter though.
+    Over time, you intuitively understand what someone&#39;s baseline is, and whether they&#39;re having a good or bad day.
+    It&#39;s not really about the numbers anyway, it&#39;s about creating a space for emotions and vulnerability, so do whatever works best for you.
+    Feel free to just use <code>good</code> / <code>neutral</code> / <code>bad</code> for each category instead, if that&#39;s easier.
+  </p>
+
+  <p>I went one step futher, and built a box that shares my balance scores in real time.
+    Just three digits, 0-9, visible for anyone that wants to look.
+    You can see my scores on any blog post, or at <a href="https://stevenwaterman.uk/Balance">https://stevenwaterman.uk/Balance</a>.
+  </p>
+
+  <h2>How?</h2>
+
+  <p>The system is conceptually simple, and everything you need to make one for yourself is available on <a href="https://github.com/stevenwaterman/Balance">GitHub</a>, including a parts list and instructions.
+    An Arduino is connected to my PC via USB, constantly reporting the current values set on the sliders.
+    My PC writes that to Firestore, which updates any of the browsers currently on the page.
+  </p>
+
+  <figure><img style="width: 80%;" src="/assets/blog/balance-box/components.svg" title="Seeing how simple this is makes me feel bad for how long it took" alt="A potentiometer has its voltage read by an arduino. The arduino reports the 3 scores to my PC over serial. My PC sends the data to Firestore. A browser fetches the web page from GitHub Pages, and the data from Firestore.">
+    <figcaption>System Architecture</figcaption></figure>
+
+  <p>I&#39;ll work my way through each component, giving a brief overview.
+    If you have any questions, check out the GitHub repo, or feel free to get in touch!
+  </p>
+
+  <h3>Case</h3>
+
+  <p>I designed the casing in CAD based on component measurements and 3d-printed it on a <a href="https://www.prusa3d.com/category/original-prusa-i3-mk3s/">Prusa i3 MK3S+</a>.
+    I printed most of it in black PETG, and the sliders in grey PLA.
+    It&#39;s case is printed in 3 parts, and held together with 4 bolts, which just self-tap into the holes.
+  </p>
+
+  <figure><iframe style="width: 100%; height: 30em;" src="https://viewscreen.githubusercontent.com/view/solid?enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f73746576656e77617465726d616e2f42616c616e63652f663964366538313333343937343664316161363136663831613336336164336631373462626232642f7072696e74657246696c65732f6578706c6f6465642e73746c" title="The case files" name="56009715-555d-4e55-9648-cf14f7f40f43"></iframe>
+    <figcaption>The 3d Printer Files for the Case</figcaption></figure>
+
+  <p>There&#39;s not much else to say here, because CAD and 3d printing are definitely out of scope for this post.
+    If you&#39;re looking for printer recommendations, I can say that the MK3S+ is expensive compared to more DIY options, but it&#39;s rock solid reliable, and I haven&#39;t found anything it can&#39;t do (yet).
+    If your hobby is 3d <strong>printers</strong>, it&#39;s not for you.
+    Nothing ever breaks.
+    If your hobby is print<strong>ing</strong>, it&#39;s perfect.
+  </p>
+
+
+  <h3>Electronics</h3>
+
+  <p>A sliding potentiometer is connected between the 5v rail and ground, and its signal is connected to one of the analog pins on the Arduino.
+    That&#39;s the only <em>necessary</em> part, and everything else is just for the displays, which are much more complicated.
+  </p>
+
+  <figure><img style="width: 80%;" src="/assets/blog/balance-box/circuit.svg" title="Seeing how simple this is makes me feel bad for how long it took" alt="A potentiometer has its voltage read by an arduino. The arduino reports the 3 scores to my PC over serial. My PC sends the data to Firestore. A browser fetches the web page from GitHub Pages, and the data from Firestore.">
+    <figcaption>Circuit Diagram, One per slider</figcaption></figure>
+
+  <p>Each <a href="https://en.wikipedia.org/wiki/Seven-segment_display">7-segment display</a> consists of 7 LEDs, each with their own pin named A-G.
+    Because I need to run 3 of these displays, and the arduino doesn&#39;t have 21 logic pins, I have to use a <a href="https://en.wikipedia.org/wiki/Shift_register">shift register</a> for each one.
+    That lets me control the 7 output pins using only 3 pins on the arduino, writing pin states serially and outputting them in parallel.
+  </p>
+
+  <p>To limit the current sent through the LEDs in the display, each LED needs a resistor connected to it.
+    I found it really helpful to use some <a href="https://en.wikipedia.org/wiki/Stripboard#/media/File:UniversalPCB.jpg">TriPad stripboard</a> to hold everything in place.
+  </p>
+
+  <p>Honestly, if I did this again, I&#39;d probably not bother with the 7-segment displays.
+    Instead, I&#39;d use a potentiometer with discrete steps, or mark on the casing where each value was.
+    It <em>does</em> look cool though.
+  </p>
+
+  
+  <h3>Arduino</h3>
+
+  <p>The Arduino polls the 3 potentiometers 60 times per second, and converts their voltages into digits 0-9.
+    If there is any change, it updates the 7-segment displays by writing to the shift registers, and writes the new values to the serial bus.
+  </p>
+
+  <p>Below is a shortened version of <a href="https://github.com/stevenwaterman/Balance/blob/master/arduino/sketch/sketch.ino">the actual code</a>, which only contains the code for one of the 3 balance scores.
+    It uses the pin layouts from the diagram above.
+  </p>
+
+  <figure><figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Arduino</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true"><details class="svelte-19djgjm"><summary class="svelte-19djgjm">&lt;Show 38 identical lines&gt;</summary>
+    <div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-comment">/* ...LED constants setup... */</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-type">void</span> <span class="hljs-title function_">setup</span><span class="hljs-params">()</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="code hidden svelte-19djgjm">  Serial.begin(<span class="hljs-number">9600</span>);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-comment">/* ...pinMode... */</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="code hidden svelte-19djgjm">}</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-type">int</span> value = <span class="hljs-number">0</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-type">void</span> <span class="hljs-title function_">loop</span><span class="hljs-params">()</span> {  </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-type">int</span> newValue = read();</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">if</span> (newValue != <span class="hljs-number">-1</span> &amp;&amp; value != newValue) {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+        <div class="code hidden svelte-19djgjm">    value = newValue;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+        <div class="code hidden svelte-19djgjm">    display();</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+        <div class="code hidden svelte-19djgjm">    Serial.println(value);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">16</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">16</div>
+        <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">17</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">17</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">18</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">18</div>
+        <div class="code hidden svelte-19djgjm">  delay(<span class="hljs-number">16</span>);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">19</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">19</div>
+        <div class="code hidden svelte-19djgjm">}</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">20</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">20</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">21</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">21</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-type">int</span> <span class="hljs-title function_">read</span><span class="hljs-params">()</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">22</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">22</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-type">int</span> sensorValue = analogRead(A5);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">23</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">23</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">24</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">24</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">if</span> (sensorValue &lt; i * <span class="hljs-number">110</span> + <span class="hljs-number">85</span>) { <span class="hljs-keyword">return</span> <span class="hljs-number">9</span> - i; }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">25</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">25</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">if</span> (sensorValue &lt; i * <span class="hljs-number">110</span> + <span class="hljs-number">105</span>) { <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>; }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">26</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">26</div>
+        <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">27</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">27</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">28</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">28</div>
+        <div class="code hidden svelte-19djgjm">}</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">29</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">29</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">30</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">30</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-type">void</span> <span class="hljs-title function_">display</span><span class="hljs-params">()</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">31</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">31</div>
+        <div class="code hidden svelte-19djgjm">  digitalWrite(<span class="hljs-number">4</span>, LOW);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">32</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">32</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">if</span> (value &lt; <span class="hljs-number">0</span> || value &gt; <span class="hljs-number">9</span>) {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">33</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">33</div>
+        <div class="code hidden svelte-19djgjm">    shiftOut(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, MSBFIRST, led_g);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">34</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">34</div>
+        <div class="code hidden svelte-19djgjm">  } <span class="hljs-keyword">else</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">35</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">35</div>
+        <div class="code hidden svelte-19djgjm">    shiftOut(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, MSBFIRST, digits[value]);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">36</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">36</div>
+        <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">37</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">37</div>
+        <div class="code hidden svelte-19djgjm">  digitalWrite(<span class="hljs-number">4</span>, HIGH);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">38</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">38</div>
+        <div class="code hidden svelte-19djgjm">}</div></details>
+
+<div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-comment">/* ...LED constants setup... */</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-type">void</span> <span class="hljs-title function_">setup</span><span class="hljs-params">()</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code hidden svelte-19djgjm">  Serial.begin(<span class="hljs-number">9600</span>);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-comment">/* ...pinMode... */</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="code hidden svelte-19djgjm">}</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-type">int</span> value = <span class="hljs-number">0</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-type">void</span> <span class="hljs-title function_">loop</span><span class="hljs-params">()</span> {  </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-type">int</span> newValue = read();</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">if</span> (newValue != <span class="hljs-number">-1</span> &amp;&amp; value != newValue) {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+  <div class="code hidden svelte-19djgjm">    value = newValue;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+  <div class="code hidden svelte-19djgjm">    display();</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+  <div class="code hidden svelte-19djgjm">    Serial.println(value);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">16</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">16</div>
+  <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">17</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">17</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">18</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">18</div>
+  <div class="code hidden svelte-19djgjm">  delay(<span class="hljs-number">16</span>);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">19</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">19</div>
+  <div class="code hidden svelte-19djgjm">}</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">20</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">20</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">21</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">21</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-type">int</span> <span class="hljs-title function_">read</span><span class="hljs-params">()</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">22</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">22</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-type">int</span> sensorValue = analogRead(A5);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">23</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">23</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">24</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">24</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">if</span> (sensorValue &lt; i * <span class="hljs-number">110</span> + <span class="hljs-number">85</span>) { <span class="hljs-keyword">return</span> <span class="hljs-number">9</span> - i; }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">25</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">25</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">if</span> (sensorValue &lt; i * <span class="hljs-number">110</span> + <span class="hljs-number">105</span>) { <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>; }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">26</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">26</div>
+  <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">27</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">27</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">28</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">28</div>
+  <div class="code hidden svelte-19djgjm">}</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">29</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">29</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">30</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">30</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-type">void</span> <span class="hljs-title function_">display</span><span class="hljs-params">()</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">31</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">31</div>
+  <div class="code hidden svelte-19djgjm">  digitalWrite(<span class="hljs-number">4</span>, LOW);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">32</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">32</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">if</span> (value &lt; <span class="hljs-number">0</span> || value &gt; <span class="hljs-number">9</span>) {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">33</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">33</div>
+  <div class="code hidden svelte-19djgjm">    shiftOut(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, MSBFIRST, led_g);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">34</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">34</div>
+  <div class="code hidden svelte-19djgjm">  } <span class="hljs-keyword">else</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">35</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">35</div>
+  <div class="code hidden svelte-19djgjm">    shiftOut(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, MSBFIRST, digits[value]);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">36</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">36</div>
+  <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">37</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">37</div>
+  <div class="code hidden svelte-19djgjm">  digitalWrite(<span class="hljs-number">4</span>, HIGH);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">38</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">38</div>
+  <div class="code hidden svelte-19djgjm">}</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-comment">/* ...LED constants setup... */</span>
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">setup</span><span class="hljs-params">()</span> {
+  Serial.begin(<span class="hljs-number">9600</span>);
+  <span class="hljs-comment">/* ...pinMode... */</span>
+}
+
+<span class="hljs-type">int</span> value = <span class="hljs-number">0</span>;
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">loop</span><span class="hljs-params">()</span> {  
+  <span class="hljs-type">int</span> newValue = read();
+  <span class="hljs-keyword">if</span> (newValue != <span class="hljs-number">-1</span> &amp;&amp; value != newValue) {
+    value = newValue;
+    display();
+    Serial.println(value);
+  }
+
+  delay(<span class="hljs-number">16</span>);
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">read</span><span class="hljs-params">()</span> {
+  <span class="hljs-type">int</span> sensorValue = analogRead(A5);
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {
+    <span class="hljs-keyword">if</span> (sensorValue &lt; i * <span class="hljs-number">110</span> + <span class="hljs-number">85</span>) { <span class="hljs-keyword">return</span> <span class="hljs-number">9</span> - i; }
+    <span class="hljs-keyword">if</span> (sensorValue &lt; i * <span class="hljs-number">110</span> + <span class="hljs-number">105</span>) { <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>; }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+}
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">display</span><span class="hljs-params">()</span> {
+  digitalWrite(<span class="hljs-number">4</span>, LOW);
+  <span class="hljs-keyword">if</span> (value &lt; <span class="hljs-number">0</span> || value &gt; <span class="hljs-number">9</span>) {
+    shiftOut(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, MSBFIRST, led_g);
+  } <span class="hljs-keyword">else</span> {
+    shiftOut(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, MSBFIRST, digits[value]);
+  }
+  digitalWrite(<span class="hljs-number">4</span>, HIGH);
+}</code>
+</figure></figure>
+
+  <p>I have no doubt that there are errors in that code.
+    Feel free to let me know, but no need to bully me for it - C isn&#39;t my strong suit.
+    In fact that goes for the electronics - actually it goes for everything here.
+    Let&#39;s just agree not to bully people for not knowing things.
+  </p>
+
+  <h3>Serial Listener</h3>
+
+  <p>Currently, the Arduino is just shouting into the void (serially).
+    We need something on the other end, to listen.
+    I wrote a Node.js TypeScript app that runs on my PC, listening for incoming serial data, and sending it to <a href="https://firebase.google.com/docs/firestore">Firestore</a>.
+  </p>
+
+  <figure><figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Serial (Listener)</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true"><details class="svelte-19djgjm"><summary class="svelte-19djgjm">&lt;Show 15 identical lines&gt;</summary>
+    <div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">ReadlineParser</span>, <span class="hljs-title class_">SerialPort</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;serialport&quot;</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">const</span> port = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SerialPort</span>({</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">path</span>: <span class="hljs-string">&quot;/dev/ttyACM0&quot;</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">baudRate</span>: <span class="hljs-number">9600</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="code hidden svelte-19djgjm">});</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">let</span> <span class="hljs-attr">timer</span>: <span class="hljs-title class_">NodeJS</span>.<span class="hljs-property">Timeout</span> | <span class="hljs-literal">null</span> = <span class="hljs-literal">null</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">let</span> <span class="hljs-attr">value</span>: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">const</span> lineStream = port.<span class="hljs-title function_">pipe</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ReadlineParser</span>());</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+        <div class="code hidden svelte-19djgjm">lineStream.<span class="hljs-title function_">on</span>(<span class="hljs-string">&quot;data&quot;</span>, <span class="hljs-function">(<span class="hljs-params">data: <span class="hljs-built_in">string</span></span>) =&gt;</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+        <div class="code hidden svelte-19djgjm">  value = <span class="hljs-built_in">parseInt</span>(data[<span class="hljs-number">0</span>]);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-title function_">pushUpdate</span>();</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+        <div class="code hidden svelte-19djgjm">});</div></details>
+
+<div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">ReadlineParser</span>, <span class="hljs-title class_">SerialPort</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;serialport&quot;</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">const</span> port = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SerialPort</span>({</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">path</span>: <span class="hljs-string">&quot;/dev/ttyACM0&quot;</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">baudRate</span>: <span class="hljs-number">9600</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="code hidden svelte-19djgjm">});</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">let</span> <span class="hljs-attr">timer</span>: <span class="hljs-title class_">NodeJS</span>.<span class="hljs-property">Timeout</span> | <span class="hljs-literal">null</span> = <span class="hljs-literal">null</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">let</span> <span class="hljs-attr">value</span>: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">const</span> lineStream = port.<span class="hljs-title function_">pipe</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ReadlineParser</span>());</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+  <div class="code hidden svelte-19djgjm">lineStream.<span class="hljs-title function_">on</span>(<span class="hljs-string">&quot;data&quot;</span>, <span class="hljs-function">(<span class="hljs-params">data: <span class="hljs-built_in">string</span></span>) =&gt;</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+  <div class="code hidden svelte-19djgjm">  value = <span class="hljs-built_in">parseInt</span>(data[<span class="hljs-number">0</span>]);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-title function_">pushUpdate</span>();</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+  <div class="code hidden svelte-19djgjm">});</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">ReadlineParser</span>, <span class="hljs-title class_">SerialPort</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;serialport&quot;</span>;
+
+<span class="hljs-keyword">const</span> port = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SerialPort</span>({
+  <span class="hljs-attr">path</span>: <span class="hljs-string">&quot;/dev/ttyACM0&quot;</span>,
+  <span class="hljs-attr">baudRate</span>: <span class="hljs-number">9600</span>,
+});
+
+<span class="hljs-keyword">let</span> <span class="hljs-attr">timer</span>: <span class="hljs-title class_">NodeJS</span>.<span class="hljs-property">Timeout</span> | <span class="hljs-literal">null</span> = <span class="hljs-literal">null</span>;
+<span class="hljs-keyword">let</span> <span class="hljs-attr">value</span>: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">const</span> lineStream = port.<span class="hljs-title function_">pipe</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ReadlineParser</span>());
+lineStream.<span class="hljs-title function_">on</span>(<span class="hljs-string">&quot;data&quot;</span>, <span class="hljs-function">(<span class="hljs-params">data: <span class="hljs-built_in">string</span></span>) =&gt;</span> {
+  value = <span class="hljs-built_in">parseInt</span>(data[<span class="hljs-number">0</span>]);
+  <span class="hljs-title function_">pushUpdate</span>();
+});</code>
+</figure></figure>
+
+  <p>In the Firestore database, one document (<code>current</code>) is available for anyone to read, which contains my current balance scores.
+    It gets overwritten each time I adjust a slider.
+    I also create a document in the <code>historic</code> collection, which is there for when I want to analyse the data later on.
+  </p>
+
+  <figure><figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Serial (Firestore)</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true"><details class="svelte-19djgjm"><summary class="svelte-19djgjm">&lt;Show 10 identical lines&gt;</summary>
+    <div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">const</span> currentDoc = db.<span class="hljs-title function_">doc</span>(<span class="hljs-string">&quot;current/current&quot;</span>);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">const</span> historicCollection = db.<span class="hljs-title function_">collection</span>(<span class="hljs-string">&quot;/historic&quot;</span>);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">pushUpdate</span>(<span class="hljs-params"></span>) {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">const</span> timestamp = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>().<span class="hljs-title function_">getTime</span>() / <span class="hljs-number">1000</span>);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">const</span> data = { value, timestamp };</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>([currentDoc.<span class="hljs-title function_">update</span>(data), historicCollection.<span class="hljs-title function_">add</span>(data)]);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Updated <span class="hljs-subst">${value}</span>`</span>);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="code hidden svelte-19djgjm">}</div></details>
+
+<div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">const</span> currentDoc = db.<span class="hljs-title function_">doc</span>(<span class="hljs-string">&quot;current/current&quot;</span>);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">const</span> historicCollection = db.<span class="hljs-title function_">collection</span>(<span class="hljs-string">&quot;/historic&quot;</span>);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">pushUpdate</span>(<span class="hljs-params"></span>) {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">const</span> timestamp = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>().<span class="hljs-title function_">getTime</span>() / <span class="hljs-number">1000</span>);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">const</span> data = { value, timestamp };</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>([currentDoc.<span class="hljs-title function_">update</span>(data), historicCollection.<span class="hljs-title function_">add</span>(data)]);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Updated <span class="hljs-subst">${value}</span>`</span>);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="code hidden svelte-19djgjm">}</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">const</span> currentDoc = db.<span class="hljs-title function_">doc</span>(<span class="hljs-string">&quot;current/current&quot;</span>);
+<span class="hljs-keyword">const</span> historicCollection = db.<span class="hljs-title function_">collection</span>(<span class="hljs-string">&quot;/historic&quot;</span>);
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">pushUpdate</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> timestamp = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>().<span class="hljs-title function_">getTime</span>() / <span class="hljs-number">1000</span>);
+  <span class="hljs-keyword">const</span> data = { value, timestamp };
+
+  <span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>([currentDoc.<span class="hljs-title function_">update</span>(data), historicCollection.<span class="hljs-title function_">add</span>(data)]);
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Updated <span class="hljs-subst">${value}</span>`</span>);
+}</code>
+</figure></figure>
+
+  <p>In <a href="https://github.com/stevenwaterman/Balance/blob/master/serial/src/index.ts">the real code</a>, there&#39;s also a 1-second debounce timer.
+    This means that no database writes happen until I stop moving the slider.
+    It also means that Firestore doesn&#39;t get overwhelmed, because it&#39;s not designed to handle more than one update per second on a single document.
+  </p>
+
+  <p>For security, I have the database configured to deny all writes, and then I use the <code>firebase-admin</code> package to bypass those permissions.
+    This requires a certificate stored locally, which gets read from storage and passed to <code>firebase-admin</code>.
+    In the future I&#39;ll probably integrate authentication so I can update my scores from my phone too.
+  </p>
+
+  <p>I expect that this will sit completely within Firestore&#39;s free tier - with the only potential cost being $0.06 per 100,000 reads, after the first 50,000 per day.
+    By the time $0.0000006 per page view gets expensive, everything else will have broken.
+  </p>
+
+  <h3>Website</h3>
+
+  <p>Finally, we get to the little web app I made that displays my current balance score, <a href="https://stevenwaterman.uk/Balance">https://stevenwaterman.uk/Balance</a>.
+    Like most of my personal projects, it&#39;s written in <a href="https://svelte.dev">Svelte</a>, hosted on <a href="https://pages.github.com/">GitHub Pages</a>, and <a href="https://github.com/stevenwaterman/Balance/blob/master/.github/workflows/main.yml">deployed</a> with <a href="https://github.com/features/actions">GitHub Actions</a>.
+  </p>
+
+  <p>It uses Firestore&#39;s <a href="https://firebase.google.com/docs/firestore/query-data/listen">realtime update</a> feature to listen for changes.
+    Whenever the document is updated, a callback is triggered, which updates the variables, causing Svelte to update the page.
+    Following the trend, this code has been cut down to only show one of the three values:
+  </p>
+
+  <figure><figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Website</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true"><details class="svelte-19djgjm"><summary class="svelte-19djgjm">&lt;Show 15 identical lines&gt;</summary>
+    <div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript"></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">const</span> currentDoc = <span class="hljs-title function_">doc</span>(db, <span class="hljs-string">&quot;current&quot;</span>, <span class="hljs-string">&quot;current&quot;</span>);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-title function_">onSnapshot</span>(currentDoc, <span class="hljs-function">(<span class="hljs-params">doc</span>) =&gt;</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">const</span> data = doc.<span class="hljs-title function_">data</span>();</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">if</span> (data !== <span class="hljs-literal">undefined</span>) {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="code hidden svelte-19djgjm">      value = data.<span class="hljs-property">value</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="code hidden svelte-19djgjm">    }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="code hidden svelte-19djgjm">  });</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">let</span> <span class="hljs-attr">value</span>: number | <span class="hljs-literal">undefined</span> = <span class="hljs-literal">undefined</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+        <div class="code hidden svelte-19djgjm"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+        <div class="code hidden svelte-19djgjm">{#if value !== undefined}</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>{value}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+        <div class="code hidden svelte-19djgjm">{/if}</div></details>
+
+<div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript"></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">const</span> currentDoc = <span class="hljs-title function_">doc</span>(db, <span class="hljs-string">&quot;current&quot;</span>, <span class="hljs-string">&quot;current&quot;</span>);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-title function_">onSnapshot</span>(currentDoc, <span class="hljs-function">(<span class="hljs-params">doc</span>) =&gt;</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">const</span> data = doc.<span class="hljs-title function_">data</span>();</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">if</span> (data !== <span class="hljs-literal">undefined</span>) {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="code hidden svelte-19djgjm">      value = data.<span class="hljs-property">value</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="code hidden svelte-19djgjm">    }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="code hidden svelte-19djgjm">  });</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">let</span> <span class="hljs-attr">value</span>: number | <span class="hljs-literal">undefined</span> = <span class="hljs-literal">undefined</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+  <div class="code hidden svelte-19djgjm"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+  <div class="code hidden svelte-19djgjm">{#if value !== undefined}</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>{value}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+  <div class="code hidden svelte-19djgjm">{/if}</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">const</span> currentDoc = <span class="hljs-title function_">doc</span>(db, <span class="hljs-string">&quot;current&quot;</span>, <span class="hljs-string">&quot;current&quot;</span>);
+  <span class="hljs-title function_">onSnapshot</span>(currentDoc, <span class="hljs-function">(<span class="hljs-params">doc</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> data = doc.<span class="hljs-title function_">data</span>();
+    <span class="hljs-keyword">if</span> (data !== <span class="hljs-literal">undefined</span>) {
+      value = data.<span class="hljs-property">value</span>;
+    }
+  });
+
+  <span class="hljs-keyword">let</span> <span class="hljs-attr">value</span>: number | <span class="hljs-literal">undefined</span> = <span class="hljs-literal">undefined</span>;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+{#if value !== undefined}
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>{value}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+{/if}</code>
+</figure></figure>
+
+  <p>The <a href="https://github.com/stevenwaterman/Balance/blob/master/web/src/routes/index.svelte">real code</a> has a load of extra styling, some transitions, and all of the Firestore config code.
+    Then, to display the balance scores on this blog, I just add an <code>iframe</code>, and it all works nicely!
+    (I <a href="/you-dont-need-js">still refuse</a> to enable JS on this blog)
+  </p>
+
+  <h2>Conclusion</h2>
+
+  <p>This project took much, <strong>much</strong> longer than I expected.
+    Honestly, it&#39;s a good thing that I didn&#39;t have the balance scores set up at the time, because I was <strong>not</strong> having a good time.
+    I&#39;m not showing you inside the box, because it&#39;s a complete mess and I&#39;m ashamed of it.
+    But it works!
+  </p>
+
+  <p>Everyone can see how I feel, and can get a little bit of context for my actions!
+    I&#39;m committing to being vulnerable, to sharing my knowledge, and to Productive Reasoning.
+  </p>
+
+  <p>Next time you&#39;re in a meeting, try and think about which model you&#39;re using.
+    Try and share your emotions, and the knowledge that you are keeping to yourself.
+    Introduce others to Balance Scores, Productive Reasoning, and Radical Vulnerability.
+  </p>
+
+  <p>If you want to make your own Balance box, everything you need is available on <a href="https://github.com/stevenwaterman/Balance">GitHub</a>.
+  </p>
+
+  <p>Good luck, and have fun!
+  </p>
+
+					</div></article></div>
+
+		
+
+<div class="textContainer svelte-11sshxl" style="position: sticky; top: 1em;"><div class="authorCol svelte-1ghjldr"><div class="details svelte-1ghjldr"><img src="/assets/blog/authors/SteWaterman.jpg" alt="Steven Waterman" class="svelte-1ghjldr">
+			<h2 class="name svelte-1ghjldr">Steven Waterman</h2>
+			<p class="job svelte-1ghjldr">Over-thinker</p>
+			</div>
+
+		
+
+		<ul class="links svelte-1ghjldr"><li class="svelte-1ghjldr"><a href="mailto:blog@stevenwaterman.uk" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 512 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(256 256)" transform-origin="128 0"><g transform="translate(0,0) scale(1,1)"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z" fill="currentColor" transform="translate(-256 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">blog@stevenwaterman.uk</span></a></li>
+
+			<li class="svelte-1ghjldr"><a href="https://calendly.com/stewaterman/30min" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 448 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(224 256)" transform-origin="112 0"><g transform="translate(0,0) scale(1,1)"><path d="M436 160H12c-6.627 0-12-5.373-12-12v-36c0-26.51 21.49-48 48-48h48V12c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v52h128V12c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v52h48c26.51 0 48 21.49 48 48v36c0 6.627-5.373 12-12 12zM12 192h424c6.627 0 12 5.373 12 12v260c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V204c0-6.627 5.373-12 12-12zm333.296 95.947l-28.169-28.398c-4.667-4.705-12.265-4.736-16.97-.068L194.12 364.665l-45.98-46.352c-4.667-4.705-12.266-4.736-16.971-.068l-28.397 28.17c-4.705 4.667-4.736 12.265-.068 16.97l82.601 83.269c4.667 4.705 12.265 4.736 16.97.068l142.953-141.805c4.705-4.667 4.736-12.265.068-16.97z" fill="currentColor" transform="translate(-224 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">Office Hours</span></a></li>
+
+			<li class="svelte-1ghjldr"><a href="https://github.com/StevenWaterman/" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 496 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(248 256)" transform-origin="124 0"><g transform="translate(0,0) scale(1,1)"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" fill="currentColor" transform="translate(-248 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">@StevenWaterman</span></a></li>
+
+			<li class="svelte-1ghjldr"><a href="https://twitter.com/SteWaterman/" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 512 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(256 256)" transform-origin="128 0"><g transform="translate(0,0) scale(1,1)"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z" fill="currentColor" transform="translate(-256 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">@SteWaterman</span></a></li>
+
+			<li class="svelte-1ghjldr"><a href="https://twitch.tv/SteWaterman/" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 512 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(256 256)" transform-origin="128 0"><g transform="translate(0,0) scale(1,1)"><path d="M391.17,103.47H352.54v109.7h38.63ZM285,103H246.37V212.75H285ZM120.83,0,24.31,91.42V420.58H140.14V512l96.53-91.42h77.25L487.69,256V0ZM449.07,237.75l-77.22,73.12H294.61l-67.6,64v-64H140.14V36.58H449.07Z" fill="currentColor" transform="translate(-256 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">@SteWaterman</span></a></li>
+
+			<li class="svelte-1ghjldr"><a href="https://www.linkedin.com/in/steven-waterman/" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 448 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(224 256)" transform-origin="112 0"><g transform="translate(0,0) scale(1,1)"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" fill="currentColor" transform="translate(-224 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">@steven-waterman</span></a></li>
+
+			</ul></div></div></div></div>
+
+
+
+
+	</body>
+</html>

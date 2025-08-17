@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="description"
+			content="I'm a software developer, technical coach, over-analyser. This is where I do those things. Mostly over-analysing."
+		/>
+		<link rel="icon" href="/favicon.png" />
+		<link rel="stylesheet" href="/global.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta http-equiv="content-security-policy" content=""><title>Planning 56 sprints per second with SAT4J</title><meta name="description" content="SAT solvers are surprisingly fast and probably under-used. Could one help us improve sprint planning meetings? Maybe, but first you&#39;ll have to change the way you think about user stories."><link rel="alternate" type="application/rss+xml" href="https://stevenwaterman.uk/rss.xml" title="Steven Waterman's Blog"><link rel="canonical" href="https://stevenwaterman.uk/sprint-with-sat"><meta property="og:title" content="Planning 56 sprints per second with SAT4J"><meta property="og:description" content="SAT solvers are surprisingly fast and probably under-used. Could one help us improve sprint planning meetings? Maybe, but first you&#39;ll have to change the way you think about user stories."><meta property="og:image" content="https://stevenwaterman.uk/assets/blog/sprint-with-sat/header.png"><meta property="og:type" content="article"><meta property="og:site_name" content="Steven Waterman"><meta property="og:url" content="https://stevenwaterman.uk/sprint-with-sat"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@SteWaterman"><meta name="twitter:image" content="https://stevenwaterman.uk/assets/blog/sprint-with-sat/header.png"><meta name="twitter:creator" content="@SteWaterman">
+	<link rel="stylesheet" href="/_app/assets/vendor-ec9510ad.css">
+	<link rel="stylesheet" href="/_app/assets/BlogPost-27f41e79.css">
+	<link rel="stylesheet" href="/_app/assets/Template-8f63f35a.css">
+	</head>
+	<body>
+		
+
+
+
+
+
+
+<div class="gradient svelte-1thle15"><div class="panX svelte-1atbztl"><div class="panY svelte-1atbztl"><div class="gradient svelte-1atbztl"></div></div></div></div>
+
+<nav class="svelte-1nxg8xt"><a class="logoLink svelte-1nxg8xt" href="/"><img class="logo svelte-1nxg8xt" src="/assets/logoWhite.svg" alt="Logo">
+		<span class="logoText svelte-1nxg8xt">SW</span></a>
+
+	<div class="burgerMenuContainer svelte-1nxg8xt"><span tabindex="0" class="burgerMenuOpen svelte-1nxg8xt"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 448 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(224 256)" transform-origin="112 0"><g transform="translate(0,0) scale(1,1)"><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" fill="currentColor" transform="translate(-224 -256)"></path></g></g></svg></span>
+
+		<ul class="menu svelte-1nxg8xt"><li class="svelte-1nxg8xt"><span class="label svelte-101pjyx"><a class="topLink svelte-101pjyx" href="/">Blog</a>
+  </span></li>
+
+			<li class="svelte-1nxg8xt"><span class="label svelte-101pjyx"><a class="topLink svelte-101pjyx" href="/assets/cv.pdf">CV</a>
+  </span></li>
+
+			<li class="svelte-1nxg8xt"><span class="label svelte-101pjyx"><a class="topLink svelte-101pjyx">Socials</a>
+  <div class="menu svelte-101pjyx"><div class="menu-arrow svelte-101pjyx"><div class="menu-arrow-fill svelte-101pjyx"></div></div>
+      <div class="menu-content svelte-101pjyx"><ul class="svelte-101pjyx"><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://twitter.com/SteWaterman/">Twitter</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://github.com/StevenWaterman/">GitHub</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://www.linkedin.com/in/steven-waterman/">LinkedIn</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://twitch.tv/SteWaterman/">Twitch</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="mailto:website@stevenwaterman.uk">Email</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://calendly.com/stewaterman/30min">Calendly</a>
+            </li></ul></div></div></span></li>
+
+			<li class="svelte-1nxg8xt"><span class="label svelte-101pjyx"><a class="topLink svelte-101pjyx" href="/#community">Projects</a>
+  <div class="menu svelte-101pjyx"><div class="menu-arrow svelte-101pjyx"><div class="menu-arrow-fill svelte-101pjyx"></div></div>
+      <div class="menu-content svelte-101pjyx"><ul class="svelte-101pjyx"><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://tunescape07.com">TuneScape</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://stevenwaterman.uk/Balance/">Balance Scores</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://lexoral.com">Lexoral</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://stevenwaterman.uk/musetree/">MuseTree</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://stevenwaterman.uk/NoTimeToStalk">No Time to Stalk</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://github.com/stevenwaterman/narration.studio">Narration.Studio</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://stevenwaterman.uk/Spiro/">Spiro</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://linktr.ee/prevoid_art">Art</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://soundcloud.com/user-872603169">Music</a>
+            </li></ul></div></div></span></li>
+
+			<li class="chat svelte-1nxg8xt"><div class="container svelte-1atmfra">
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+  <button onclick="Calendly.initPopupWidget({url: &#39;https://calendly.com/stewaterman/30min&#39;});return false;" class="svelte-1atmfra">Let&#39;s Chat<span class="arrow svelte-1atmfra">&gt;</span></button>
+  </div></li></ul></div>
+</nav>
+
+<div class="column svelte-1thle15"><div class="grid svelte-1quqrs0"><div class="textContainer svelte-11sshxl" style=""><article><a href="/assets/blog/sprint-with-sat/header.png"><img class="headerImage svelte-1quqrs0" src="/assets/blog/sprint-with-sat/header.png" style="object-fit: cover; object-position: center;" alt="Header"></a>
+				<div class="padded svelte-1quqrs0"><div class="metadata svelte-1quqrs0"><p class="type svelte-1quqrs0">technical</p>
+						<p class="date svelte-1quqrs0">Published <time>2020-01-16</time></p>
+						<p class="author svelte-1quqrs0">By Steven Waterman</p></div>
+
+					<h1 class="svelte-1quqrs0">Planning 56 sprints per second with SAT4J</h1>
+
+					<div class="topSection svelte-1quqrs0"><div class="left"><summary class="svelte-1quqrs0">SAT solvers are surprisingly fast and probably under-used. Could one help us improve sprint planning meetings? Maybe, but first you&#39;ll have to change the way you think about user stories.</summary>
+
+							<p class="original svelte-1quqrs0">Originally posted on <a href="https://blog.scottlogic.com/2020/01/16/planning-56-sprints-per-second-with-sat4j.html">the Scott Logic blog</a></p>
+
+							</div>
+
+						</div>
+
+					<hr class="svelte-1quqrs0">
+
+					<p>While researching <a href="https://github.com/stevenwaterman/Minesweeper-Constrained">constraint-based minesweeper solvers</a>, I discovered that <a href="https://pwmarcz.pl/blog/kaboom/">many others</a> had utilised SAT solvers in their algorithms.
+    I had some exposure to SAT solvers in university, but this was the first time I saw them used in the wild.
+    Around the same time, I was thinking back to a painful sprint planning meeting during our Scott Logic Grad Project.
+    Could I use a SAT solver to improve our sprint planning meetings in future?
+  </p>
+
+  <p>The full solver code is <a href="https://github.com/stevenwaterman/sprint-sat">available on GitHub</a>.
+  </p>
+
+  <h2>A <em>what</em> solver?</h2>
+
+  <p>SAT solvers are programs which solve the <a href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem">boolean satisfiability problem</a> (aka SAT).
+    Since boolean satisfiability is <a href="https://xlinux.nist.gov/dads/HTML/npcomplete.html">NP-Complete</a>, a SAT solver can be used to solve almost anything.
+    In the worst case, they still take <a href="https://en.wikipedia.org/wiki/Time_complexity#Exponential_time">exponential time</a>, but they are <a href="https://codingnest.com/modern-sat-solvers-fast-neat-underused-part-1-of-n/">surprisingly fast for everyday use</a>.
+  </p>
+
+  <p>To apply a SAT solver to a real-life problem, we need to translate it into a form our solver can understand.
+    SAT problems come in the form: <code>Set each variable {a,b,c} to 0 or 1 such that:</code></p>
+
+  <blockquote>Set each variable <code>{a,b,c}</code> to <code>0</code> or <code>1</code> such that:
+
+    <ul><li><code>a = 1</code> or <code>c = 1</code></li>
+      <li><code>a = 0</code> or <code>b = 0</code> or <code>c = 0</code></li>
+      <li><code>b = 0</code> or <code>c = 1</code></li></ul></blockquote>
+
+  <p>There are many solvers available online, but I chose the <a href="https://www.sat4j.org/">SAT4J</a> Java library.
+    It provides two extra features that were invaluable:
+  </p>
+
+  <ul><li><a href="https://www.cs.cmu.edu/afs/cs/project/jair/pub/volume21/dixon04a-html/node14.html"><strong>Pseudo-boolean constraints</strong></a> let you add constraints in the form <code>Xa + Yb + Zc is at least/at most/exactly K</code> for given integers <code>{K,X,Y,Z}</code>.</li>
+    <li><a href="https://en.wikipedia.org/wiki/Maximum_satisfiability_problem#Weighted_MAX-SAT"><strong>Weighted MAX-SAT</strong></a> computes the <code>value</code> of each solution and picks the one with highest value. The value is computed using a function of the form <code>Ra + Sb + Tc</code> given nonnegative integers <code>{R,S,T}</code>.</li></ul>
+
+
+  <h2>Applying MAX-SAT to sprint planning</h2>
+
+  <p>In Scrum, <a href="https://www.agilealliance.org/glossary/sprint-planning/">sprint planning</a> meetings involve deciding which work from the product backlog to perform in the next sprint.
+    The product team estimates the amount of work required for each user story.
+    The Product Owner decides which user stories are highest priority based on the amount of value delivered to the client.
+    They work together to decide how to maximise the amount of value created in the sprint.
+  </p>
+
+  <p>It can be difficult to translate problems into MAX-SAT, but this one seems trivial:
+  </p>
+
+  <ol><li>Create a variable for each user story. If a variable is set to <code>1</code>, it is included in the next sprint</li>
+    <li>Estimate the work of each story <code>e(x)</code>, in <a href="https://www.mountaingoatsoftware.com/blog/what-are-story-points">Story Points</a></li>
+    <li>Estimate the value of each story <code>v(x)</code>, in &#39;Value Points&#39;</li>
+    <li>Constrain the total amount of work to be no more than the story point budget. This is a pseudo-boolean constraint in the form <code>e(a)*a + e(b)*b + ... &lt;= budget</code></li>
+    <li>Maximise the function <code>v(a)*a + v(b)*b + ...</code></li></ol>
+
+  <p>Value Points (which I just made up) and Story Points are arbitrary scales and each team can decide how to use them.
+    The only requirement is proportionality - on either scale, three 1 point tasks should equal one 3 point task.
+  </p>
+
+  <h2>Reality is complicated</h2>
+
+  <p>For the rest of the article, I&#39;ll be referring to a real (slightly adjusted) sprint planning meeting.
+    We had 5 user stories:
+  </p>
+  
+  <ul><li>As a user, I want to be able to log in and read posts</li>
+    <li>As a user, I want to be able to sign up</li>
+    <li>As an author, I want my name to appear on all my posts</li>
+    <li>As an author, I want to be able to delete my posts</li>
+    <li>As an admin, I want to be able to register authors</li></ul>
+
+  <p>Deciding <code>e(x)</code> for each of these stories was easy at first:
+  </p>
+
+  <blockquote>The login task is quite big because we&#39;ll need an authentication framework, let&#39;s call it a 3
+  </blockquote>
+
+  <blockquote>The sign-up task is even bigger than that! The UX alone makes it into a 5
+  </blockquote>
+
+  <blockquote>Wait... it&#39;s only a 5 if we haven&#39;t done login yet - otherwise it&#39;s only a 3
+  </blockquote>
+
+  <p>In the end, the real estimates looked like this, where the final cost depended on which other tasks were in the sprint:
+  </p>
+
+  <ul><li><code>User Login</code>: 1-3</li>
+    <li><code>User Signup</code>: 3-5</li>
+    <li><code>Author Names</code>: 1-6</li>
+    <li><code>Author Delete</code>: 2-7</li>
+    <li><code>Register Authors</code>: 2-6</li></ul>
+
+  <p>I was going to include the full list of dependencies, but it was too long.
+    Instead, I created a dependency graph for you, which will make it much clearer:
+  </p>
+
+  <figure><img src="/assets/blog/sprint-with-sat/header.png" title="How our stories affect each other" alt="The graph is just a deliberately incomprehensible mess of lines."></figure>
+
+  <p>...Nope.
+  </p>
+
+  <p>If the development team can&#39;t decide a single number for each user story, we can&#39;t program our solver.
+    It&#39;s useless!
+  </p>
+
+  <h2>Circular Dependencies</h2>
+
+  <p>The dependencies between our stories are circular.
+    They&#39;re not <em>hard</em> dependencies, but they affect the estimate for the task.
+    That makes it impossible to give a single estimate for a given task, as we don&#39;t know what other work will be in the sprint.
+  </p>
+
+  <p>The real issue is that we&#39;re being implicit about the tech tasks.
+    These tasks don&#39;t provide value to the user, but user stories depend on them being done, and they still take effort.
+    For example, the login and signup stories both depend on an authentication framework being added.
+  </p>
+
+  <h2>Solving the Problem</h2>
+
+  <p>We need to separate tasks into two categories: <em>tech</em> <em>story</em>.
+    Tech tasks don&#39;t directly provide any value to the client, so they should only be completed to unblock a user story.
+    This means that all our soft dependencies become hard dependencies.
+    However, it also breaks the circular dependencies, solving our issue.
+  </p>
+
+  <p>In the case of login and signup, you end up with this:
+  </p>
+
+  <ul><li>(Tech) <code>Framework</code>: 2</li>
+    <li>(Story) <code>Login</code>: 1 (requires <code>Framework</code>)</li>
+    <li>(Story) <code>Signup</code>: 3 (requires <code>Framework</code>)</li></ul>
+
+  <p>The total cost of <code>Login</code> is 3, as before.
+    In the process of completing <code>Login</code>, we completed <code>Framework</code>, meaning <code>Signup</code> is unblocked and will only cost 3.
+    After extracting any tech tasks, and asking the PO to estimate the value of each user story, our final task list looks like this:
+  </p>
+
+  <figure><table><thead><tr><th><strong>ID</strong></th>
+          <th><strong>Task</strong></th>
+          <th><strong>Estimate</strong></th>
+          <th><strong>Value</strong></th>
+          <th><strong>Requires</strong></th></tr></thead>
+      <tbody><tr><td>a</td>
+          <td>Auth Framework</td>
+          <td>2</td>
+          <td>0</td>
+          <td></td></tr>
+
+        <tr><td>b</td>
+          <td>User Login</td>
+          <td>1</td>
+          <td>3</td>
+          <td></td></tr>
+
+        <tr><td>c</td>
+          <td>User Signup</td>
+          <td>3</td>
+          <td>1</td>
+          <td>a</td></tr>
+
+        <tr><td>d</td>
+          <td>Role-Level Auth</td>
+          <td>2</td>
+          <td>0</td>
+          <td>a</td></tr>
+
+        <tr><td>e</td>
+          <td>Store Author</td>
+          <td>1</td>
+          <td>0</td>
+          <td>a</td></tr>
+
+        <tr><td>f</td>
+          <td>Register Authors</td>
+          <td>2</td>
+          <td>1</td>
+          <td>d</td></tr>
+
+        <tr><td>g</td>
+          <td>Author Names</td>
+          <td>1</td>
+          <td>2</td>
+          <td>d e</td></tr>
+
+        <tr><td>h</td>
+          <td>Author Delete</td>
+          <td>2</td>
+          <td>2</td>
+          <td>d e</td></tr></tbody></table></figure>
+  
+  <p>When graphing the dependencies, you can see that the situation is much simpler:
+  </p>
+
+  <figure><img src="/assets/blog/sprint-with-sat/stories-clean.png" title="We can remove the circular dependencies by adding more tasks" alt="The graph is much neater and has no circular dependencies."></figure>
+
+  <h2>Updating the Solver</h2>
+
+  <p>Our first version of the solver didn&#39;t handle blocked tasks, and we assumed that any task could be chosen regardless of the other tasks in the sprint.
+    We need to stop the solver from creating sprints where we do tasks without their dependencies.
+  </p>
+
+  <p>In mathematical terms, if we have tasks <code>a</code> and <code>b</code>, where <code>b</code> depends on <code>a</code>, we can say <code>b implies a</code>.
+    If <code>b</code> is included in the sprint, we know that <code>a</code> must also be included to satisfy the <code>b</code>&#39;s dependency on <code>a</code>.
+    This is the same as <code>(a and b) or (not b)</code>, which simplifies to <code>a or not b</code>.
+  </p>
+
+  <p>Thankfully, <code>a or not b</code> is a constraint that our SAT solver can understand!
+    For each dependency, we can add that constraint.
+    For the backlog described previously, our final SAT problem is:
+  </p>
+
+  <ul><li>Given variables <code>{a,b,...,h}</code></li>
+    <li>Maximise <code>3a + c + f + 2g + 2h</code> such that:</li>
+    <ul><li><code>2a + b + 3c + 2d + e + 2f + g + 2h &lt;= budget</code></li>
+      <li><code>a || !b</code>, <code>a || !c</code>, <code>a || !d</code>, <code>a || !e</code></li>
+      <li><code>d || !f</code>, <code>d || !g</code>, <code>d || !h</code></li>
+      <li><code>e || !g</code>, <code>e || !h</code></li></ul></ul>
+
+  <h2>Is it useful?</h2>
+
+  <p>It could be.
+    It&#39;s not going to replace your Product Owner, but there&#39;s a lot of benefits:
+  </p>
+
+  <ul><li>Guaranteed to find the optimal solution</li>
+    <li>Very fast, taking a few milliseconds for our tasks</li>
+    <li>Allows for quick experimentation:</li>
+    <ul><li>If we budget 8 points, we only use 7. What if we commit to 9 points?</li>
+      <li>What happens if we estimate this story as a 3?</li>
+      <li>The client suddenly values task <code>c</code> as a 3. What should change in the sprint?</li></ul></ul>
+
+  <p>We can even run the solver for all possible budgets to quickly see the options.
+    The total time to run 14 instances of the problem was 250ms.
+    That time includes set-up and outputting a table similar to this one:
+  </p>
+
+  <figure><table><thead><tr><th><strong>Budget</strong></th>
+          <th><code>b</code></th>
+          <th><code>c</code></th>
+          <th><code>f</code></th>
+          <th><code>g</code></th>
+          <th><code>h</code></th>
+          <th><strong>Cost</strong></th>
+          <th><strong>Value</strong></th></tr></thead>
+      <tbody><tr><td>1</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>0</td>
+          <td>0</td></tr>
+
+        <tr><td>2</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>0</td>
+          <td>0</td></tr>
+
+        <tr><td>3</td>
+          <td>✔</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>3</td>
+          <td>3</td></tr>
+
+        <tr><td>4</td>
+          <td>✔</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>3</td>
+          <td>3</td></tr>
+
+        <tr><td>5</td>
+          <td>✔</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>3</td>
+          <td>3</td></tr>
+
+        <tr><td>6</td>
+          <td>✔</td>
+          <td>✔</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>6</td>
+          <td>4</td></tr>
+
+        <tr><td>7</td>
+          <td>✔</td>
+          <td></td>
+          <td></td>
+          <td>✔</td>
+          <td></td>
+          <td>7</td>
+          <td>5</td></tr>
+
+        <tr><td>8</td>
+          <td>✔</td>
+          <td></td>
+          <td></td>
+          <td>✔</td>
+          <td></td>
+          <td>7</td>
+          <td>5</td></tr>
+
+        <tr><td>9</td>
+          <td>✔</td>
+          <td></td>
+          <td></td>
+          <td>✔</td>
+          <td>✔</td>
+          <td>9</td>
+          <td>7</td></tr>
+
+        <tr><td>10</td>
+          <td>✔</td>
+          <td></td>
+          <td></td>
+          <td>✔</td>
+          <td>✔</td>
+          <td>9</td>
+          <td>7</td></tr>
+
+        <tr><td>11</td>
+          <td>✔</td>
+          <td></td>
+          <td>✔</td>
+          <td>✔</td>
+          <td>✔</td>
+          <td>11</td>
+          <td>8</td></tr>
+
+        <tr><td>12</td>
+          <td>✔</td>
+          <td>✔</td>
+          <td></td>
+          <td>✔</td>
+          <td>✔</td>
+          <td>12</td>
+          <td>8</td></tr>
+
+        <tr><td>13</td>
+          <td>✔</td>
+          <td>✔</td>
+          <td></td>
+          <td>✔</td>
+          <td>✔</td>
+          <td>12</td>
+          <td>8</td></tr>
+
+        <tr><td>14</td>
+          <td>✔</td>
+          <td>✔</td>
+          <td>✔</td>
+          <td>✔</td>
+          <td>✔</td>
+          <td>14</td>
+          <td>9</td></tr></tbody></table></figure>
+
+  <p>However, it&#39;s not all good.
+    Our solver doesn&#39;t help with the hardest part of sprint planning - estimating the size and value of each task.
+    Additionally, the sprints it creates aren&#39;t very cohesive.
+    They are more like a collection of unrelated tasks.
+    When all the tasks in a sprint work towards a single <a href="https://www.visual-paradigm.com/scrum/write-sprint-goal/">sprint goal</a>, developers can better support each other, and clients can give more relevant feedback.
+  </p>
+
+  <p>This issue is like the circular dependencies we saw before.
+    Tasks provide more value when other similar tasks are also included in the sprint.
+    However, our solver does not support a dynamic value function, so we&#39;ll just have to keep using humans for now.
+  </p>
+
+  <p>Also, it&#39;s important to remember that SAT has exponential time complexity.
+    As we add more tasks, it gets slow.
+    Very slow:
+  </p>
+
+  <figure><img src="/assets/blog/sprint-with-sat/exponential.png" title="How long does it take to run the solver for a given number of tasks" alt="The time taken to compute the optimal is exponential. For 10 tasks, it takes millisenconds. For 100, it can take minutes. For 150, it can take over an hour."></figure>
+
+  <p>It might be best to keep your backlog small.
+    If we extrapolate to 300 tasks on the backlog, we get a predicted runtime of <strong>600,000 years</strong>.
+    Your sprint will probably be done by then...
+  </p>
+
+  <h2>Conclusion</h2>
+
+  <p>Your Sprint Planning meetings are still valuable, and so is your Product Owner.
+    You should probably keep both.
+    However, there are still a few lessons we can learn:
+  </p>
+
+  <ul><li>SAT solvers are useful and surprisingly easy to use</li>
+    <li>The &#39;optimal&#39; sprint might not be the best one</li>
+    <li>Exponential time is still exponential, even when it&#39;s fast</li></ul>
+
+					</div></article></div>
+
+		
+
+<div class="textContainer svelte-11sshxl" style="position: sticky; top: 1em;"><div class="authorCol svelte-1ghjldr"><div class="details svelte-1ghjldr"><img src="/assets/blog/authors/SteWaterman.jpg" alt="Steven Waterman" class="svelte-1ghjldr">
+			<h2 class="name svelte-1ghjldr">Steven Waterman</h2>
+			<p class="job svelte-1ghjldr">Over-thinker</p>
+			</div>
+
+		
+
+		<ul class="links svelte-1ghjldr"><li class="svelte-1ghjldr"><a href="mailto:blog@stevenwaterman.uk" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 512 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(256 256)" transform-origin="128 0"><g transform="translate(0,0) scale(1,1)"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z" fill="currentColor" transform="translate(-256 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">blog@stevenwaterman.uk</span></a></li>
+
+			<li class="svelte-1ghjldr"><a href="https://calendly.com/stewaterman/30min" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 448 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(224 256)" transform-origin="112 0"><g transform="translate(0,0) scale(1,1)"><path d="M436 160H12c-6.627 0-12-5.373-12-12v-36c0-26.51 21.49-48 48-48h48V12c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v52h128V12c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v52h48c26.51 0 48 21.49 48 48v36c0 6.627-5.373 12-12 12zM12 192h424c6.627 0 12 5.373 12 12v260c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V204c0-6.627 5.373-12 12-12zm333.296 95.947l-28.169-28.398c-4.667-4.705-12.265-4.736-16.97-.068L194.12 364.665l-45.98-46.352c-4.667-4.705-12.266-4.736-16.971-.068l-28.397 28.17c-4.705 4.667-4.736 12.265-.068 16.97l82.601 83.269c4.667 4.705 12.265 4.736 16.97.068l142.953-141.805c4.705-4.667 4.736-12.265.068-16.97z" fill="currentColor" transform="translate(-224 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">Office Hours</span></a></li>
+
+			<li class="svelte-1ghjldr"><a href="https://github.com/StevenWaterman/" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 496 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(248 256)" transform-origin="124 0"><g transform="translate(0,0) scale(1,1)"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" fill="currentColor" transform="translate(-248 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">@StevenWaterman</span></a></li>
+
+			<li class="svelte-1ghjldr"><a href="https://twitter.com/SteWaterman/" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 512 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(256 256)" transform-origin="128 0"><g transform="translate(0,0) scale(1,1)"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z" fill="currentColor" transform="translate(-256 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">@SteWaterman</span></a></li>
+
+			<li class="svelte-1ghjldr"><a href="https://twitch.tv/SteWaterman/" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 512 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(256 256)" transform-origin="128 0"><g transform="translate(0,0) scale(1,1)"><path d="M391.17,103.47H352.54v109.7h38.63ZM285,103H246.37V212.75H285ZM120.83,0,24.31,91.42V420.58H140.14V512l96.53-91.42h77.25L487.69,256V0ZM449.07,237.75l-77.22,73.12H294.61l-67.6,64v-64H140.14V36.58H449.07Z" fill="currentColor" transform="translate(-256 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">@SteWaterman</span></a></li>
+
+			<li class="svelte-1ghjldr"><a href="https://www.linkedin.com/in/steven-waterman/" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 448 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(224 256)" transform-origin="112 0"><g transform="translate(0,0) scale(1,1)"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" fill="currentColor" transform="translate(-224 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">@steven-waterman</span></a></li>
+
+			</ul></div></div></div></div>
+
+
+
+
+	</body>
+</html>

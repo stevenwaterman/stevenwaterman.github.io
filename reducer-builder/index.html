@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="description"
+			content="I'm a software developer, technical coach, over-analyser. This is where I do those things. Mostly over-analysing."
+		/>
+		<link rel="icon" href="/favicon.png" />
+		<link rel="stylesheet" href="/global.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta http-equiv="content-security-policy" content=""><title>Better Redux Reducers with TypeScript Builders</title><meta name="description" content="In my last blog post, I introduced the builder pattern in TypeScript and discussed how you can use it to get more accurate types in your code. It was all very abstract, so I thought it might be useful to show another more complex example."><link rel="alternate" type="application/rss+xml" href="https://stevenwaterman.uk/rss.xml" title="Steven Waterman's Blog"><link rel="canonical" href="https://stevenwaterman.uk/reducer-builder"><meta property="og:title" content="Better Redux Reducers with TypeScript Builders"><meta property="og:description" content="In my last blog post, I introduced the builder pattern in TypeScript and discussed how you can use it to get more accurate types in your code. It was all very abstract, so I thought it might be useful to show another more complex example."><meta property="og:image" content="https://stevenwaterman.uk/assets/blog/reducer-builder/header.png"><meta property="og:type" content="article"><meta property="og:site_name" content="Steven Waterman"><meta property="og:url" content="https://stevenwaterman.uk/reducer-builder"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@SteWaterman"><meta name="twitter:image" content="https://stevenwaterman.uk/assets/blog/reducer-builder/header.png"><meta name="twitter:creator" content="@SteWaterman">
+	<link rel="stylesheet" href="/_app/assets/vendor-ec9510ad.css">
+	<link rel="stylesheet" href="/_app/assets/BlogPost-27f41e79.css">
+	<link rel="stylesheet" href="/_app/assets/Template-8f63f35a.css">
+	<link rel="stylesheet" href="/_app/assets/Snippet-1ad9e017.css">
+	</head>
+	<body>
+		
+
+
+
+
+
+
+<div class="gradient svelte-1thle15"><div class="panX svelte-1atbztl"><div class="panY svelte-1atbztl"><div class="gradient svelte-1atbztl"></div></div></div></div>
+
+<nav class="svelte-1nxg8xt"><a class="logoLink svelte-1nxg8xt" href="/"><img class="logo svelte-1nxg8xt" src="/assets/logoWhite.svg" alt="Logo">
+		<span class="logoText svelte-1nxg8xt">SW</span></a>
+
+	<div class="burgerMenuContainer svelte-1nxg8xt"><span tabindex="0" class="burgerMenuOpen svelte-1nxg8xt"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 448 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(224 256)" transform-origin="112 0"><g transform="translate(0,0) scale(1,1)"><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" fill="currentColor" transform="translate(-224 -256)"></path></g></g></svg></span>
+
+		<ul class="menu svelte-1nxg8xt"><li class="svelte-1nxg8xt"><span class="label svelte-101pjyx"><a class="topLink svelte-101pjyx" href="/">Blog</a>
+  </span></li>
+
+			<li class="svelte-1nxg8xt"><span class="label svelte-101pjyx"><a class="topLink svelte-101pjyx" href="/assets/cv.pdf">CV</a>
+  </span></li>
+
+			<li class="svelte-1nxg8xt"><span class="label svelte-101pjyx"><a class="topLink svelte-101pjyx">Socials</a>
+  <div class="menu svelte-101pjyx"><div class="menu-arrow svelte-101pjyx"><div class="menu-arrow-fill svelte-101pjyx"></div></div>
+      <div class="menu-content svelte-101pjyx"><ul class="svelte-101pjyx"><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://twitter.com/SteWaterman/">Twitter</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://github.com/StevenWaterman/">GitHub</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://www.linkedin.com/in/steven-waterman/">LinkedIn</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://twitch.tv/SteWaterman/">Twitch</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="mailto:website@stevenwaterman.uk">Email</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://calendly.com/stewaterman/30min">Calendly</a>
+            </li></ul></div></div></span></li>
+
+			<li class="svelte-1nxg8xt"><span class="label svelte-101pjyx"><a class="topLink svelte-101pjyx" href="/#community">Projects</a>
+  <div class="menu svelte-101pjyx"><div class="menu-arrow svelte-101pjyx"><div class="menu-arrow-fill svelte-101pjyx"></div></div>
+      <div class="menu-content svelte-101pjyx"><ul class="svelte-101pjyx"><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://tunescape07.com">TuneScape</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://stevenwaterman.uk/Balance/">Balance Scores</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://lexoral.com">Lexoral</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://stevenwaterman.uk/musetree/">MuseTree</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://stevenwaterman.uk/NoTimeToStalk">No Time to Stalk</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://github.com/stevenwaterman/narration.studio">Narration.Studio</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://stevenwaterman.uk/Spiro/">Spiro</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://linktr.ee/prevoid_art">Art</a>
+            </li><li class="menuEntry svelte-101pjyx"><a class="menuLink svelte-101pjyx" href="https://soundcloud.com/user-872603169">Music</a>
+            </li></ul></div></div></span></li>
+
+			<li class="chat svelte-1nxg8xt"><div class="container svelte-1atmfra">
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+  <button onclick="Calendly.initPopupWidget({url: &#39;https://calendly.com/stewaterman/30min&#39;});return false;" class="svelte-1atmfra">Let&#39;s Chat<span class="arrow svelte-1atmfra">&gt;</span></button>
+  </div></li></ul></div>
+</nav>
+
+<div class="column svelte-1thle15"><div class="grid svelte-1quqrs0"><div class="textContainer svelte-11sshxl" style=""><article><a href="/assets/blog/reducer-builder/header.png"><img class="headerImage svelte-1quqrs0" src="/assets/blog/reducer-builder/header.png" style="object-fit: cover; object-position: center;" alt="Header"></a>
+				<div class="padded svelte-1quqrs0"><div class="metadata svelte-1quqrs0"><p class="type svelte-1quqrs0">technical</p>
+						<p class="date svelte-1quqrs0">Published <time>2020-10-01</time></p>
+						<p class="author svelte-1quqrs0">By Steven Waterman</p></div>
+
+					<h1 class="svelte-1quqrs0">Better Redux Reducers with TypeScript Builders</h1>
+
+					<div class="topSection svelte-1quqrs0"><div class="left"><summary class="svelte-1quqrs0">In my last blog post, I introduced the builder pattern in TypeScript and discussed how you can use it to get more accurate types in your code. It was all very abstract, so I thought it might be useful to show another more complex example.</summary>
+
+							<p class="original svelte-1quqrs0">Originally posted on <a href="https://blog.scottlogic.com/2020/10/01/reducer-builder.html">the Scott Logic blog</a></p>
+
+							</div>
+
+						</div>
+
+					<hr class="svelte-1quqrs0">
+
+					<p>If you haven&#39;t read <a href="/typescript-builders">my last blog post</a>, I&#39;d recommend it, but I&#39;m the kind of person to ignore that warning so no judgement here!
+  </p>
+
+  <p>In this post, I show how the builder pattern can be used to create Reducers in a TypeScript React-Redux app.
+    I discuss the benefits of that approach before walking through the code and explaining what it does at each step.
+  </p>
+
+  <p>It&#39;s not perfectly type-safe, but that&#39;s not the goal.
+    Instead, we use the builder pattern to create a type-safe boundary around unsafe code.
+    That way, we can get the best of both worlds - a utility method that is both safe <em>and</em> maintainable.
+  </p>
+
+  <h2>Redux Reducers</h2>
+
+  <p>I&#39;ll assume you have used Redux before, but here&#39;s a quick primer if not:
+  </p>
+
+  <p>Redux is a state management library that&#39;s usually used with React.
+    In Redux, there is a single global &#39;store&#39; which contains the current state of the website.
+    The store is updated by dispatching an &#39;action&#39; onto the store.
+    Each action has two properties, <code>type</code> and <code>payload</code>.
+    Attach a &#39;reducer&#39; to the store to define how the state should change when an action is received.
+    Each reducer contains a number of cases, where each case handles a given type of action.
+  </p>
+
+  <p>For a full explanation of those concepts and the terminology, <a href="https://redux.js.org/tutorials/essentials/part-1-overview-concepts#reducers">read the official documentation</a>.
+  </p>
+
+  <h2>Redux Type Safety</h2>
+
+  <p>For the remainder of this post, we will be using <a href="https://redux.js.org/redux-toolkit/overview">Redux Toolkit</a>, the official recommended way to develop Redux apps.
+    However, you could easily tweak this code to work in a plain Redux project that doesn&#39;t use Redux Toolkit.
+  </p>
+
+  <p>In Redux Toolkit, you are expected to use &#39;action creators&#39; rather than writing your actions as object literals.
+    They are important later, so let&#39;s start by writing a couple of action creators.
+    I&#39;ll assume our app is a counter, meaning the state is a number and we have two actions:
+  </p>
+
+  <figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Actions</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true">
+
+<div class="fromLine same svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine same svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code same svelte-19djgjm"><span class="hljs-keyword">const</span> incrementAction = <span class="hljs-title function_">createAction</span>(<span class="hljs-string">&quot;increment&quot;</span>);</div><div class="fromLine same svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine same svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code same svelte-19djgjm"><span class="hljs-keyword">const</span> setAction = createAction&lt;<span class="hljs-built_in">number</span>, <span class="hljs-string">&quot;set&quot;</span>&gt;(<span class="hljs-string">&quot;set&quot;</span>);</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">const</span> incrementAction = <span class="hljs-title function_">createAction</span>(<span class="hljs-string">&quot;increment&quot;</span>);
+<span class="hljs-keyword">const</span> setAction = createAction&lt;<span class="hljs-built_in">number</span>, <span class="hljs-string">&quot;set&quot;</span>&gt;(<span class="hljs-string">&quot;set&quot;</span>);</code>
+</figure>
+
+  <p>Now that we have our actions, there are two ways to create a reducer that handles them:
+  </p>
+
+  <ol><li>From a map of action types to handlers</li>
+    <li>Using a builder</li></ol>
+
+  <h3>Option 1: Using a Map</h3>
+
+  <p>Here, you can call <code>createReducer()</code>, passing a map of action types to handlers, like this:
+  </p>
+
+  <figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Typical Reducer</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true">
+
+<div class="fromLine same svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine same svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code same svelte-19djgjm"><span class="hljs-keyword">const</span> reducer = <span class="hljs-title function_">createReducer</span>(<span class="hljs-number">0</span>, {</div><div class="fromLine same svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine same svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code same svelte-19djgjm">  <span class="hljs-attr">increment</span>: <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> state + <span class="hljs-number">1</span>,</div><div class="fromLine same svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine same svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code same svelte-19djgjm">  <span class="hljs-attr">set</span>: <span class="hljs-function">(<span class="hljs-params">state, action: PayloadAction&lt;<span class="hljs-built_in">number</span>&gt;</span>) =&gt;</span> action.<span class="hljs-property">payload</span>,</div><div class="fromLine same svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine same svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code same svelte-19djgjm">});</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">const</span> reducer = <span class="hljs-title function_">createReducer</span>(<span class="hljs-number">0</span>, {
+  <span class="hljs-attr">increment</span>: <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> state + <span class="hljs-number">1</span>,
+  <span class="hljs-attr">set</span>: <span class="hljs-function">(<span class="hljs-params">state, action: PayloadAction&lt;<span class="hljs-built_in">number</span>&gt;</span>) =&gt;</span> action.<span class="hljs-property">payload</span>,
+});</code>
+</figure>
+
+  <p>Then, we can dispatch actions onto the reducer.
+    Note that this isn&#39;t how you normally use a reducer, and it&#39;s just to demonstrate the type safety.
+  </p>
+
+  <figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Reducer Usage</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true">
+
+<div class="fromLine same svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine same svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code same svelte-19djgjm"><span class="hljs-keyword">const</span> oldState = <span class="hljs-number">0</span>;</div><div class="fromLine same svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine same svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code same svelte-19djgjm"><span class="hljs-title function_">reducer</span>(oldState, <span class="hljs-title function_">setAction</span>(<span class="hljs-number">3</span>));</div><div class="fromLine same svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine same svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code same svelte-19djgjm"><span class="hljs-title function_">reducer</span>(oldState, <span class="hljs-title function_">incrementAction</span>());</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">const</span> oldState = <span class="hljs-number">0</span>;
+<span class="hljs-title function_">reducer</span>(oldState, <span class="hljs-title function_">setAction</span>(<span class="hljs-number">3</span>));
+<span class="hljs-title function_">reducer</span>(oldState, <span class="hljs-title function_">incrementAction</span>());</code>
+</figure>
+
+  <p>That&#39;s all well and good, but there&#39;s nothing stopping us dispatching an action that doesn&#39;t exist on the reducer:
+  </p>
+
+  <figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Invalid Action</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true">
+
+<div class="fromLine same svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine same svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code same svelte-19djgjm"><span class="hljs-keyword">const</span> decrementAction = <span class="hljs-title function_">createAction</span>(<span class="hljs-string">&quot;decrement&quot;</span>);</div><div class="fromLine same svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine same svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code same svelte-19djgjm"><span class="hljs-keyword">const</span> oldState = <span class="hljs-number">0</span>;</div><div class="fromLine same svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine same svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code same svelte-19djgjm"><span class="hljs-title function_">reducer</span>(oldState, <span class="hljs-title function_">decrementAction</span>());</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">const</span> decrementAction = <span class="hljs-title function_">createAction</span>(<span class="hljs-string">&quot;decrement&quot;</span>);
+<span class="hljs-keyword">const</span> oldState = <span class="hljs-number">0</span>;
+<span class="hljs-title function_">reducer</span>(oldState, <span class="hljs-title function_">decrementAction</span>());</code>
+</figure>
+
+  <p>Likewise, there&#39;s nothing saying we even need to pass the correct type of payload:
+  </p>
+
+  <figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Invalid Payload</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true">
+
+<div class="fromLine same svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine same svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code same svelte-19djgjm"><span class="hljs-keyword">const</span> oldState = <span class="hljs-number">0</span>;</div><div class="fromLine same svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine same svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code same svelte-19djgjm"><span class="hljs-title function_">reducer</span>(oldState, {</div><div class="fromLine same svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine same svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code same svelte-19djgjm">  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;set&quot;</span>,</div><div class="fromLine same svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine same svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code same svelte-19djgjm">  <span class="hljs-attr">payload</span>: <span class="hljs-string">&quot;this is meant to be a number&quot;</span>,</div><div class="fromLine same svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="toLine same svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="code same svelte-19djgjm">});</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">const</span> oldState = <span class="hljs-number">0</span>;
+<span class="hljs-title function_">reducer</span>(oldState, {
+  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;set&quot;</span>,
+  <span class="hljs-attr">payload</span>: <span class="hljs-string">&quot;this is meant to be a number&quot;</span>,
+});</code>
+</figure>
+
+  <p>Nothing we&#39;ve seen so far has caused a compiler error.
+    Our <code>decrement</code> action would just do nothing, while passing the wrong payload type or  would probably cause runtime errors.
+  </p>
+
+  <p>It&#39;s clear that this isn&#39;t strongly typed at all.
+  </p>
+
+  <h3>Option 2: Using a Builder</h3>
+
+  <p>First, note that this isn&#39;t the builder that I promised in the intro.
+    Redux Toolkit provides its own Reducer Builder which is insufficient for reasons that will soon become obvious.
+  </p>
+
+  <figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Built-in Builder</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true"><details class="svelte-19djgjm"><summary class="svelte-19djgjm">&lt;Show 9 identical lines&gt;</summary>
+    <div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">const</span> reducer = <span class="hljs-title function_">createReducer</span>(<span class="hljs-number">0</span>, <span class="hljs-function">(<span class="hljs-params">builder</span>) =&gt;</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="code hidden svelte-19djgjm">  builder</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="code hidden svelte-19djgjm">    .<span class="hljs-title function_">addCase</span>(incrementAction, <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> state + <span class="hljs-number">1</span>)</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="code hidden svelte-19djgjm">    .<span class="hljs-title function_">addCase</span>(setAction, <span class="hljs-function">(<span class="hljs-params">state, action</span>) =&gt;</span> action.<span class="hljs-property">payload</span>)</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="code hidden svelte-19djgjm">);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">const</span> oldState = <span class="hljs-number">0</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-title function_">reducer</span>(oldState, <span class="hljs-title function_">setAction</span>(<span class="hljs-number">3</span>));</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-title function_">reducer</span>(oldState, <span class="hljs-title function_">incrementAction</span>());</div></details>
+
+<div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">const</span> reducer = <span class="hljs-title function_">createReducer</span>(<span class="hljs-number">0</span>, <span class="hljs-function">(<span class="hljs-params">builder</span>) =&gt;</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code hidden svelte-19djgjm">  builder</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code hidden svelte-19djgjm">    .<span class="hljs-title function_">addCase</span>(incrementAction, <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> state + <span class="hljs-number">1</span>)</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code hidden svelte-19djgjm">    .<span class="hljs-title function_">addCase</span>(setAction, <span class="hljs-function">(<span class="hljs-params">state, action</span>) =&gt;</span> action.<span class="hljs-property">payload</span>)</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="code hidden svelte-19djgjm">);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">const</span> oldState = <span class="hljs-number">0</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-title function_">reducer</span>(oldState, <span class="hljs-title function_">setAction</span>(<span class="hljs-number">3</span>));</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-title function_">reducer</span>(oldState, <span class="hljs-title function_">incrementAction</span>());</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">const</span> reducer = <span class="hljs-title function_">createReducer</span>(<span class="hljs-number">0</span>, <span class="hljs-function">(<span class="hljs-params">builder</span>) =&gt;</span>
+  builder
+    .<span class="hljs-title function_">addCase</span>(incrementAction, <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> state + <span class="hljs-number">1</span>)
+    .<span class="hljs-title function_">addCase</span>(setAction, <span class="hljs-function">(<span class="hljs-params">state, action</span>) =&gt;</span> action.<span class="hljs-property">payload</span>)
+);
+
+<span class="hljs-keyword">const</span> oldState = <span class="hljs-number">0</span>;
+<span class="hljs-title function_">reducer</span>(oldState, <span class="hljs-title function_">setAction</span>(<span class="hljs-number">3</span>));
+<span class="hljs-title function_">reducer</span>(oldState, <span class="hljs-title function_">incrementAction</span>());</code>
+</figure>
+
+  <p>As before, we can create our builder that handles the two actions, then dispatch actions to it.
+    Also like before, we can dispatch a load of invalid actions without causing any compiler errors:
+  </p>
+
+  <figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Invalid Actions</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true"><details class="svelte-19djgjm"><summary class="svelte-19djgjm">&lt;Show 12 identical lines&gt;</summary>
+    <div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">const</span> decrementAction = <span class="hljs-title function_">createAction</span>(<span class="hljs-string">&quot;decrement&quot;</span>);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-title function_">reducer</span>(oldState, <span class="hljs-title function_">decrementAction</span>());</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-title function_">reducer</span>(oldState, {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;set&quot;</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">payload</span>: <span class="hljs-string">&quot;this should be a number&quot;</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="code hidden svelte-19djgjm">});</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-title function_">reducer</span>(oldState, {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;nonexistent&quot;</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">payload</span>: <span class="hljs-string">&quot;action&quot;</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+        <div class="code hidden svelte-19djgjm">});</div></details>
+
+<div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">const</span> decrementAction = <span class="hljs-title function_">createAction</span>(<span class="hljs-string">&quot;decrement&quot;</span>);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-title function_">reducer</span>(oldState, <span class="hljs-title function_">decrementAction</span>());</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-title function_">reducer</span>(oldState, {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;set&quot;</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">payload</span>: <span class="hljs-string">&quot;this should be a number&quot;</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="code hidden svelte-19djgjm">});</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-title function_">reducer</span>(oldState, {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;nonexistent&quot;</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">payload</span>: <span class="hljs-string">&quot;action&quot;</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+  <div class="code hidden svelte-19djgjm">});</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">const</span> decrementAction = <span class="hljs-title function_">createAction</span>(<span class="hljs-string">&quot;decrement&quot;</span>);
+<span class="hljs-title function_">reducer</span>(oldState, <span class="hljs-title function_">decrementAction</span>());
+
+<span class="hljs-title function_">reducer</span>(oldState, {
+  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;set&quot;</span>,
+  <span class="hljs-attr">payload</span>: <span class="hljs-string">&quot;this should be a number&quot;</span>,
+});
+
+<span class="hljs-title function_">reducer</span>(oldState, {
+  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;nonexistent&quot;</span>,
+  <span class="hljs-attr">payload</span>: <span class="hljs-string">&quot;action&quot;</span>,
+});</code>
+</figure>
+
+  <p>That&#39;s really not ideal, and essentially means that the core of your type-safe TS project is completely unsafe.
+    There must be a better way, and there is:
+  </p>
+
+  <h2>Fixing it with Mutable Generic State</h2>
+
+  <p>Let&#39;s start with the end product, a type-safe Reducer Builder:
+  </p>
+
+  <figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Type-Safe Builder</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true"><details class="svelte-19djgjm"><summary class="svelte-19djgjm">&lt;Show 53 identical lines&gt;</summary>
+    <div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">import</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="code hidden svelte-19djgjm">  createReducer,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-title class_">PayloadAction</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-title class_">ActionCreatorWithPayload</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-title class_">Reducer</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-title class_">Draft</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="code hidden svelte-19djgjm">} <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@reduxjs/toolkit&quot;</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">type</span> <span class="hljs-title class_">ActionHandler</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">PAYLOAD</span>&gt; = <span class="hljs-function">(<span class="hljs-params"></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="code hidden svelte-19djgjm">  state: Draft&lt;STATE&gt;,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="code hidden svelte-19djgjm">  payload: PAYLOAD</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+        <div class="code hidden svelte-19djgjm"></span>) =&gt;</span> <span class="hljs-variable constant_">STATE</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ReducerBuilder</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">ACTIONS</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">PayloadAction</span>&lt;<span class="hljs-built_in">any</span>, <span class="hljs-built_in">string</span>&gt;&gt; {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">initialState</span>: <span class="hljs-variable constant_">STATE</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">cases</span>: <span class="hljs-title class_">Array</span>&lt;{</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">16</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">16</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-attr">type</span>: <span class="hljs-built_in">string</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">17</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">17</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-attr">handler</span>: <span class="hljs-title class_">ActionHandler</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-built_in">any</span>&gt;;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">18</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">18</div>
+        <div class="code hidden svelte-19djgjm">  }&gt;;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">19</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">19</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">20</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">20</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">private</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">21</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">21</div>
+        <div class="code hidden svelte-19djgjm">    initialState: STATE,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">22</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">22</div>
+        <div class="code hidden svelte-19djgjm">    cases: <span class="hljs-built_in">Array</span>&lt;{ <span class="hljs-keyword">type</span>: <span class="hljs-built_in">string</span>; handler: ActionHandler&lt;STATE, <span class="hljs-built_in">any</span>&gt; }&gt;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">23</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">23</div>
+        <div class="code hidden svelte-19djgjm">  </span>) {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">24</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">24</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-variable language_">this</span>.<span class="hljs-property">initialState</span> = initialState;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">25</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">25</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-variable language_">this</span>.<span class="hljs-property">cases</span> = cases;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">26</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">26</div>
+        <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">27</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">27</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">28</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">28</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">static</span> <span class="hljs-keyword">new</span>&lt;<span class="hljs-variable constant_">STATE</span>&gt;(<span class="hljs-attr">initialState</span>: <span class="hljs-variable constant_">STATE</span>): <span class="hljs-title class_">ReducerBuilder</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-built_in">never</span>&gt; {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">29</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">29</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReducerBuilder</span>(initialState, []);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">30</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">30</div>
+        <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">31</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">31</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">32</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">32</div>
+        <div class="code hidden svelte-19djgjm">  addCase&lt;<span class="hljs-variable constant_">TYPE</span> <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>, <span class="hljs-variable constant_">PAYLOAD</span>&gt;(</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">33</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">33</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-attr">actionCreator</span>: <span class="hljs-title class_">ActionCreatorWithPayload</span>&lt;<span class="hljs-variable constant_">PAYLOAD</span>, <span class="hljs-variable constant_">TYPE</span>&gt;,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">34</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">34</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-attr">actionHandler</span>: <span class="hljs-title class_">ActionHandler</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">PAYLOAD</span>&gt;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">35</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">35</div>
+        <div class="code hidden svelte-19djgjm">  ): <span class="hljs-title class_">ReducerBuilder</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">ACTIONS</span> | <span class="hljs-title class_">PayloadAction</span>&lt;<span class="hljs-variable constant_">PAYLOAD</span>, <span class="hljs-variable constant_">TYPE</span>&gt;&gt; {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">36</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">36</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReducerBuilder</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">initialState</span>, [</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">37</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">37</div>
+        <div class="code hidden svelte-19djgjm">      ...<span class="hljs-variable language_">this</span>.<span class="hljs-property">cases</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">38</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">38</div>
+        <div class="code hidden svelte-19djgjm">      { <span class="hljs-attr">type</span>: actionCreator.<span class="hljs-property">type</span>, <span class="hljs-attr">handler</span>: actionHandler },</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">39</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">39</div>
+        <div class="code hidden svelte-19djgjm">    ]);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">40</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">40</div>
+        <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">41</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">41</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">42</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">42</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-title function_">build</span>(): <span class="hljs-title class_">ReduxReducer</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">ACTIONS</span>&gt; {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">43</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">43</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">return</span> <span class="hljs-title function_">createReducer</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">initialState</span>, <span class="hljs-function">(<span class="hljs-params">builder</span>) =&gt;</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">44</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">44</div>
+        <div class="code hidden svelte-19djgjm">      <span class="hljs-variable language_">this</span>.<span class="hljs-property">cases</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">{ <span class="hljs-keyword">type</span>, handler }</span>) =&gt;</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">45</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">45</div>
+        <div class="code hidden svelte-19djgjm">        builder.<span class="hljs-title function_">addCase</span>(</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">46</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">46</div>
+        <div class="code hidden svelte-19djgjm">          <span class="hljs-keyword">type</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">47</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">47</div>
+        <div class="code hidden svelte-19djgjm">          <span class="hljs-function">(<span class="hljs-params">state: Draft&lt;STATE&gt;, action: PayloadAction&lt;<span class="hljs-built_in">any</span>, <span class="hljs-built_in">string</span>&gt;</span>) =&gt;</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">48</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">48</div>
+        <div class="code hidden svelte-19djgjm">            <span class="hljs-title function_">handler</span>(state, action.<span class="hljs-property">payload</span>)</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">49</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">49</div>
+        <div class="code hidden svelte-19djgjm">        );</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">50</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">50</div>
+        <div class="code hidden svelte-19djgjm">      });</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">51</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">51</div>
+        <div class="code hidden svelte-19djgjm">    });</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">52</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">52</div>
+        <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">53</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">53</div>
+        <div class="code hidden svelte-19djgjm">}</div></details>
+
+<div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">import</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code hidden svelte-19djgjm">  createReducer,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-title class_">PayloadAction</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-title class_">ActionCreatorWithPayload</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-title class_">Reducer</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-title class_">Draft</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="code hidden svelte-19djgjm">} <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@reduxjs/toolkit&quot;</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">type</span> <span class="hljs-title class_">ActionHandler</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">PAYLOAD</span>&gt; = <span class="hljs-function">(<span class="hljs-params"></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="code hidden svelte-19djgjm">  state: Draft&lt;STATE&gt;,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="code hidden svelte-19djgjm">  payload: PAYLOAD</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+  <div class="code hidden svelte-19djgjm"></span>) =&gt;</span> <span class="hljs-variable constant_">STATE</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ReducerBuilder</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">ACTIONS</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">PayloadAction</span>&lt;<span class="hljs-built_in">any</span>, <span class="hljs-built_in">string</span>&gt;&gt; {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">initialState</span>: <span class="hljs-variable constant_">STATE</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">cases</span>: <span class="hljs-title class_">Array</span>&lt;{</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">16</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">16</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-attr">type</span>: <span class="hljs-built_in">string</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">17</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">17</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-attr">handler</span>: <span class="hljs-title class_">ActionHandler</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-built_in">any</span>&gt;;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">18</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">18</div>
+  <div class="code hidden svelte-19djgjm">  }&gt;;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">19</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">19</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">20</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">20</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">private</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">21</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">21</div>
+  <div class="code hidden svelte-19djgjm">    initialState: STATE,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">22</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">22</div>
+  <div class="code hidden svelte-19djgjm">    cases: <span class="hljs-built_in">Array</span>&lt;{ <span class="hljs-keyword">type</span>: <span class="hljs-built_in">string</span>; handler: ActionHandler&lt;STATE, <span class="hljs-built_in">any</span>&gt; }&gt;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">23</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">23</div>
+  <div class="code hidden svelte-19djgjm">  </span>) {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">24</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">24</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-variable language_">this</span>.<span class="hljs-property">initialState</span> = initialState;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">25</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">25</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-variable language_">this</span>.<span class="hljs-property">cases</span> = cases;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">26</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">26</div>
+  <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">27</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">27</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">28</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">28</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">static</span> <span class="hljs-keyword">new</span>&lt;<span class="hljs-variable constant_">STATE</span>&gt;(<span class="hljs-attr">initialState</span>: <span class="hljs-variable constant_">STATE</span>): <span class="hljs-title class_">ReducerBuilder</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-built_in">never</span>&gt; {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">29</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">29</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReducerBuilder</span>(initialState, []);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">30</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">30</div>
+  <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">31</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">31</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">32</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">32</div>
+  <div class="code hidden svelte-19djgjm">  addCase&lt;<span class="hljs-variable constant_">TYPE</span> <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>, <span class="hljs-variable constant_">PAYLOAD</span>&gt;(</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">33</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">33</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-attr">actionCreator</span>: <span class="hljs-title class_">ActionCreatorWithPayload</span>&lt;<span class="hljs-variable constant_">PAYLOAD</span>, <span class="hljs-variable constant_">TYPE</span>&gt;,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">34</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">34</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-attr">actionHandler</span>: <span class="hljs-title class_">ActionHandler</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">PAYLOAD</span>&gt;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">35</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">35</div>
+  <div class="code hidden svelte-19djgjm">  ): <span class="hljs-title class_">ReducerBuilder</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">ACTIONS</span> | <span class="hljs-title class_">PayloadAction</span>&lt;<span class="hljs-variable constant_">PAYLOAD</span>, <span class="hljs-variable constant_">TYPE</span>&gt;&gt; {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">36</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">36</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReducerBuilder</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">initialState</span>, [</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">37</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">37</div>
+  <div class="code hidden svelte-19djgjm">      ...<span class="hljs-variable language_">this</span>.<span class="hljs-property">cases</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">38</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">38</div>
+  <div class="code hidden svelte-19djgjm">      { <span class="hljs-attr">type</span>: actionCreator.<span class="hljs-property">type</span>, <span class="hljs-attr">handler</span>: actionHandler },</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">39</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">39</div>
+  <div class="code hidden svelte-19djgjm">    ]);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">40</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">40</div>
+  <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">41</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">41</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">42</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">42</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-title function_">build</span>(): <span class="hljs-title class_">ReduxReducer</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">ACTIONS</span>&gt; {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">43</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">43</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">return</span> <span class="hljs-title function_">createReducer</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">initialState</span>, <span class="hljs-function">(<span class="hljs-params">builder</span>) =&gt;</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">44</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">44</div>
+  <div class="code hidden svelte-19djgjm">      <span class="hljs-variable language_">this</span>.<span class="hljs-property">cases</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">{ <span class="hljs-keyword">type</span>, handler }</span>) =&gt;</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">45</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">45</div>
+  <div class="code hidden svelte-19djgjm">        builder.<span class="hljs-title function_">addCase</span>(</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">46</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">46</div>
+  <div class="code hidden svelte-19djgjm">          <span class="hljs-keyword">type</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">47</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">47</div>
+  <div class="code hidden svelte-19djgjm">          <span class="hljs-function">(<span class="hljs-params">state: Draft&lt;STATE&gt;, action: PayloadAction&lt;<span class="hljs-built_in">any</span>, <span class="hljs-built_in">string</span>&gt;</span>) =&gt;</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">48</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">48</div>
+  <div class="code hidden svelte-19djgjm">            <span class="hljs-title function_">handler</span>(state, action.<span class="hljs-property">payload</span>)</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">49</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">49</div>
+  <div class="code hidden svelte-19djgjm">        );</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">50</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">50</div>
+  <div class="code hidden svelte-19djgjm">      });</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">51</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">51</div>
+  <div class="code hidden svelte-19djgjm">    });</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">52</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">52</div>
+  <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">53</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">53</div>
+  <div class="code hidden svelte-19djgjm">}</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">import</span> {
+  createReducer,
+  <span class="hljs-title class_">PayloadAction</span>,
+  <span class="hljs-title class_">ActionCreatorWithPayload</span>,
+  <span class="hljs-title class_">Reducer</span>,
+  <span class="hljs-title class_">Draft</span>,
+} <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@reduxjs/toolkit&quot;</span>;
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">ActionHandler</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">PAYLOAD</span>&gt; = <span class="hljs-function">(<span class="hljs-params">
+  state: Draft&lt;STATE&gt;,
+  payload: PAYLOAD
+</span>) =&gt;</span> <span class="hljs-variable constant_">STATE</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ReducerBuilder</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">ACTIONS</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">PayloadAction</span>&lt;<span class="hljs-built_in">any</span>, <span class="hljs-built_in">string</span>&gt;&gt; {
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">initialState</span>: <span class="hljs-variable constant_">STATE</span>;
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">cases</span>: <span class="hljs-title class_">Array</span>&lt;{
+    <span class="hljs-attr">type</span>: <span class="hljs-built_in">string</span>;
+    <span class="hljs-attr">handler</span>: <span class="hljs-title class_">ActionHandler</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-built_in">any</span>&gt;;
+  }&gt;;
+
+  <span class="hljs-keyword">private</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params">
+    initialState: STATE,
+    cases: <span class="hljs-built_in">Array</span>&lt;{ <span class="hljs-keyword">type</span>: <span class="hljs-built_in">string</span>; handler: ActionHandler&lt;STATE, <span class="hljs-built_in">any</span>&gt; }&gt;
+  </span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">initialState</span> = initialState;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">cases</span> = cases;
+  }
+
+  <span class="hljs-keyword">static</span> <span class="hljs-keyword">new</span>&lt;<span class="hljs-variable constant_">STATE</span>&gt;(<span class="hljs-attr">initialState</span>: <span class="hljs-variable constant_">STATE</span>): <span class="hljs-title class_">ReducerBuilder</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-built_in">never</span>&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReducerBuilder</span>(initialState, []);
+  }
+
+  addCase&lt;<span class="hljs-variable constant_">TYPE</span> <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>, <span class="hljs-variable constant_">PAYLOAD</span>&gt;(
+    <span class="hljs-attr">actionCreator</span>: <span class="hljs-title class_">ActionCreatorWithPayload</span>&lt;<span class="hljs-variable constant_">PAYLOAD</span>, <span class="hljs-variable constant_">TYPE</span>&gt;,
+    <span class="hljs-attr">actionHandler</span>: <span class="hljs-title class_">ActionHandler</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">PAYLOAD</span>&gt;
+  ): <span class="hljs-title class_">ReducerBuilder</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">ACTIONS</span> | <span class="hljs-title class_">PayloadAction</span>&lt;<span class="hljs-variable constant_">PAYLOAD</span>, <span class="hljs-variable constant_">TYPE</span>&gt;&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReducerBuilder</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">initialState</span>, [
+      ...<span class="hljs-variable language_">this</span>.<span class="hljs-property">cases</span>,
+      { <span class="hljs-attr">type</span>: actionCreator.<span class="hljs-property">type</span>, <span class="hljs-attr">handler</span>: actionHandler },
+    ]);
+  }
+
+  <span class="hljs-title function_">build</span>(): <span class="hljs-title class_">ReduxReducer</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">ACTIONS</span>&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_">createReducer</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">initialState</span>, <span class="hljs-function">(<span class="hljs-params">builder</span>) =&gt;</span> {
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">cases</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">{ <span class="hljs-keyword">type</span>, handler }</span>) =&gt;</span> {
+        builder.<span class="hljs-title function_">addCase</span>(
+          <span class="hljs-keyword">type</span>,
+          <span class="hljs-function">(<span class="hljs-params">state: Draft&lt;STATE&gt;, action: PayloadAction&lt;<span class="hljs-built_in">any</span>, <span class="hljs-built_in">string</span>&gt;</span>) =&gt;</span>
+            <span class="hljs-title function_">handler</span>(state, action.<span class="hljs-property">payload</span>)
+        );
+      });
+    });
+  }
+}</code>
+</figure>
+
+  <p>Before we dive into that code, let&#39;s see what it can (and can&#39;t) do:
+  </p>
+
+  <figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Type-Safe Usage</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true"><details class="svelte-19djgjm"><summary class="svelte-19djgjm">&lt;Show 8 identical lines&gt;</summary>
+    <div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">const</span> reducer = <span class="hljs-title class_">ReducerBuilder</span>.<span class="hljs-title function_">new</span>(<span class="hljs-number">0</span>)</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="code hidden svelte-19djgjm">  .<span class="hljs-title function_">addCase</span>(incrementAction, <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> state + <span class="hljs-number">1</span>)</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="code hidden svelte-19djgjm">  .<span class="hljs-title function_">addCase</span>(setAction, <span class="hljs-function">(<span class="hljs-params">state, payload</span>) =&gt;</span> payload)</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="code hidden svelte-19djgjm">  .<span class="hljs-title function_">build</span>();</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">const</span> oldState = <span class="hljs-number">0</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-title function_">reducer</span>(oldState, <span class="hljs-title function_">setAction</span>(<span class="hljs-number">3</span>));</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-title function_">reducer</span>(oldState, <span class="hljs-title function_">incrementAction</span>());</div></details>
+
+<div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">const</span> reducer = <span class="hljs-title class_">ReducerBuilder</span>.<span class="hljs-title function_">new</span>(<span class="hljs-number">0</span>)</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code hidden svelte-19djgjm">  .<span class="hljs-title function_">addCase</span>(incrementAction, <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> state + <span class="hljs-number">1</span>)</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code hidden svelte-19djgjm">  .<span class="hljs-title function_">addCase</span>(setAction, <span class="hljs-function">(<span class="hljs-params">state, payload</span>) =&gt;</span> payload)</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code hidden svelte-19djgjm">  .<span class="hljs-title function_">build</span>();</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">const</span> oldState = <span class="hljs-number">0</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-title function_">reducer</span>(oldState, <span class="hljs-title function_">setAction</span>(<span class="hljs-number">3</span>));</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-title function_">reducer</span>(oldState, <span class="hljs-title function_">incrementAction</span>());</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">const</span> reducer = <span class="hljs-title class_">ReducerBuilder</span>.<span class="hljs-title function_">new</span>(<span class="hljs-number">0</span>)
+  .<span class="hljs-title function_">addCase</span>(incrementAction, <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> state + <span class="hljs-number">1</span>)
+  .<span class="hljs-title function_">addCase</span>(setAction, <span class="hljs-function">(<span class="hljs-params">state, payload</span>) =&gt;</span> payload)
+  .<span class="hljs-title function_">build</span>();
+
+<span class="hljs-keyword">const</span> oldState = <span class="hljs-number">0</span>;
+<span class="hljs-title function_">reducer</span>(oldState, <span class="hljs-title function_">setAction</span>(<span class="hljs-number">3</span>));
+<span class="hljs-title function_">reducer</span>(oldState, <span class="hljs-title function_">incrementAction</span>());</code>
+</figure>
+
+  <p>That&#39;s not impressive, since the syntax is pretty much the same as the Redux Toolkit builder.
+    However, the main appeal of this builder is the type-safety.
+    Both of these cause compile-time errors:
+  </p>
+
+  <figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Invalid Usage</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true"><details class="svelte-19djgjm"><summary class="svelte-19djgjm">&lt;Show 10 identical lines&gt;</summary>
+    <div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">const</span> oldState = <span class="hljs-number">0</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-title function_">reducer</span>(oldState, {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;nonexistent&quot;</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">payload</span>: <span class="hljs-string">&quot;action&quot;</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="code hidden svelte-19djgjm">});</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-title function_">reducer</span>(oldState, {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;set&quot;</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">payload</span>: <span class="hljs-string">&quot;1&quot;</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="code hidden svelte-19djgjm">});</div></details>
+
+<div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">const</span> oldState = <span class="hljs-number">0</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-title function_">reducer</span>(oldState, {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;nonexistent&quot;</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">payload</span>: <span class="hljs-string">&quot;action&quot;</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="code hidden svelte-19djgjm">});</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-title function_">reducer</span>(oldState, {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;set&quot;</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">payload</span>: <span class="hljs-string">&quot;1&quot;</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="code hidden svelte-19djgjm">});</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">const</span> oldState = <span class="hljs-number">0</span>;
+<span class="hljs-title function_">reducer</span>(oldState, {
+  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;nonexistent&quot;</span>,
+  <span class="hljs-attr">payload</span>: <span class="hljs-string">&quot;action&quot;</span>,
+});
+
+<span class="hljs-title function_">reducer</span>(oldState, {
+  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;set&quot;</span>,
+  <span class="hljs-attr">payload</span>: <span class="hljs-string">&quot;1&quot;</span>,
+});</code>
+</figure>
+
+  <p>Like the pipeline builder from the last post, the goal here was never end-to-end type safety.
+    Instead, we guarantee that the builder is type-safe through its APIs.
+    The implementation is unashamedly type-unsafe, and is only viable thanks to the restrictions on the methods.
+  </p>
+
+  <p>We could go to the effort of improving the types inside the builder in multiple ways.
+    For example, we could use <code>this.cases.forEach(&lt;T extends string&gt;</code> in the <code>build</code> method to prevent losing type information.
+    We could also add another generic parameter to our class, tracking which action types map to each action payload, which would prevent the need to use <code>any</code> in the <code>build</code> method.
+  </p>
+
+  <p>That&#39;s not the point though.
+    The power of the builder pattern comes from <strong>a type-safe boundary around unsafe code</strong>.
+    By embracing that concept, we get the same level of confidence in our software with far less work, and avoid the maintainability issues that come from complex types.
+  </p>
+
+  <h3>Other useful bits</h3>
+
+  <p>This reducer builder is useful, but it&#39;s not enough on its own to get full type-safety in Redux.
+    Your root reducer and root store will also need some help with their types, like this:
+  </p>
+
+  <figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Root Reducer</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true"><details class="svelte-19djgjm"><summary class="svelte-19djgjm">&lt;Show 29 identical lines&gt;</summary>
+    <div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">import</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="code hidden svelte-19djgjm">  combineReducers,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="code hidden svelte-19djgjm">  configureStore,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-title class_">Dispatch</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="code hidden svelte-19djgjm">  getDefaultMiddleware,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="code hidden svelte-19djgjm">} <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@reduxjs/toolkit&quot;</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">import</span> { useDispatch } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-redux&quot;</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">RootState</span> = {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">world</span>: <span class="hljs-title class_">ReturnType</span>&lt;<span class="hljs-keyword">typeof</span> worldReducer&gt;;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">player</span>: <span class="hljs-title class_">ReturnType</span>&lt;<span class="hljs-keyword">typeof</span> playerReducer&gt;;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+        <div class="code hidden svelte-19djgjm">};</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">RootActions</span> =</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+        <div class="code hidden svelte-19djgjm">  | <span class="hljs-title class_">Parameters</span>&lt;<span class="hljs-keyword">typeof</span> worldReducer&gt;[<span class="hljs-number">1</span>]</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">16</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">16</div>
+        <div class="code hidden svelte-19djgjm">  | <span class="hljs-title class_">Parameters</span>&lt;<span class="hljs-keyword">typeof</span> playerReducer&gt;[<span class="hljs-number">1</span>];</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">17</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">17</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">18</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">18</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> rootReducer = combineReducers&lt;<span class="hljs-title class_">RootState</span>, <span class="hljs-title class_">RootActions</span>&gt;({</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">19</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">19</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">world</span>: worldReducer,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">20</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">20</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">player</span>: playerReducer,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">21</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">21</div>
+        <div class="code hidden svelte-19djgjm">});</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">22</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">22</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">23</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">23</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> rootStore = configureStore&lt;<span class="hljs-title class_">RootState</span>, <span class="hljs-title class_">RootActions</span>, <span class="hljs-built_in">any</span>&gt;({</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">24</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">24</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">reducer</span>: rootReducer,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">25</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">25</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">middleware</span>: [...getDefaultMiddleware&lt;<span class="hljs-title class_">RootState</span>&gt;()] <span class="hljs-keyword">as</span> <span class="hljs-keyword">const</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">26</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">26</div>
+        <div class="code hidden svelte-19djgjm">});</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">27</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">27</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">28</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">28</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">AppDispatch</span> = <span class="hljs-title class_">Dispatch</span>&lt;<span class="hljs-title class_">RootActions</span>&gt;;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">29</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">29</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">useAppDispatch</span> = (<span class="hljs-params"></span>) =&gt; useDispatch&lt;<span class="hljs-title class_">AppDispatch</span>&gt;();</div></details>
+
+<div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">import</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code hidden svelte-19djgjm">  combineReducers,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code hidden svelte-19djgjm">  configureStore,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-title class_">Dispatch</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="code hidden svelte-19djgjm">  getDefaultMiddleware,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="code hidden svelte-19djgjm">} <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@reduxjs/toolkit&quot;</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">import</span> { useDispatch } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-redux&quot;</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">RootState</span> = {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">world</span>: <span class="hljs-title class_">ReturnType</span>&lt;<span class="hljs-keyword">typeof</span> worldReducer&gt;;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">player</span>: <span class="hljs-title class_">ReturnType</span>&lt;<span class="hljs-keyword">typeof</span> playerReducer&gt;;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+  <div class="code hidden svelte-19djgjm">};</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">14</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">RootActions</span> =</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">15</div>
+  <div class="code hidden svelte-19djgjm">  | <span class="hljs-title class_">Parameters</span>&lt;<span class="hljs-keyword">typeof</span> worldReducer&gt;[<span class="hljs-number">1</span>]</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">16</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">16</div>
+  <div class="code hidden svelte-19djgjm">  | <span class="hljs-title class_">Parameters</span>&lt;<span class="hljs-keyword">typeof</span> playerReducer&gt;[<span class="hljs-number">1</span>];</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">17</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">17</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">18</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">18</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> rootReducer = combineReducers&lt;<span class="hljs-title class_">RootState</span>, <span class="hljs-title class_">RootActions</span>&gt;({</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">19</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">19</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">world</span>: worldReducer,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">20</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">20</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">player</span>: playerReducer,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">21</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">21</div>
+  <div class="code hidden svelte-19djgjm">});</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">22</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">22</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">23</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">23</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> rootStore = configureStore&lt;<span class="hljs-title class_">RootState</span>, <span class="hljs-title class_">RootActions</span>, <span class="hljs-built_in">any</span>&gt;({</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">24</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">24</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">reducer</span>: rootReducer,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">25</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">25</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">middleware</span>: [...getDefaultMiddleware&lt;<span class="hljs-title class_">RootState</span>&gt;()] <span class="hljs-keyword">as</span> <span class="hljs-keyword">const</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">26</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">26</div>
+  <div class="code hidden svelte-19djgjm">});</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">27</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">27</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">28</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">28</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">AppDispatch</span> = <span class="hljs-title class_">Dispatch</span>&lt;<span class="hljs-title class_">RootActions</span>&gt;;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">29</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">29</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">useAppDispatch</span> = (<span class="hljs-params"></span>) =&gt; useDispatch&lt;<span class="hljs-title class_">AppDispatch</span>&gt;();</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">import</span> {
+  combineReducers,
+  configureStore,
+  <span class="hljs-title class_">Dispatch</span>,
+  getDefaultMiddleware,
+} <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@reduxjs/toolkit&quot;</span>;
+<span class="hljs-keyword">import</span> { useDispatch } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-redux&quot;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">RootState</span> = {
+  <span class="hljs-attr">world</span>: <span class="hljs-title class_">ReturnType</span>&lt;<span class="hljs-keyword">typeof</span> worldReducer&gt;;
+  <span class="hljs-attr">player</span>: <span class="hljs-title class_">ReturnType</span>&lt;<span class="hljs-keyword">typeof</span> playerReducer&gt;;
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">RootActions</span> =
+  | <span class="hljs-title class_">Parameters</span>&lt;<span class="hljs-keyword">typeof</span> worldReducer&gt;[<span class="hljs-number">1</span>]
+  | <span class="hljs-title class_">Parameters</span>&lt;<span class="hljs-keyword">typeof</span> playerReducer&gt;[<span class="hljs-number">1</span>];
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> rootReducer = combineReducers&lt;<span class="hljs-title class_">RootState</span>, <span class="hljs-title class_">RootActions</span>&gt;({
+  <span class="hljs-attr">world</span>: worldReducer,
+  <span class="hljs-attr">player</span>: playerReducer,
+});
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> rootStore = configureStore&lt;<span class="hljs-title class_">RootState</span>, <span class="hljs-title class_">RootActions</span>, <span class="hljs-built_in">any</span>&gt;({
+  <span class="hljs-attr">reducer</span>: rootReducer,
+  <span class="hljs-attr">middleware</span>: [...getDefaultMiddleware&lt;<span class="hljs-title class_">RootState</span>&gt;()] <span class="hljs-keyword">as</span> <span class="hljs-keyword">const</span>,
+});
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">AppDispatch</span> = <span class="hljs-title class_">Dispatch</span>&lt;<span class="hljs-title class_">RootActions</span>&gt;;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">useAppDispatch</span> = (<span class="hljs-params"></span>) =&gt; useDispatch&lt;<span class="hljs-title class_">AppDispatch</span>&gt;();</code>
+</figure>
+
+  <p>Then you can simply use Redux like normal inside your React components, but with full type-safety:
+  </p>
+
+  <figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Root Reducer Usage</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true"><details class="svelte-19djgjm"><summary class="svelte-19djgjm">&lt;Show 9 identical lines&gt;</summary>
+    <div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Root</span>: <span class="hljs-title class_">FunctionComponent</span> = <span class="hljs-function">() =&gt;</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">const</span> dispatch = <span class="hljs-title function_">useAppDispatch</span>();</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">const</span> <span class="hljs-title function_">handleClick</span> = (<span class="hljs-params"></span>) =&gt; {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">return</span> <span class="hljs-title function_">dispatch</span>(<span class="hljs-title function_">playAction</span>());</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="code hidden svelte-19djgjm">  };</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{handleClick}</span>&gt;</span>Start<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span></span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="code hidden svelte-19djgjm">};</div></details>
+
+<div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Root</span>: <span class="hljs-title class_">FunctionComponent</span> = <span class="hljs-function">() =&gt;</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">const</span> dispatch = <span class="hljs-title function_">useAppDispatch</span>();</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">const</span> <span class="hljs-title function_">handleClick</span> = (<span class="hljs-params"></span>) =&gt; {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">return</span> <span class="hljs-title function_">dispatch</span>(<span class="hljs-title function_">playAction</span>());</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="code hidden svelte-19djgjm">  };</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{handleClick}</span>&gt;</span>Start<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span></span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="code hidden svelte-19djgjm">};</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Root</span>: <span class="hljs-title class_">FunctionComponent</span> = <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">const</span> dispatch = <span class="hljs-title function_">useAppDispatch</span>();
+
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">handleClick</span> = (<span class="hljs-params"></span>) =&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_">dispatch</span>(<span class="hljs-title function_">playAction</span>());
+  };
+
+  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{handleClick}</span>&gt;</span>Start<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span></span>;
+};</code>
+</figure>
+
+  <p>If we haven&#39;t configured handlers for <code>playAction</code> in either <code>worldReducer</code> or <code>playerReducer</code>, this won&#39;t compile.
+    Perfect!
+  </p>
+
+  <p>If you just want to take those snippets and use them, go for it!
+    It&#39;s batteries-included and doesn&#39;t have any real problems.
+    Often in my posts there&#39;s a section at the end that says <code>please don&#39;t actually use this</code> - but not here!
+  </p>
+
+  <h3>Code Walkthrough</h3>
+
+  <p>This section contains an in-depth walkthrough of the code snippet above.
+    I skip over some of the background detail, so I&#39;d recommend reading <a href="/typescript-builders">my last post</a> first if you haven&#39;t already.
+  </p>
+
+  <p>To understand how this builder works, let&#39;s think about what a reducer needs in terms of type information.
+    When you call a reducer, it looks something like this: <code>const newState = reducer(oldState, action);</code></p>
+
+  <p>The <code>newState</code> and <code>oldState</code> variables are both the reducer&#39;s state type, while the <code>action</code> parameter should be one of the actions that the reducer is configured to handle.
+    It&#39;s fairly intuitive that our builder must have generic types for the state and the set of valid actions.
+    Of those two, the state type never changes but the set of valid actions must be mutable when we add cases to the reducer.
+    Each time we add a case, we should add a valid action type.
+  </p>
+
+  <p>In this case, it&#39;s not enough to just have a union of strings representing the valid action types.
+    If we did that, there would be no compile-time guarantee that the action&#39;s payload is correct.
+    Instead, we need the generic type representing valid actions to be a union of <code>PayloadAction</code>.
+    This is the Redux Toolkit type representing an action with a given type and payload.
+    You specify the type and payload using generic parameters, like this:
+    <code>type SetAction = PayloadAction&lt;number, &quot;set&quot;&gt;;</code></p>
+
+  <p>Therefore, our class declaration looks like this:
+    <code>export class ReducerBuilder&lt;STATE, ACTIONS extends PayloadAction&lt;any, string&gt;&gt;{</code></p>
+
+  <p>The state is configured via <code>STATE</code>, which can be any type, and the set of valid actions is configured via <code>ACTIONS</code>, which can be any payload action type.
+    In practice, this would actually be a union of many payload action types.
+    Also, note that the <code>PayloadAction</code> type can be configured to represent an action without a payload by passing <code>undefined</code> as its first generic parameter.
+  </p>
+
+  <p>We could have used two generic parameters.
+  One would be for the union of valid action types, and the other would be the union of valid action payloads.
+  </p>
+
+  <figure><img src="/assets/blog/reducer-builder/header.png" alt="Using our method, we specify that the action must either have type set and payload number of it must have type increment and payload undefined. The proposed method would allow any action with either type set or type increment and either payload number of payload undefined." title="It's ok to figure this kind of thing out through trial and error"></figure>
+
+  <p>However, that wouldn&#39;t work properly.
+    It would allow us to dispatch the action:
+    <code>{ type: &quot;increment&quot;, payload: 5 }</code></p>
+
+  <p>This action has a type that is one of the valid options, and it has a payload that is also a valid option.
+    However, we specifically care about the <em>combination</em> of properties on the action.
+    A <code>number</code> payload is only valid on a <code>set</code> action, and any <code>increment</code> action with a payload is invalid.
+    Therefore, we have to use a union of <code>PayloadAction</code> objects.
+  </p>
+
+  <p>Moving on to the actual class implementation, let&#39;s look at the builder&#39;s internal state:
+  </p>
+
+  <figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Internal State</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true"><details class="svelte-19djgjm"><summary class="svelte-19djgjm">&lt;Show 7 identical lines&gt;</summary>
+    <div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Builder</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">initialState</span>: <span class="hljs-variable constant_">STATE</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">cases</span>: <span class="hljs-title class_">Array</span>&lt;{</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-attr">type</span>: <span class="hljs-built_in">string</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-attr">handler</span>: <span class="hljs-title class_">ActionHandler</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-built_in">any</span>&gt;;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="code hidden svelte-19djgjm">  }&gt;;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="code hidden svelte-19djgjm">}</div></details>
+
+<div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Builder</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">initialState</span>: <span class="hljs-variable constant_">STATE</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">cases</span>: <span class="hljs-title class_">Array</span>&lt;{</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-attr">type</span>: <span class="hljs-built_in">string</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-attr">handler</span>: <span class="hljs-title class_">ActionHandler</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-built_in">any</span>&gt;;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="code hidden svelte-19djgjm">  }&gt;;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="code hidden svelte-19djgjm">}</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Builder</span> {
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">initialState</span>: <span class="hljs-variable constant_">STATE</span>;
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> <span class="hljs-attr">cases</span>: <span class="hljs-title class_">Array</span>&lt;{
+    <span class="hljs-attr">type</span>: <span class="hljs-built_in">string</span>;
+    <span class="hljs-attr">handler</span>: <span class="hljs-title class_">ActionHandler</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-built_in">any</span>&gt;;
+  }&gt;;
+}</code>
+</figure>
+
+  <p>At the top of the class, we define the two pieces of internal state.
+    The <code>initialState</code> property is simple, and is taken as a parameter when the builder is created, then used when creating the reducer.
+    The <code>cases</code> property is more complex, and maps action types to their handlers.
+    This uses the <code>ActionHandler</code> type defined at the top of the snippet:
+    <code>type ActionHandler&lt;STATE, PAYLOAD&gt; = (state: Draft&lt;STATE&gt;, payload: PAYLOAD) =&gt; STATE;</code></p>
+
+  <p>This type simply represents a function that takes the current state and the payload from the received action, returning the new state.
+    The <code>Draft</code> type is part of Redux Toolkit, and allows us to directly mutate the state parameter without breaking things.
+    In Redux, you typically have to treat the state as immutable, so this just makes it a bit simpler to use.
+  </p>
+
+  <p>Interestingly, our <code>ACTIONS</code> generic type doesn&#39;t appear anywhere in the builder&#39;s internal state.
+    It only exists at compile time to check that the reducer is valid.
+    There is never anything in our builder that actually fits that type.
+  </p>
+
+  <p>Like before, we have a private constructor for internal use and a static factory method for external use:
+  </p>
+
+  <figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Instantiation</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true"><details class="svelte-19djgjm"><summary class="svelte-19djgjm">&lt;Show 13 identical lines&gt;</summary>
+    <div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Builder</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">private</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="code hidden svelte-19djgjm">    initialState: STATE,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="code hidden svelte-19djgjm">    cases: <span class="hljs-built_in">Array</span>&lt;{ <span class="hljs-keyword">type</span>: <span class="hljs-built_in">string</span>; handler: ActionHandler&lt;STATE, <span class="hljs-built_in">any</span>&gt; }&gt;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="code hidden svelte-19djgjm">  </span>) {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-variable language_">this</span>.<span class="hljs-property">initialState</span> = initialState;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-variable language_">this</span>.<span class="hljs-property">cases</span> = cases;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">static</span> <span class="hljs-keyword">new</span>&lt;<span class="hljs-variable constant_">STATE</span>&gt;(<span class="hljs-attr">initialState</span>: <span class="hljs-variable constant_">STATE</span>): <span class="hljs-title class_">ReducerBuilder</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-built_in">never</span>&gt; {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReducerBuilder</span>(initialState, []);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+        <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+        <div class="code hidden svelte-19djgjm">}</div></details>
+
+<div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Builder</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">private</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code hidden svelte-19djgjm">    initialState: STATE,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code hidden svelte-19djgjm">    cases: <span class="hljs-built_in">Array</span>&lt;{ <span class="hljs-keyword">type</span>: <span class="hljs-built_in">string</span>; handler: ActionHandler&lt;STATE, <span class="hljs-built_in">any</span>&gt; }&gt;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="code hidden svelte-19djgjm">  </span>) {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-variable language_">this</span>.<span class="hljs-property">initialState</span> = initialState;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-variable language_">this</span>.<span class="hljs-property">cases</span> = cases;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="code hidden svelte-19djgjm"> </div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">static</span> <span class="hljs-keyword">new</span>&lt;<span class="hljs-variable constant_">STATE</span>&gt;(<span class="hljs-attr">initialState</span>: <span class="hljs-variable constant_">STATE</span>): <span class="hljs-title class_">ReducerBuilder</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-built_in">never</span>&gt; {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReducerBuilder</span>(initialState, []);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">12</div>
+  <div class="code hidden svelte-19djgjm">  }</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">13</div>
+  <div class="code hidden svelte-19djgjm">}</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Builder</span> {
+  <span class="hljs-keyword">private</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params">
+    initialState: STATE,
+    cases: <span class="hljs-built_in">Array</span>&lt;{ <span class="hljs-keyword">type</span>: <span class="hljs-built_in">string</span>; handler: ActionHandler&lt;STATE, <span class="hljs-built_in">any</span>&gt; }&gt;
+  </span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">initialState</span> = initialState;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">cases</span> = cases;
+  }
+
+  <span class="hljs-keyword">static</span> <span class="hljs-keyword">new</span>&lt;<span class="hljs-variable constant_">STATE</span>&gt;(<span class="hljs-attr">initialState</span>: <span class="hljs-variable constant_">STATE</span>): <span class="hljs-title class_">ReducerBuilder</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-built_in">never</span>&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReducerBuilder</span>(initialState, []);
+  }
+}</code>
+</figure>
+
+  <p>The static <code>new</code> method permanently sets the initial state of the reducer, and initialises the builder to have no cases.
+    That means that the second generic parameter, representing the union of all valid actions, is typed as <code>never</code>.
+    This type is unique because it never matches anything.
+    That makes sense - a reducer with no cases should accept no actions.
+  </p>
+
+  <p>I have left the state and constructor separate to make it easier to explain, but you can combine the two as:
+  </p>
+
+  <figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Combined Construction</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true"><details class="svelte-19djgjm"><summary class="svelte-19djgjm">&lt;Show 9 identical lines&gt;</summary>
+    <div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Builder</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">private</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> initialState: STATE,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> cases: <span class="hljs-built_in">Array</span>&lt;{</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="code hidden svelte-19djgjm">      <span class="hljs-keyword">type</span>: <span class="hljs-built_in">string</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="code hidden svelte-19djgjm">      handler: ActionHandler&lt;STATE, <span class="hljs-built_in">any</span>&gt;;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="code hidden svelte-19djgjm">    }&gt;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="code hidden svelte-19djgjm">  </span>) {}</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="code hidden svelte-19djgjm">}</div></details>
+
+<div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Builder</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">private</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> initialState: STATE,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> cases: <span class="hljs-built_in">Array</span>&lt;{</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="code hidden svelte-19djgjm">      <span class="hljs-keyword">type</span>: <span class="hljs-built_in">string</span>;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="code hidden svelte-19djgjm">      handler: ActionHandler&lt;STATE, <span class="hljs-built_in">any</span>&gt;;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="code hidden svelte-19djgjm">    }&gt;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="code hidden svelte-19djgjm">  </span>) {}</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="code hidden svelte-19djgjm">}</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Builder</span> {
+  <span class="hljs-keyword">private</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params">
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> initialState: STATE,
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> cases: <span class="hljs-built_in">Array</span>&lt;{
+      <span class="hljs-keyword">type</span>: <span class="hljs-built_in">string</span>;
+      handler: ActionHandler&lt;STATE, <span class="hljs-built_in">any</span>&gt;;
+    }&gt;
+  </span>) {}
+}</code>
+</figure>
+
+  <p>To add a new case to the reducer, we invoke our mutator method, <code>addCase</code>:
+  </p>
+
+  <figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Mutation</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true"><details class="svelte-19djgjm"><summary class="svelte-19djgjm">&lt;Show 9 identical lines&gt;</summary>
+    <div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">function</span> addCase&lt;<span class="hljs-variable constant_">TYPE</span> <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>, <span class="hljs-variable constant_">PAYLOAD</span>&gt;(</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">actionCreator</span>: <span class="hljs-title class_">ActionCreatorWithPayload</span>&lt;<span class="hljs-variable constant_">PAYLOAD</span>, <span class="hljs-variable constant_">TYPE</span>&gt;,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">actionHandler</span>: <span class="hljs-title class_">ActionHandler</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">PAYLOAD</span>&gt;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="code hidden svelte-19djgjm">): <span class="hljs-title class_">ReducerBuilder</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">ACTIONS</span> | <span class="hljs-title class_">PayloadAction</span>&lt;<span class="hljs-variable constant_">PAYLOAD</span>, <span class="hljs-variable constant_">TYPE</span>&gt;&gt; {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReducerBuilder</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">initialState</span>, [</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="code hidden svelte-19djgjm">    ...<span class="hljs-variable language_">this</span>.<span class="hljs-property">cases</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="code hidden svelte-19djgjm">    { <span class="hljs-attr">type</span>: actionCreator.<span class="hljs-property">type</span>, <span class="hljs-attr">handler</span>: actionHandler },</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="code hidden svelte-19djgjm">  ]);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="code hidden svelte-19djgjm">}</div></details>
+
+<div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">function</span> addCase&lt;<span class="hljs-variable constant_">TYPE</span> <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>, <span class="hljs-variable constant_">PAYLOAD</span>&gt;(</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">actionCreator</span>: <span class="hljs-title class_">ActionCreatorWithPayload</span>&lt;<span class="hljs-variable constant_">PAYLOAD</span>, <span class="hljs-variable constant_">TYPE</span>&gt;,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-attr">actionHandler</span>: <span class="hljs-title class_">ActionHandler</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">PAYLOAD</span>&gt;</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code hidden svelte-19djgjm">): <span class="hljs-title class_">ReducerBuilder</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">ACTIONS</span> | <span class="hljs-title class_">PayloadAction</span>&lt;<span class="hljs-variable constant_">PAYLOAD</span>, <span class="hljs-variable constant_">TYPE</span>&gt;&gt; {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReducerBuilder</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">initialState</span>, [</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="code hidden svelte-19djgjm">    ...<span class="hljs-variable language_">this</span>.<span class="hljs-property">cases</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="code hidden svelte-19djgjm">    { <span class="hljs-attr">type</span>: actionCreator.<span class="hljs-property">type</span>, <span class="hljs-attr">handler</span>: actionHandler },</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="code hidden svelte-19djgjm">  ]);</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="code hidden svelte-19djgjm">}</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">function</span> addCase&lt;<span class="hljs-variable constant_">TYPE</span> <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>, <span class="hljs-variable constant_">PAYLOAD</span>&gt;(
+  <span class="hljs-attr">actionCreator</span>: <span class="hljs-title class_">ActionCreatorWithPayload</span>&lt;<span class="hljs-variable constant_">PAYLOAD</span>, <span class="hljs-variable constant_">TYPE</span>&gt;,
+  <span class="hljs-attr">actionHandler</span>: <span class="hljs-title class_">ActionHandler</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">PAYLOAD</span>&gt;
+): <span class="hljs-title class_">ReducerBuilder</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">ACTIONS</span> | <span class="hljs-title class_">PayloadAction</span>&lt;<span class="hljs-variable constant_">PAYLOAD</span>, <span class="hljs-variable constant_">TYPE</span>&gt;&gt; {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReducerBuilder</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">initialState</span>, [
+    ...<span class="hljs-variable language_">this</span>.<span class="hljs-property">cases</span>,
+    { <span class="hljs-attr">type</span>: actionCreator.<span class="hljs-property">type</span>, <span class="hljs-attr">handler</span>: actionHandler },
+  ]);
+}</code>
+</figure>
+
+  <p>When called, this method configures a handler for a given action type.
+    The <code>actionCreator</code> parameter specifies what action we are configuring a handler for.
+    It uses the Redux Toolkit <code>ActionCreatorWithPayload</code> type.
+    Like before, you can set the payload to <code>undefined</code> when representing an action with no payload.
+  </p>
+
+  <p>The second parameter specifies what should happen to the state when the reducer receives that action.
+    We create a new builder where the initial state stays the same but the cases map is extended.
+    The new case is added to the end as an object containing the action type and action handler.
+  </p>
+
+  <p>The <code>ACTIONS</code> generic parameter in the returned builder is explicitly specified as <code>ACTIONS | PayloadAction&lt;PAYLOAD, TYPE&gt;</code>.
+    This simply adds a new action into the <code>ACTIONS</code> union.
+    The new action is defined as having the type and payload from the action creator.
+  </p>
+
+  <p>Finally, we look at the build method.
+    This takes the builder&#39;s current state and uses it to configure a Redux reducer:
+  </p>
+
+  <figure class="container wide snippet svelte-1omgi29"><h2 class="name svelte-1omgi29">Build</h2>
+
+	
+
+	<code class="visualCode svelte-12l7s60" aria-hidden="true"><details class="svelte-19djgjm"><summary class="svelte-19djgjm">&lt;Show 11 identical lines&gt;</summary>
+    <div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+        <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">function</span> <span class="hljs-title function_">build</span>(<span class="hljs-params"></span>): <span class="hljs-title class_">ReduxReducer</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">ACTIONS</span>&gt; {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+        <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">return</span> <span class="hljs-title function_">createReducer</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">initialState</span>, <span class="hljs-function">(<span class="hljs-params">builder</span>) =&gt;</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+        <div class="code hidden svelte-19djgjm">    <span class="hljs-variable language_">this</span>.<span class="hljs-property">cases</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">{ <span class="hljs-keyword">type</span>, handler }</span>) =&gt;</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+        <div class="code hidden svelte-19djgjm">      builder.<span class="hljs-title function_">addCase</span>(</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+        <div class="code hidden svelte-19djgjm">        <span class="hljs-keyword">type</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+        <div class="code hidden svelte-19djgjm">        <span class="hljs-function">(<span class="hljs-params">state: Draft&lt;STATE&gt;, action: PayloadAction&lt;<span class="hljs-built_in">any</span>, <span class="hljs-built_in">string</span>&gt;</span>) =&gt;</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+        <div class="code hidden svelte-19djgjm">          <span class="hljs-title function_">handler</span>(state, action.<span class="hljs-property">payload</span>)</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+        <div class="code hidden svelte-19djgjm">      );</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+        <div class="code hidden svelte-19djgjm">    });</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+        <div class="code hidden svelte-19djgjm">  });</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+        <div class="toLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+        <div class="code hidden svelte-19djgjm">}</div></details>
+
+<div class="fromLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">1</div>
+  <div class="code hidden svelte-19djgjm"><span class="hljs-keyword">function</span> <span class="hljs-title function_">build</span>(<span class="hljs-params"></span>): <span class="hljs-title class_">ReduxReducer</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">ACTIONS</span>&gt; {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">2</div>
+  <div class="code hidden svelte-19djgjm">  <span class="hljs-keyword">return</span> <span class="hljs-title function_">createReducer</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">initialState</span>, <span class="hljs-function">(<span class="hljs-params">builder</span>) =&gt;</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">3</div>
+  <div class="code hidden svelte-19djgjm">    <span class="hljs-variable language_">this</span>.<span class="hljs-property">cases</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">{ <span class="hljs-keyword">type</span>, handler }</span>) =&gt;</span> {</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">4</div>
+  <div class="code hidden svelte-19djgjm">      builder.<span class="hljs-title function_">addCase</span>(</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">5</div>
+  <div class="code hidden svelte-19djgjm">        <span class="hljs-keyword">type</span>,</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">6</div>
+  <div class="code hidden svelte-19djgjm">        <span class="hljs-function">(<span class="hljs-params">state: Draft&lt;STATE&gt;, action: PayloadAction&lt;<span class="hljs-built_in">any</span>, <span class="hljs-built_in">string</span>&gt;</span>) =&gt;</span></div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">7</div>
+  <div class="code hidden svelte-19djgjm">          <span class="hljs-title function_">handler</span>(state, action.<span class="hljs-property">payload</span>)</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">8</div>
+  <div class="code hidden svelte-19djgjm">      );</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">9</div>
+  <div class="code hidden svelte-19djgjm">    });</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">10</div>
+  <div class="code hidden svelte-19djgjm">  });</div><div class="fromLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+  <div class="toLine hidden svelte-19djgjm" aria-hidden="true">11</div>
+  <div class="code hidden svelte-19djgjm">}</div></code>
+
+<code class="sr-code svelte-12l7s60"><span class="hljs-keyword">function</span> <span class="hljs-title function_">build</span>(<span class="hljs-params"></span>): <span class="hljs-title class_">ReduxReducer</span>&lt;<span class="hljs-variable constant_">STATE</span>, <span class="hljs-variable constant_">ACTIONS</span>&gt; {
+  <span class="hljs-keyword">return</span> <span class="hljs-title function_">createReducer</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">initialState</span>, <span class="hljs-function">(<span class="hljs-params">builder</span>) =&gt;</span> {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">cases</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">{ <span class="hljs-keyword">type</span>, handler }</span>) =&gt;</span> {
+      builder.<span class="hljs-title function_">addCase</span>(
+        <span class="hljs-keyword">type</span>,
+        <span class="hljs-function">(<span class="hljs-params">state: Draft&lt;STATE&gt;, action: PayloadAction&lt;<span class="hljs-built_in">any</span>, <span class="hljs-built_in">string</span>&gt;</span>) =&gt;</span>
+          <span class="hljs-title function_">handler</span>(state, action.<span class="hljs-property">payload</span>)
+      );
+    });
+  });
+}</code>
+</figure>
+
+  <p>There&#39;s no fancy type magic going on here, just a call to the normal Redux Toolkit <code>createReducer</code>, using its builder mode.
+    For each case in the builder&#39;s internal state, it adds a matching case to the reducer.
+    When it has added all cases, it is done and the reducer is ready to use.
+  </p>
+
+  <h2>Conclusion</h2>
+
+  <p>Redux Reducers were the first time I realised the power of the builder pattern in TypeScript, and they&#39;re still one of the best use-cases.
+    They give you real type-safety, have basically no runtime cost, and are completely encapsulated which means there&#39;s limited impact on maintainability.
+    In my Redux projects, I went even further and added a similar builder for <a href="https://github.com/redux-saga/redux-saga">Redux Sagas</a>, but I&#39;m leaving that as an exercise to the reader.
+  </p>
+
+  <p>I hope that this post gave you a better insight into how builders can be used to get better types in TypeScript.
+    If not, at least you got some code snippets to copy-paste!
+  </p>
+
+  <hr>
+
+  <p>Feel free to contact me on <a href="https://twitter.com/SteWaterman">Twitter</a> with any questions, feedback, or to point out mistakes!
+    I&#39;d love to hear from you if you&#39;ve found this useful and tried using builders in your own project.
+    How did it go?
+  </p>
+
+					</div></article></div>
+
+		
+
+<div class="textContainer svelte-11sshxl" style="position: sticky; top: 1em;"><div class="authorCol svelte-1ghjldr"><div class="details svelte-1ghjldr"><img src="/assets/blog/authors/SteWaterman.jpg" alt="Steven Waterman" class="svelte-1ghjldr">
+			<h2 class="name svelte-1ghjldr">Steven Waterman</h2>
+			<p class="job svelte-1ghjldr">Over-thinker</p>
+			</div>
+
+		
+
+		<ul class="links svelte-1ghjldr"><li class="svelte-1ghjldr"><a href="mailto:blog@stevenwaterman.uk" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 512 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(256 256)" transform-origin="128 0"><g transform="translate(0,0) scale(1,1)"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z" fill="currentColor" transform="translate(-256 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">blog@stevenwaterman.uk</span></a></li>
+
+			<li class="svelte-1ghjldr"><a href="https://calendly.com/stewaterman/30min" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 448 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(224 256)" transform-origin="112 0"><g transform="translate(0,0) scale(1,1)"><path d="M436 160H12c-6.627 0-12-5.373-12-12v-36c0-26.51 21.49-48 48-48h48V12c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v52h128V12c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v52h48c26.51 0 48 21.49 48 48v36c0 6.627-5.373 12-12 12zM12 192h424c6.627 0 12 5.373 12 12v260c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V204c0-6.627 5.373-12 12-12zm333.296 95.947l-28.169-28.398c-4.667-4.705-12.265-4.736-16.97-.068L194.12 364.665l-45.98-46.352c-4.667-4.705-12.266-4.736-16.971-.068l-28.397 28.17c-4.705 4.667-4.736 12.265-.068 16.97l82.601 83.269c4.667 4.705 12.265 4.736 16.97.068l142.953-141.805c4.705-4.667 4.736-12.265.068-16.97z" fill="currentColor" transform="translate(-224 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">Office Hours</span></a></li>
+
+			<li class="svelte-1ghjldr"><a href="https://github.com/StevenWaterman/" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 496 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(248 256)" transform-origin="124 0"><g transform="translate(0,0) scale(1,1)"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" fill="currentColor" transform="translate(-248 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">@StevenWaterman</span></a></li>
+
+			<li class="svelte-1ghjldr"><a href="https://twitter.com/SteWaterman/" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 512 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(256 256)" transform-origin="128 0"><g transform="translate(0,0) scale(1,1)"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z" fill="currentColor" transform="translate(-256 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">@SteWaterman</span></a></li>
+
+			<li class="svelte-1ghjldr"><a href="https://twitch.tv/SteWaterman/" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 512 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(256 256)" transform-origin="128 0"><g transform="translate(0,0) scale(1,1)"><path d="M391.17,103.47H352.54v109.7h38.63ZM285,103H246.37V212.75H285ZM120.83,0,24.31,91.42V420.58H140.14V512l96.53-91.42h77.25L487.69,256V0ZM449.07,237.75l-77.22,73.12H294.61l-67.6,64v-64H140.14V36.58H449.07Z" fill="currentColor" transform="translate(-256 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">@SteWaterman</span></a></li>
+
+			<li class="svelte-1ghjldr"><a href="https://www.linkedin.com/in/steven-waterman/" class="svelte-1ghjldr"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 448 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(224 256)" transform-origin="112 0"><g transform="translate(0,0) scale(1,1)"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" fill="currentColor" transform="translate(-224 -256)"></path></g></g></svg> <span class="linkText svelte-1ghjldr">@steven-waterman</span></a></li>
+
+			</ul></div></div></div></div>
+
+
+
+
+	</body>
+</html>
