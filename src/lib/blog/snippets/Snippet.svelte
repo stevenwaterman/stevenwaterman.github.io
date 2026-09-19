@@ -8,7 +8,7 @@
 	import json from "highlight.js/lib/languages/json";
 	import yaml from "highlight.js/lib/languages/yaml";
 	import c from "highlight.js/lib/languages/c";
-	import prettier from "prettier";
+	import prettier from "@prettier/sync";
 	import type { SnippetConfig } from "../blogData";
 	import Highlight from "./Highlight.svelte";
 
@@ -39,6 +39,9 @@
 		yaml: { name: "yaml" }
 	}[config.language];
 
+	function highlight(snippet: string): string;
+	function highlight(snippet: undefined): undefined;
+	function highlight(snippet: string | undefined): string | undefined;
 	function highlight(snippet?: string): string | undefined {
 		if (snippet === undefined) return undefined;
 
@@ -48,14 +51,19 @@
 		if (parser.noPrettify) {
 			formatted = trimmed;
 		} else {
-			formatted = prettier.format(trimmed, { parser: parser.name }).trimEnd();
+			formatted = prettier
+				.format(trimmed, {
+					parser: parser.name,
+					plugins: ["prettier-plugin-java", "prettier-plugin-svelte"]
+				})
+				.trimEnd();
 		}
 
 		let highlighted: string;
 		if (parser.highlightAuto) {
 			highlighted = hljs.highlightAuto(formatted).value;
 		} else {
-			highlighted = hljs.highlight(parser.name, formatted).value;
+			highlighted = hljs.highlight(formatted, { language: parser.name }).value;
 		}
 
 		return highlighted;

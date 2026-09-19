@@ -17,10 +17,10 @@
 	let authorDetails: AuthorDetails;
 	$: authorDetails = authors[post.author];
 
-	let fit: BlogPost["header"]["fit"];
+	let fit: NonNullable<BlogPost["header"]>["fit"];
 	$: fit = post.header?.fit ?? "cover";
 
-	let position: BlogPost["header"]["position"];
+	let position: NonNullable<BlogPost["header"]>["position"];
 	$: position = post.header?.position ?? "center";
 
 	/*
@@ -316,10 +316,4 @@
 		align-items: center;
 	}
 
-	.bottomClapContainer {
-		display: flex;
-		justify-content: center;
-		margin-top: 3em;
-		margin-bottom: -2em;
-	}
 </style>

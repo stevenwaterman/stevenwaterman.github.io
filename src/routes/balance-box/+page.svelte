@@ -32,11 +32,10 @@
 
   <figure>
     <!-- svelte-ignore a11y-media-has-caption -->
-    <video autoplay loop 
+    <video autoplay loop
       title="Sorry for how overexposed this is. Clever Steven told his camera to auto-adjust ISO based on black plastic..."
-      src="/assets/blog/balance-box/box-gif.mp4" 
-      alt="A screen recording of this website, also showing my webcam. I am holding the balance box, and adjust the personal slider from 5 to 7. After a second, the value on the website updates. I adjust it back to 5, and the website updates again."
-    />
+      src="/assets/blog/balance-box/box-gif.mp4"
+    ></video>
     <figcaption>You really are seeing it in real-time</figcaption>
   </figure>
 

@@ -4,7 +4,7 @@
   import PostLink from "$lib/blog/postLinks/PostLink.svelte";
   import FeaturedLink from "$lib/blog/postLinks/FeaturedLink.svelte";
   import Template from "$lib/template/Template.svelte";
-  import Fa from "svelte-fa/src/fa.svelte";
+  import Fa from "svelte-fa";
   import { faRss } from "@fortawesome/free-solid-svg-icons";
 
   const posts = Object.entries(blogPosts).filter(post => post[1].published) as Array<[BlogId, BlogPost]>;
@@ -117,7 +117,7 @@
   <h2>All Posts</h2>
 
   <ol class="recent">
-    {#each posts as [id, _] (id)}
+    {#each posts as [id] (id)}
       <li><PostLink {id}/></li>
     {/each}
   </ol>

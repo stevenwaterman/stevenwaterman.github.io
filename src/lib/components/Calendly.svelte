@@ -1,5 +1,5 @@
 <script lang="ts">
-  const handler: any = "Calendly.initPopupWidget({url: 'https://calendly.com/stewaterman/30min'});return false;";
+  const handler = "Calendly.initPopupWidget({url: 'https://calendly.com/stewaterman/30min'});return false;" as unknown as (event: MouseEvent) => void;
 </script>
 
 <style>
@@ -56,4 +56,3 @@
   <button onclick={handler}>Let's&nbsp;Chat<span class="arrow">&gt;</span></button>
   <!-- Calendly link widget end -->
 </div>
-

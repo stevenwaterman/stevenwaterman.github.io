@@ -1,6 +1,6 @@
 <script lang="ts">
 	import TextContainer from "$lib/template/TextContainer.svelte";
-	import Fa from "svelte-fa/src/fa.svelte";
+	import Fa from "svelte-fa";
 	import { faCalendarCheck, faEnvelope, faGlobe } from "@fortawesome/free-solid-svg-icons";
 	import { faTwitch, faTwitter, faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 

@@ -139,11 +139,15 @@
 </style>
 
 <span class="label">
-  <a class="topLink" href={topEntry.link} rel={topEntry.external ? "external" : undefined}>{topEntry.label}</a>
+  {#if topEntry.link}
+    <a class="topLink" href={topEntry.link} rel={topEntry.external ? "external" : undefined}>{topEntry.label}</a>
+  {:else}
+    <span class="topLink">{topEntry.label}</span>
+  {/if}
   {#if showMenu}
     <div class="menu">
       <div class="menu-arrow">
-        <div class="menu-arrow-fill"/>
+        <div class="menu-arrow-fill"></div>
       </div>
       <div class="menu-content">
         <ul>

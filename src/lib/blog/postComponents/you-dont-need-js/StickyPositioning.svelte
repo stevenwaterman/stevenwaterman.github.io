@@ -27,7 +27,7 @@
 <div class="scroller">
   <p>Scroll down the page</p>
   <p>And watch the blue square 🡖</p>
-  <div class="square"/>
+  <div class="square"></div>
   <p>The blue square follows you</p>
   <p>As you scroll past it</p>
   <p>And if you scroll back up</p>

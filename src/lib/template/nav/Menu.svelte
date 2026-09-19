@@ -1,7 +1,7 @@
 <script>
 	import Calendly from "$lib/components/Calendly.svelte";
 	import { faBars } from "@fortawesome/free-solid-svg-icons";
-	import Fa from "svelte-fa/src/fa.svelte";
+	import Fa from "svelte-fa";
 	import DropdownLabel from "./DropdownLabel.svelte";
 </script>
 
@@ -12,9 +12,9 @@
 	</a>
 
 	<div class="burgerMenuContainer">
-		<span tabindex="0" class="burgerMenuOpen">
+		<button type="button" class="burgerMenuOpen" aria-label="Open navigation menu">
 			<Fa icon={faBars} />
-		</span>
+		</button>
 
 		<ul class="menu">
 			<li>
@@ -41,7 +41,7 @@
 
 			<li>
 				<DropdownLabel
-					topEntry={{ label: "Projects", link: "/#community" }}
+					topEntry={{ label: "Projects" }}
 					menuEntries={[
 						{ label: "TuneScape", link: "https://tunescape07.com" },
 						{ label: "Balance Scores", link: "https://stevenwaterman.uk/Balance/" },
@@ -97,11 +97,20 @@
 	.burgerMenuOpen {
 		display: none;
 		justify-self: flex-end;
-		/* background-color: red; */
+		background: none;
+		border: none;
+		border-radius: 0;
+		color: inherit;
 		line-height: 3em;
 		padding-left: 2em;
 		padding-right: 2em;
 		transform: translateX(2em);
+	}
+
+	.burgerMenuOpen:hover,
+	.burgerMenuOpen:focus-visible {
+		background: none;
+		color: var(--yellow-1);
 	}
 
 	.menu {

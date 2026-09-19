@@ -1,7 +1,6 @@
 <script lang="ts">
   import BlogPost from "$lib/blog/BlogPost.svelte";
 import Snippet from "$lib/blog/snippets/Snippet.svelte";
-  import YoutubeEmbed from "$lib/blog/YoutubeEmbed.svelte";
   import snippets from "./snippets";
 </script>
 
@@ -286,7 +285,7 @@ import Snippet from "$lib/blog/snippets/Snippet.svelte";
 
   <p>
     Our utility type simply extracts one element of that tuple.
-    <code>Parameter&lt;typeof myFunc, 0&gt;</code> is the same as <code>Parameters<typeof myFunc>[0]</code>, which resolves to <code>string</code>.
+    <code>Parameter&lt;typeof myFunc, 0&gt;</code> is the same as <code>Parameters&lt;typeof myFunc&gt;[0]</code>, which resolves to <code>string</code>.
     We can use this utility type in the definition of <code>replaceElement</code>:
   </p>
 

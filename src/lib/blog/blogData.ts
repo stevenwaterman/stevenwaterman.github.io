@@ -609,6 +609,6 @@ export type BlogId = keyof typeof blogPosts;
 
 export type SnippetConfig = {
 	name: string;
-	language: "svelte" | "ts" | "java" | "html" | "json" | "yaml";
+	language: "c" | "svelte" | "ts" | "java" | "html" | "json" | "yaml";
 	snippet: string;
 };

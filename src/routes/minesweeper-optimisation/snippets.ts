@@ -1,4 +1,4 @@
-import { SnippetConfig } from "../../lib/blog/blogData";
+import type { SnippetConfig } from "../../lib/blog/blogData";
 
 const deriving: SnippetConfig = {
   name: "Deriving Stores",

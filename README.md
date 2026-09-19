@@ -2,4 +2,9 @@
 
 This is my personal site, which is used for blogging and random digressions.
 
-[Using the flexible-jekyll theme](https://github.com/artemsheludko/flexible-jekyll)
+It is a statically generated [SvelteKit](https://svelte.dev/docs/kit) site hosted on GitHub Pages.
+
+```sh
+pnpm install
+pnpm dev
+```

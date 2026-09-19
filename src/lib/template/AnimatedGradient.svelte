@@ -101,6 +101,6 @@
 
 <div class="panX">
   <div class="panY">
-    <div class="gradient"/>
+    <div class="gradient"></div>
   </div>
 </div>

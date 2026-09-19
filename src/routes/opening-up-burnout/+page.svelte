@@ -1,6 +1,5 @@
 <script lang="ts">
   import BlogPost from "$lib/blog/BlogPost.svelte";
-  import YoutubeEmbed from "$lib/blog/YoutubeEmbed.svelte";
   import Calendly from "$lib/components/Calendly.svelte";
 </script>
 
