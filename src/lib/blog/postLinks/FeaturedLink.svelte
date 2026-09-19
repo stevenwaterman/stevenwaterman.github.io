@@ -27,6 +27,7 @@
 	class:projects={post.type === "projects"}
 	class:media={post.type === "media"}
 	class:philosophy={post.type === "philosophy"}
+	class:fiction={post.type === "fiction"}
 >
 	<div class="type">
 		{post.type}
@@ -157,6 +158,10 @@
 
 	.philosophy {
 		--type-color: #c8b6e8;
+	}
+
+	.fiction {
+		--type-color: #e7b0d1;
 	}
 
 	@media (max-width: 1199px) {

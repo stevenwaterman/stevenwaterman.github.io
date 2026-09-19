@@ -131,12 +131,14 @@
 		transition: color 0.1s;
 	}
 
-	li:hover {
-		color: var(--yellow-1);
+	.links a,
+	.links a:visited {
+		display: contents;
+		color: var(--blue-0);
 	}
 
-	li a {
-		display: contents;
+	.links a:hover {
+		color: var(--yellow-1);
 	}
 
 	li :global(.svelte-fa) {

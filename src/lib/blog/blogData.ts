@@ -36,7 +36,7 @@ export const authors = assertAuthors({
 export type Author = keyof typeof authors;
 
 export type BlogPost = {
-	type: "life" | "coaching" | "technical" | "projects" | "media" | "philosophy";
+	type: "life" | "coaching" | "technical" | "projects" | "media" | "philosophy" | "fiction";
 	author: keyof typeof authors;
 	title: string;
 	stylisedTitle?: string;
@@ -578,7 +578,7 @@ export const blogPosts = assertBlogPosts({
 		longDescription:
 			"I added support for NOMERGE comments to our codebase, which the CI pipeline uses to prevent temporary, unfinished, or debug code from being released accidentally.",
 		date: new Date("2024-10-21T21:00:00Z"),
-		featured: true,
+		featured: false,
 		published: true
 	},
 	"authenticating-javascript-websockets": {
@@ -590,6 +590,17 @@ export const blogPosts = assertBlogPosts({
 		longDescription:
 			"When a WebSocket fails to connect, you receive no information about why. This makes renewable authentication an absolute nightmare, unless you do in-band authentication.",
 		date: new Date("2025-05-21T11:00:00Z"),
+		featured: true,
+		published: true
+	},
+	"what-i-remember": {
+		type: "fiction",
+		author: "SteWaterman",
+		title: "What I Remember",
+		shortDescription: "An engineer looks back on the rise of machine intelligence and the future it never delivered.",
+		longDescription:
+			"In the near future, an engineer looks back on the rise and quiet disappointment of machine intelligence. After years spent waiting for the future to arrive, it's time for him to turn off the lights.",
+		date: new Date("2026-09-19T12:00:00Z"),
 		featured: true,
 		published: true
 	},
