@@ -592,6 +592,16 @@ export const blogPosts = assertBlogPosts({
 		date: new Date("2025-05-21T11:00:00Z"),
 		featured: true,
 		published: true
+	},
+	"socio-technical-system-design": {
+		type: "technical",
+		author: "SteWaterman",
+		title: "You can't design a system while ignoring the humans",
+		shortDescription: "",
+		longDescription: "",
+		date: new Date(),
+		featured: true,
+		published: false 
 	}
 } as const);
 
