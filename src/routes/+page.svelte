@@ -104,8 +104,8 @@
 
 <Template title="Steven Waterman">
   <div class="title">
-    <h1>My Blog <a class="rss" href="/rss.xml" title="RSS feed"><Fa icon={faRss}/></a></h1>
-    <p class="subtitle">Assorted thoughts on systems, tech, and existing in this world</p>
+    <h1>Blog <a class="rss" href="/rss.xml" title="RSS feed"><Fa icon={faRss}/></a></h1>
+    <p class="subtitle">Everything is systems<br />I can't help it</p>
   </div>
 
   <ol class="featured">

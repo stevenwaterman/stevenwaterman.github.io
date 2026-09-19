@@ -36,7 +36,7 @@ export const authors = assertAuthors({
 export type Author = keyof typeof authors;
 
 export type BlogPost = {
-	type: "life" | "coaching" | "technical" | "projects" | "media";
+	type: "life" | "coaching" | "technical" | "projects" | "media" | "philosophy";
 	author: keyof typeof authors;
 	title: string;
 	stylisedTitle?: string;

@@ -29,7 +29,6 @@
 				<DropdownLabel
 					topEntry={{ label: "Socials" }}
 					menuEntries={[
-						{ label: "Twitter", link: "https://twitter.com/SteWaterman/" },
 						{ label: "GitHub", link: "https://github.com/StevenWaterman/" },
 						{ label: "LinkedIn", link: "https://www.linkedin.com/in/steven-waterman/" },
 						{ label: "Twitch", link: "https://twitch.tv/SteWaterman/" },
@@ -43,8 +42,8 @@
 				<DropdownLabel
 					topEntry={{ label: "Projects" }}
 					menuEntries={[
-						{ label: "TuneScape", link: "https://tunescape07.com" },
-						{ label: "Balance Scores", link: "https://stevenwaterman.uk/Balance/" },
+						/* { label: "TuneScape", link: "https://tunescape07.com" }, */
+						/* { label: "Balance Scores", link: "https://stevenwaterman.uk/Balance/" }, */
 						{ label: "Lexoral", link: "https://lexoral.com" },
 						{ label: "MuseTree", link: "https://stevenwaterman.uk/musetree/" },
 						{ label: "No Time to Stalk", link: "https://stevenwaterman.uk/NoTimeToStalk" },
@@ -53,7 +52,7 @@
 							link: "https://github.com/stevenwaterman/narration.studio"
 						},
 						{ label: "Spiro", link: "https://stevenwaterman.uk/Spiro/" },
-						{ label: "Art", link: "https://linktr.ee/prevoid_art" },
+						/* { label: "Art", link: "https://linktr.ee/prevoid_art" }, */
 						{ label: "Music", link: "https://soundcloud.com/user-872603169" }
 					]}
 				/>

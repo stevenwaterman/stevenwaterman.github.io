@@ -2,7 +2,7 @@
 	import TextContainer from "$lib/template/TextContainer.svelte";
 	import Fa from "svelte-fa";
 	import { faCalendarCheck, faEnvelope, faGlobe } from "@fortawesome/free-solid-svg-icons";
-	import { faTwitch, faTwitter, faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+	import { faTwitch, faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 	import type { Author, AuthorDetails } from "./blogData";
 	import { authors } from "./blogData";
@@ -17,7 +17,7 @@
 	<meta name="twitter:creator" content={`@${authorDetails.links.twitter ?? "SteWaterman"}`} />
 </svelte:head>
 
-<TextContainer style="position: sticky; top: 1em;">
+<TextContainer>
 	<div class="authorCol">
 		<div class="details">
 			<img src={`/assets/blog/authors/${author}.jpg`} alt={authorDetails.longName} />
@@ -53,14 +53,6 @@
 				</li>
 			{/if}
 
-			{#if authorDetails.links.twitter}
-				<li>
-					<a href={`https://twitter.com/${authorDetails.links.twitter}/`}>
-						<Fa icon={faTwitter} /> <span class="linkText">@{authorDetails.links.twitter}</span>
-					</a>
-				</li>
-			{/if}
-
 			{#if authorDetails.links.twitch}
 				<li>
 					<a href={`https://twitch.tv/${authorDetails.links.twitch}/`}>
@@ -91,14 +83,14 @@
 <style>
 	.authorCol {
 		display: grid;
-		grid-template-columns: 1fr;
+		grid-template-columns: 20em auto;
 
 		justify-items: center;
 		align-items: center;
 
 		row-gap: 2em;
 		column-gap: 4em;
-		padding: 2em 1em;
+		padding: 2em 4em;
 	}
 
 	.details {
@@ -126,6 +118,8 @@
 	.links {
 		display: grid;
 		grid-template-columns: auto 1fr;
+		grid-column: 2;
+		grid-row: 1 / span 2;
 		column-gap: 1em;
 		row-gap: 1em;
 		padding: 0;
@@ -147,31 +141,6 @@
 
 	li :global(.svelte-fa) {
 		font-size: 2em;
-	}
-
-	@media (min-width: 1600px) and (max-height: 949px) {
-		.links {
-			display: flex;
-			flex-direction: row;
-			justify-content: space-evenly;
-			width: 100%;
-		}
-
-		.linkText {
-			display: none;
-		}
-	}
-
-	@media (max-width: 1599px) {
-		.authorCol {
-			grid-template-columns: 20em auto;
-			padding: 2em 4em;
-		}
-
-		.links {
-			grid-column: 2;
-			grid-row: 1 / span 2;
-		}
 	}
 
 	@media (max-width: 1199px) {

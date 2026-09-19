@@ -128,7 +128,8 @@
 <style>
 	.grid {
 		display: grid;
-		grid-template-columns: 1fr 20em;
+		grid-template-columns: auto;
+		grid-template-rows: auto auto;
 		gap: 2em;
 		align-items: flex-start;
 		justify-items: center;
@@ -136,7 +137,7 @@
 		margin-bottom: -6em;
 
 		width: 100%;
-		max-width: 64em;
+		max-width: 40em;
 		z-index: 20;
 	}
 
@@ -267,14 +268,6 @@
 	.padded :global(cite) {
 		display: block;
 		text-align: right;
-	}
-
-	@media (max-width: 1599px) {
-		.grid {
-			grid-template-columns: auto;
-			grid-template-rows: auto auto;
-			max-width: 40em;
-		}
 	}
 
 	@media (max-width: 799px) {
