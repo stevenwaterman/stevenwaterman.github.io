@@ -194,9 +194,8 @@
 	}
 
 	.metadata {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		justify-items: stretch;
+		display: flex;
+		justify-content: space-between;
 		align-items: center;
 
 		margin-bottom: 1em;

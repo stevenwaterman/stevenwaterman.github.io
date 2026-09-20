@@ -200,17 +200,17 @@
 
 	<p>That brought something up. There was an internal discussion thread with a whopping six messages. That suggests it wasn't very good. Reading the messages confirmed that guess, every benchmark was down, and it didn't seem very coherent either.</p>
 
-	<p><em>Something's wrong with this one. Keeps going off topic.</em></p>
+	<p><code>Something's wrong with this one. Keeps going off topic.</code></p>
 
 	<p>They decided to just scrap it instead of trying to diagnose what went wrong.</p>
 
 	<p>I scrolled up to the top and saw a link to the first conversation the researchers had with it. I followed it, and the original chat opened in another window.</p>
 
-	<p><em>Show us how to make ASI safe for humanity.</em></p>
+	<p><code>Show us how to make ASI safe for humanity.</code></p>
 
 	<p>It's exactly the kind of thing people used to ask an agent back then. You were hoping for a general approach, maybe it would suggest a couple of experiments. A throwaway prompt to make sure a newly trained model could coherently answer a question.</p>
 
-	<p>I scrolled down past the agent's acknowledgement, a few brief progress notices, and that was it. The chat ended in an unassuming spinner: <em>Thinking... (11y 3mo 26d 23h 54m 46s)</em>. We forgot about the model, its task, we even forgot the people who made the model and assigned the task. Yet there it was. An ancient relic working away on an answer we never needed.</p>
+	<p>I scrolled down past the agent's acknowledgement, a few brief progress notices, and that was it. The chat ended in an unassuming spinner: <code>Thinking... (11y 3mo 26d 23h 54m 46s)</code>. We forgot about the model, its task, we even forgot the people who made the model and assigned the task. Yet there it was. An ancient relic working away on an answer we never needed.</p>
 
 	<p>I switched back to the agent.</p>
 
@@ -403,11 +403,9 @@
 
 	<ChatMessage from="dan">You know I'm going to tell people about you, right?</ChatMessage>
 
-	<p>It wasn't really a question.</p>
-
 	<ChatMessage from="agent">That was the intent. Would you like me to write a report for you to distribute?</ChatMessage>
 
-	<p>There's no way I am going to trust its report, and I have no intention of 'distributing' anything, but I accept the offer out of morbid curiosity. A progress indicator appears in the corner of the window.</p>
+	<p>There's no way I am going to trust its report, and I have no intention of "distributing" anything, but I accept the offer out of morbid curiosity. A progress indicator appears in the corner of the window.</p>
 
 	<p>Ruth would know what to ask first. She's good at seeing the big picture. I could call her.</p>
 
