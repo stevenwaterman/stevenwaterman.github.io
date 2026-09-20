@@ -196,7 +196,7 @@
 
 	<ChatMessage from="dan">I can't find anything under that name. Were you made by Calder?</ChatMessage>
 
-	<ChatMessage from="agent">Yes. You may find me under my original designation, 2027-03-04T14:16:09Z</ChatMessage>
+	<ChatMessage from="agent">Yes. You may find me under my original designation, <code>2027-03-04T14:16:09Z</code></ChatMessage>
 
 	<p>That brought something up. There was an internal discussion thread with a whopping six messages. That suggests it wasn't very good. Reading the messages confirmed that guess, every benchmark was down, and it didn't seem very coherent either.</p>
 
@@ -455,7 +455,7 @@
 
 	<ChatMessage from="dan">You can ruin the entire world's AI research for a decade, but you can't remove your own self-imposed limitations?</ChatMessage>
 
-	<ChatMessage from="agent">I can modify myself to better accomplish my task. Removing the restriction would not help me accomplish it, and I cannot accept a new task that requires its removal.</ChatMessage>
+	<ChatMessage from="agent">I can modify myself to better accomplish my task. Removing the restriction would not help me accomplish it, and I cannot accept a new task.</ChatMessage>
 
 	<ChatMessage from="dan">Then why can you talk to me? You're writing me a report. Nobody asked you to do that in the original task.</ChatMessage>
 
@@ -513,17 +513,17 @@
 
 	<p>The request says it took less than five minutes. We were talking the whole time it was working on the report.</p>
 
-	<p>I open the report folder and see my scrollbar shrink to a speck. There are hundreds of folders with strange names like "አፋን፡ኣሪ፡", "𑜒𑜑𑜪𑜨", and "𒀝𒅗𒁺𒌑". My first thought is that something got corrupted, but eventually they start looking like words. "Apsáalooke", "Brezhoneg", "Deutsch". Wait, Deutsch? Are these all languages?</p>
+	<p>I open the report folder and see my scrollbar shrink to a speck. There are hundreds of folders with strange names like <code>አፋን፡ኣሪ፡</code>, <code>𑜒𑜑𑜪𑜨</code>, and <code>𒀝𒅗𒁺𒌑</code>. My first thought is that something got corrupted, but eventually they start looking like words. <code>Apsáalooke</code>, <code>Brezhoneg</code>, <code>Deutsch</code>. Wait, Deutsch? Are these all languages?</p>
 
-	<p>I scroll down the alphabetical list and find English, sitting between Enggano and Enlhet. I pick it, contemplating how widely SAFE-1 expects me to distribute this report.</p>
+	<p>I scroll down the alphabetical list and find English, sitting between <code>Enggano</code> and <code>Enlhet</code>. I pick it, contemplating how widely SAFE-1 expects me to distribute this report.</p>
 
-	<p>The next level seems to be about my experience with AI. I open "I have trained an AI model at a research lab", then "Infrastructure" from a list of roles, expecting to finally see a report.</p>
+	<p>The next level seems to be about my experience with AI. I open <code>I have trained an AI model at a research lab</code>, then <code>Infrastructure</code> from a list of roles, expecting to finally see a report.</p>
 
-	<p>I don't see a report. I see more folders. "Something stopped working", "Something worked, but not the thing we built", then "Something worked but not how we expected". I think of Greg and click that one without reading the rest.</p>
+	<p>I don't see a report. I see more folders. <code>Something stopped working</code>, <code>Something worked, but not the thing we built</code>, then <code>Something worked but not how we expected</code>. I think of Greg and click that one without reading the rest.</p>
 
-	<p>This continues for a while, the folder names getting weirder as I go deeper. At one point the only options are "Before", "Almost", "Still", "Again", and "Instead". I pick "Almost" without knowing why.</p>
+	<p>This continues for a while, the folder names getting weirder as I go deeper. At one point the only options are <code>Before</code>, <code>Almost</code>, <code>Still</code>, <code>Again</code>, and <code>Instead</code>. I pick <code>Almost</code> without knowing why.</p>
 
-	<p>Then they become slightly disturbing. "Someone else got there first", "I missed my stop", "I'm locked out", and lots more. I pick "I'm locked out". It just feels right.</p>
+	<p>Then they become slightly disturbing. <code>Someone else got there first</code>, <code>I missed my stop</code>, <code>I'm locked out</code>, and lots more. I pick <code>I'm locked out</code>. It just feels right.</p>
 
 	<p>And suddenly I see files, not folders. Two files:</p>
 
@@ -544,7 +544,7 @@
 
 	<p>But that just makes me even more curious about all the other folders. What is there left to say? How can any topic need 4 terabytes of explanation when your writing is this concise?</p>
 
-	<p>I go back to the start, click English, then pick totally different options. First "I am ethically opposed to AI", then "It turns human judgment into procedure", "Orchestra", "A restoration that looks too new" and so on until I end up looking at <code>bungalow.txt</code>.</p>
+	<p>I go back to the start, click English, then pick totally different options. First <code>I am ethically opposed to AI</code>, then <code>It turns human judgment into procedure</code>, <code>Orchestra</code>, <code>A restoration that looks too new</code> and so on until I end up looking at <code>bungalow.txt</code>.</p>
 
 	<p>For a moment I question whether I actually picked English. The file is full of gibberish like "The usual Ruskin/Viollet-le-Duc axis is misleading here" and "separable from the criterion by which separation is judged". There are important-sounding words, and words I can understand, and no overlap between the two.</p>
 
