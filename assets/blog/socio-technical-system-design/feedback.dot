@@ -1,0 +1,12 @@
+digraph {
+  rankdir=LR
+  graph [bgcolor=transparent]
+  node [style=filled, fillcolor=white]
+
+  complexity -> confusion [label=causes]
+  confusion -> maintenance [label=delays]
+  maintenance -> "band-aid\nfixes" [label=bypassed]
+  "band-aid\nfixes" -> complexity [label=worsen]
+
+  {rank=same; "band-aid\nfixes"; confusion}
+}
